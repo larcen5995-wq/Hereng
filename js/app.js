@@ -723,7 +723,12 @@ function initVocalizeApp() {
   const contentTypeSeg = $('contentTypeSegment');
 
   if (mainCatSelect) {
+    // 저장된 대분류 복원
+    const savedMainCat = localStorage.getItem('h_mainCat');
+    if (savedMainCat) mainCatSelect.value = savedMainCat;
+
     mainCatSelect.addEventListener('change', e => {
+      localStorage.setItem('h_mainCat', e.target.value);
       renderSubLevels(e.target.value);
       const sub = $('subLevelSelect');
       if (sub && sub.value) window.loadDatasetByLevelKey(sub.value);
@@ -907,10 +912,26 @@ function initVocalizeApp() {
   // =========================================================================
   // 11. 시작 시퀀스
   // =========================================================================
-  renderSubLevels('exam');
+  // 저장된 대분류 값으로 중분류를 올바르게 렌더링
+  const savedMainCatOnInit = localStorage.getItem('h_mainCat') || 'exam';
+  if (mainCatSelect) mainCatSelect.value = savedMainCatOnInit;
+  renderSubLevels(savedMainCatOnInit);
+
+  // 저장된 중분류 복원
+  const savedSubLevel = localStorage.getItem('h_subLevel');
   const initialSub = $('subLevelSelect');
+  if (initialSub && savedSubLevel) {
+    initialSub.value = savedSubLevel;
+  }
   if (initialSub && initialSub.value) {
     window.loadDatasetByLevelKey(initialSub.value);
+  }
+  // 중분류 변경 시 localStorage 저장
+  if (subLvlSelect) {
+    subLvlSelect.addEventListener('change', e => {
+      localStorage.setItem('h_subLevel', e.target.value);
+      window.loadDatasetByLevelKey(e.target.value);
+    });
   }
   window.renderUserCustomFilesList();
 
