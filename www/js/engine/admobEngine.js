@@ -10,11 +10,14 @@ class AdMobEngine {
   constructor() {
     this.isTestMode = false; // LIVE PRODUCTION ADMOB NETWORK MODE ACTIVE!
 
+    // Platform Detection (Android vs iOS)
+    const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+
     // Production Credentials
     this.prodPubId = 'ca-pub-8036094597229084';
-    this.prodAppId = 'ca-app-pub-8036094597229084~4240012345';
-    this.prodBannerSlot = '8512243931';
-    this.prodInterstitialSlot = '5225790958';
+    this.prodAppId = isIOS ? 'ca-app-pub-8036094597229084~9200530680' : 'ca-app-pub-8036094597229084~5122527799';
+    this.prodBannerSlot = isIOS ? '2687093227' : '8472801201';
+    this.prodInterstitialSlot = isIOS ? '6828734393' : '4759565710';
 
     // Google Test Ad Credentials
     this.testPubId = 'ca-pub-3940256099942544';
