@@ -593,6 +593,25 @@ function initVocalizeApp() {
   const bPD = $('btnPresetDictation');  if (bPD) bPD.addEventListener('click', () => applyPreset('dictation'));
 
   // ── 내 설정 저장 & 복원 ──
+  function applySettingsToEngine() {
+    if (!window.ttsEngine) return;
+    const tRep = localStorage.getItem('h_tRep');
+    const tGap = localStorage.getItem('h_tGap');
+    const eRep = localStorage.getItem('h_eRep');
+    const eGap = localStorage.getItem('h_eGap');
+    const nGap = localStorage.getItem('h_nGap');
+    const spd  = localStorage.getItem('h_spd');
+    const rSys = localStorage.getItem('h_rSys');
+
+    if (tRep !== null) window.ttsEngine.targetRepeatCount      = parseInt(tRep);
+    if (tGap !== null) window.ttsEngine.targetIntraGap         = parseInt(tGap);
+    if (eRep !== null) window.ttsEngine.explanationRepeatCount  = parseInt(eRep); // 0도 올바르게 적용!
+    if (eGap !== null) window.ttsEngine.targetToExpGap         = parseInt(eGap);
+    if (nGap !== null) window.ttsEngine.delayNextCard           = parseInt(nGap);
+    if (spd  !== null) window.ttsEngine.rate                    = parseFloat(spd);
+    if (rSys !== null) window.ttsEngine.repeatSystemMode        = rSys;
+  }
+
   function saveAudioSettings(showToast = false) {
     const tRep = $('targetRepeatSelect')?.value;
     const tGap = $('targetIntraGapSelect')?.value;
@@ -602,23 +621,15 @@ function initVocalizeApp() {
     const spd  = $('speedSelect')?.value;
     const rSys = $('tab1RepeatSystemSelect')?.value;
 
-    if (window.ttsEngine) {
-      if (tRep) window.ttsEngine.targetRepeatCount      = parseInt(tRep);
-      if (tGap) window.ttsEngine.targetIntraGap         = parseInt(tGap);
-      if (eRep) window.ttsEngine.explanationRepeatCount  = parseInt(eRep);
-      if (eGap) window.ttsEngine.targetToExpGap         = parseInt(eGap);
-      if (nGap) window.ttsEngine.delayNextCard           = parseInt(nGap);
-      if (spd)  window.ttsEngine.rate                    = parseFloat(spd);
-      if (rSys) window.ttsEngine.repeatSystemMode        = rSys;
-    }
+    if (tRep != null) localStorage.setItem('h_tRep', tRep);
+    if (tGap != null) localStorage.setItem('h_tGap', tGap);
+    if (eRep != null) localStorage.setItem('h_eRep', eRep);
+    if (eGap != null) localStorage.setItem('h_eGap', eGap);
+    if (nGap != null) localStorage.setItem('h_nGap', nGap);
+    if (spd  != null) localStorage.setItem('h_spd',  spd);
+    if (rSys != null) localStorage.setItem('h_rSys', rSys);
 
-    if (tRep) localStorage.setItem('h_tRep', tRep);
-    if (tGap) localStorage.setItem('h_tGap', tGap);
-    if (eRep) localStorage.setItem('h_eRep', eRep);
-    if (eGap) localStorage.setItem('h_eGap', eGap);
-    if (nGap) localStorage.setItem('h_nGap', nGap);
-    if (spd)  localStorage.setItem('h_spd',  spd);
-    if (rSys) localStorage.setItem('h_rSys', rSys);
+    applySettingsToEngine();
 
     if (showToast) alert('✅ 사용자 커스텀 설정이 저장되었습니다!');
   }
@@ -632,16 +643,7 @@ function initVocalizeApp() {
     const spd  = localStorage.getItem('h_spd');
     const rSys = localStorage.getItem('h_rSys');
 
-    if (window.ttsEngine) {
-      if (tRep) window.ttsEngine.targetRepeatCount      = parseInt(tRep);
-      if (tGap) window.ttsEngine.targetIntraGap         = parseInt(tGap);
-      if (eRep) window.ttsEngine.explanationRepeatCount  = parseInt(eRep);
-      if (eGap) window.ttsEngine.targetToExpGap         = parseInt(eGap);
-      if (nGap) window.ttsEngine.delayNextCard           = parseInt(nGap);
-      if (spd)  window.ttsEngine.rate                    = parseFloat(spd);
-      if (rSys) window.ttsEngine.repeatSystemMode        = rSys;
-    }
-
+    // UI 드롭다운 복원
     if (tRep && $('targetRepeatSelect'))      $('targetRepeatSelect').value      = tRep;
     if (tGap && $('targetIntraGapSelect'))   $('targetIntraGapSelect').value    = tGap;
     if (eRep && $('explanationRepeatSelect')) $('explanationRepeatSelect').value  = eRep;
@@ -649,6 +651,9 @@ function initVocalizeApp() {
     if (nGap && $('delayNextCardSelect'))     $('delayNextCardSelect').value     = nGap;
     if (spd  && $('speedSelect'))            $('speedSelect').value             = spd;
     if (rSys && $('tab1RepeatSystemSelect')) $('tab1RepeatSystemSelect').value  = rSys;
+
+    // ttsEngine이 완전히 초기화된 뒤 200ms 후에 적용 (타이밍 보장)
+    setTimeout(applySettingsToEngine, 200);
   }
   restoreAudioSettings();
 

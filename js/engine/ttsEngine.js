@@ -79,7 +79,7 @@ class TTSEngine {
     this.playlist = Array.isArray(items) ? items : [];
   }
 
-  // ── 모든 타이머 + synth 초기화 ──
+  // 소리 하지 않고 타이머 + synth 만 정리 (백그라운드 오디오는 절대 끄지 않음!)
   _fullStop() {
     if (this._watchdogId) { clearTimeout(this._watchdogId); this._watchdogId = null; }
     if (this.activeTimerId) { clearTimeout(this.activeTimerId); this.activeTimerId = null; }
@@ -87,14 +87,15 @@ class TTSEngine {
       try { this.synth.resume(); } catch(e){}
       try { this.synth.cancel(); } catch(e){}
     }
-    if (!this.isPlaying && this.bgAudio) {
-      try { this.bgAudio.pause(); } catch(e){}
-    }
+    // bgAudio는 절대 여기서 멈춰서는 안 됨 → 잠금화면 오디오 세션 유지 필수!
+    // bgAudio는 stop() 호출 시에만 멈쳐야 함
   }
 
   stop() {
     this.isPlaying = false;
     this._fullStop();
+    // 멈쳐아 할 때만 bgAudio 멈춰야 함
+    if (this.bgAudio) { try { this.bgAudio.pause(); } catch(e){} }
     try {
       if (window.AndroidNativeTTS && typeof window.AndroidNativeTTS.pauseNativePlaylist === 'function') {
         window.AndroidNativeTTS.pauseNativePlaylist();
