@@ -560,11 +560,15 @@ function initVocalizeApp() {
       isRadioMode = !isRadioMode;
       if (isRadioMode) {
         btnToggleRadioMode.style.background = 'linear-gradient(135deg,#10b981,#6366f1)';
-const viz = $('visualizer'); if (viz) viz.classList.add('playing');
+        btnToggleRadioMode.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> 📻 24시간 라디오 & 화면꺼짐 무제한 연속 재생 (ON)';
+        if (window.ttsEngine && !window.ttsEngine.isPlaying) {
+          window.ttsEngine.play();
+          if (btnPlayPause) btnPlayPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
+          const viz = $('visualizer'); if (viz) viz.classList.add('playing');
         }
       } else {
         btnToggleRadioMode.style.background = 'linear-gradient(135deg,#6366f1,#10b981)';
-        btnToggleRadioMode.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> 📻 24시간 라디오 & 화면꺼짐 무제한 연속 재생 (ON)';
+        btnToggleRadioMode.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> 📻 24시간 라디오 연속 재생 (OFF)';
         if (window.ttsEngine) window.ttsEngine.pause();
         if (btnPlayPause) btnPlayPause.innerHTML = '<i class="fa-solid fa-play"></i>';
         const viz = $('visualizer'); if (viz) viz.classList.remove('playing');
