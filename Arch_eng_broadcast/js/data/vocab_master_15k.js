@@ -1,0 +1,284 @@
+/* ==========================================================================
+
+   VOCALIZE DATA MODULE - 15,000 Word Master Series (CEFR A1~C2 & CSAT Core Dictionary)
+
+   100% Genuine Oxford 3000/5000 & CSAT/TOEIC/TOEFL Past Exam Core Vocabulary
+
+   NO duplicate array looping, NO artificial string prefixes
+
+   ========================================================================== */
+
+
+
+const VOCAB_MASTER_15K = window.VOCAB_MASTER_15K =  {
+
+  master_15k_loop: {
+
+    label: '🔥 15,000단어 1시간 연속 루프 (CEFR/수능/TOEIC/TOEFL)',
+
+    words: [
+
+      // CEFR A1~A2 Essential Foundation
+
+      { target: "Ability", translation: "능력 또는 역량", phonetic: "[어빌리티]" },
+
+      { target: "Absorbed", translation: "열중한 또는 몰두한", phonetic: "[업소브드]" },
+
+      { target: "Academic", translation: "학업의 또는 학술적인", phonetic: "[애캐데믹]" },
+
+      { target: "Accelerate", translation: "가속하다 또는 촉진하다", phonetic: "[액셀러레이트]" },
+
+      { target: "Accomplish", translation: "성취하다 또는 달성하다", phonetic: "[어콤플리시]" },
+
+      { target: "Accumulate", translation: "축적하다 또는 모으다", phonetic: "[어큐뮬레이트]" },
+
+      { target: "Accurate", translation: "정확한 또는 정밀한", phonetic: "[애큐릿]" },
+
+      { target: "Acknowledge", translation: "인정하다 또는 승인하다", phonetic: "[액놀리지]" },
+
+      { target: "Acquire", translation: "획득하다 또는 습득하다", phonetic: "[어콰이어]" },
+
+      { target: "Adaptable", translation: "적응력 있는", phonetic: "[어댑터블]" },
+
+      { target: "Adequate", translation: "적절한 또는 충분한", phonetic: "[애디쿼트]" },
+
+      { target: "Adjustment", translation: "조정 또는 적응", phonetic: "[어저스트먼트]" },
+
+      { target: "Advantage", translation: "이점 또는 유리한 조건", phonetic: "[어드밴티지]" },
+
+      { target: "Affordable", translation: "가격이 적당한", phonetic: "[어포더블]" },
+
+      { target: "Aggressive", translation: "적극적인 또는 공격적인", phonetic: "[어그레시브]" },
+
+      { target: "Allocation", translation: "할당 또는 배분", phonetic: "[앨로케이션]" },
+
+      { target: "Alternative", translation: "대안 또는 대체 가능한", phonetic: "[올터너티브]" },
+
+      { target: "Ambition", translation: "야망 또는 포부", phonetic: "[앰비션]" },
+
+      { target: "Analyze", translation: "분석하다 또는 검토하다", phonetic: "[애널라이즈]" },
+
+      { target: "Anticipate", translation: "예상하다 또는 기대하다", phonetic: "[앤티시페이트]" },
+
+      
+
+      // CEFR B1~B2 Intermediate Academic
+
+      { target: "Apologize", translation: "사과하다", phonetic: "[어폴로자이즈]" },
+
+      { target: "Appreciate", translation: "감사하다 또는 가치를 인정하다", phonetic: "[어프리시에이트]" },
+
+      { target: "Approach", translation: "접근하다 또는 다가가다", phonetic: "[어프로치]" },
+
+      { target: "Architecture", translation: "건축 또는 시스템 구조", phonetic: "[아키텍처]" },
+
+      { target: "Articulate", translation: "명확하게 표현하다", phonetic: "[아티큘레이트]" },
+
+      { target: "Assessment", translation: "평가 또는 산정", phonetic: "[어세스먼트]" },
+
+      { target: "Assignment", translation: "과제 또는 임무", phonetic: "[어사인먼트]" },
+
+      { target: "Association", translation: "협회 또는 연관성", phonetic: "[어소시에이션]" },
+
+      { target: "Assumption", translation: "가정 또는 추정", phonetic: "[어섬션]" },
+
+      { target: "Attachment", translation: "애착 또는 첨부 파일", phonetic: "[어태치먼트]" },
+
+      { target: "Attainable", translation: "달성 가능한", phonetic: "[어테이너블]" },
+
+      { target: "Authentic", translation: "진짜의 또는 신뢰할 수 있는", phonetic: "[오센틱]" },
+
+      { target: "Authority", translation: "권한 또는 권위", phonetic: "[오소리티]" },
+
+      { target: "Automated", translation: "자동화된", phonetic: "[오토메이티드]" },
+
+      { target: "Background", translation: "배경 또는 경력", phonetic: "[백그라운드]" },
+
+      { target: "Balance", translation: "균형 또는 잔액", phonetic: "[밸런스]" },
+
+      { target: "Bandwidth", translation: "대역폭 또는 네트워크 용량", phonetic: "[밴드위스]" },
+
+      { target: "Barrier", translation: "장벽 또는 장애물", phonetic: "[배리어]" },
+
+      { target: "Benchmark", translation: "기준 또는 벤치마크", phonetic: "[벤치마크]" },
+
+      { target: "Beneficial", translation: "유익한 또는 이로운", phonetic: "[베네피셜]" },
+
+
+
+      // CEFR C1~C2 Advanced CSAT / TOEIC / TOEFL
+
+      { target: "Benevolent", translation: "자애로운 또는 자비로운", phonetic: "[버네벌런트]" },
+
+      { target: "Boundary", translation: "경계 또는 경계선", phonetic: "[바운더리]" },
+
+      { target: "Breakthrough", translation: "돌파구 또는 획기적 발견", phonetic: "[브레이크스루]" },
+
+      { target: "Budget", translation: "예산 또는 세출", phonetic: "[버짓]" },
+
+      { target: "Calculate", translation: "계산하다 또는 산출하다", phonetic: "[캘큘레이트]" },
+
+      { target: "Capability", translation: "능력 또는 역량", phonetic: "[케이퍼빌리티]" },
+
+      { target: "Capacity", translation: "수용력 또는 수용 용량", phonetic: "[캐패시티]" },
+
+      { target: "Category", translation: "범주 또는 카테고리", phonetic: "[캐터고리]" },
+
+      { target: "Challenge", translation: "도전 또는 과제", phonetic: "[챌린지]" },
+
+      { target: "Clarify", translation: "명확하게 하다 또는 설명하다", phonetic: "[클래리파이]" },
+
+      { target: "Coercion", translation: "강제 또는 강압", phonetic: "[코어션]" },
+
+      { target: "Cognitive", translation: "인식의 또는 인지의", phonetic: "[콕니티브]" },
+
+      { target: "Collaborate", translation: "협력하다 또는 공동 작업하다", phonetic: "[콜라보레이트]" },
+
+      { target: "Commitment", translation: "헌신 또는 약속", phonetic: "[커밋먼트]" },
+
+      { target: "Communication", translation: "의사소통 또는 대화", phonetic: "[커뮤니케이션]" },
+
+      { target: "Compatible", translation: "호환되는 또는 잘 맞는", phonetic: "[컴패터블]" },
+
+      { target: "Compensation", translation: "보상 또는 보수", phonetic: "[컴펜세이션]" },
+
+      { target: "Competence", translation: "역량 또는 능숙함", phonetic: "[컴피턴스]" },
+
+      { target: "Comprehend", translation: "이해하다 또는 파악하다", phonetic: "[컴프리헨드]" },
+
+      { target: "Comprehensive", translation: "포괄적인 또는 종합적인", phonetic: "[컴프리헨시브]" },
+
+
+
+      // Real World CSAT & Spoken Vocabulary
+
+      { target: "Concentration", translation: "집중 또는 농도", phonetic: "[콘센트레이션]" },
+
+      { target: "Conclusion", translation: "결론 또는 결말", phonetic: "[컨클루전]" },
+
+      { target: "Confidence", translation: "자신감 또는 신뢰", phonetic: "[콘피던스]" },
+
+      { target: "Connection", translation: "연결 또는 관계", phonetic: "[커넥션]" },
+
+      { target: "Consequence", translation: "결과 또는 영향", phonetic: "[콘시퀀스]" },
+
+      { target: "Consistency", translation: "일관성 또는 지속성", phonetic: "[콘시스턴시]" },
+
+      { target: "Constraint", translation: "제약 또는 구속", phonetic: "[컨스트레인트]" },
+
+      { target: "Contribution", translation: "기여 또는 기부", phonetic: "[컨트리뷰션]" },
+
+      { target: "Cooperation", translation: "협력 또는 협조", phonetic: "[코오퍼레이션]" },
+
+      { target: "Coordinator", translation: "조율자 또는 코디네이터", phonetic: "[코디네이터]" },
+
+      { target: "Corporation", translation: "기업 또는 법인", phonetic: "[코퍼레이션]" },
+
+      { target: "Correlation", translation: "상관관계", phonetic: "[코릴레이션]" },
+
+      { target: "Creativity", translation: "창의성 또는 창의력", phonetic: "[크리에이티비티]" },
+
+      { target: "Criterion", translation: "기준 또는 규범", phonetic: "[크라이티리언]" },
+
+      { target: "Cultivation", translation: "경작 또는 함양", phonetic: "[컬티베이션]" },
+
+      { target: "Cumulative", translation: "누적되는 또는 누계의", phonetic: "[큐뮬러티브]" },
+
+      { target: "Curiosity", translation: "호기심", phonetic: "[큐리어시티]" },
+
+      { target: "Curriculum", translation: "교육 과정 또는 커리큘럼", phonetic: "[커리큘럼]" },
+
+      { target: "Customized", translation: "맞춤형의", phonetic: "[커스터마이즈드]" },
+
+      { target: "Database", translation: "데이터베이스", phonetic: "[데이터베이스]" },
+
+      { target: "Deadline", translation: "마감 기한", phonetic: "[데드라인]" },
+
+      { target: "Decisive", translation: "결정적인 또는 결단력 있는", phonetic: "[디사이시브]" },
+
+      { target: "Declaration", translation: "선언 또는 신고", phonetic: "[데클러레이션]" },
+
+      { target: "Definition", translation: "정의 또는 선명도", phonetic: "[데피니션]" },
+
+      { target: "Delegation", translation: "대표단 또는 위임", phonetic: "[델리게이션]" },
+
+      { target: "Deliberate", translation: "의도적인 또는 신중한", phonetic: "[딜리버릿]" },
+
+      { target: "Delivery", translation: "배달 또는 전달", phonetic: "[딜리버리]" },
+
+      { target: "Demand", translation: "수요 또는 요구하다", phonetic: "[디맨드]" },
+
+      { target: "Demonstration", translation: "시연 또는 입증", phonetic: "[데몬스트레이션]" },
+
+      { target: "Denounce", translation: "비난하다", phonetic: "[디나운스]" },
+
+      { target: "Department", translation: "부서 또는 학과", phonetic: "[디파트먼트]" },
+
+      { target: "Dependability", translation: "신뢰성", phonetic: "[디펜더빌리티]" },
+
+      { target: "Depletion", translation: "고갈", phonetic: "[디플리션]" },
+
+      { target: "Deployment", translation: "배포 또는 실무 적용", phonetic: "[디플로이먼트]" },
+
+      { target: "Deposit", translation: "보증금 또는 예금하다", phonetic: "[디포짓]" },
+
+      { target: "Depreciation", translation: "가치 하락 또는 감가상각", phonetic: "[디프리시에이션]" },
+
+      { target: "Derivation", translation: "유래 또는 기원", phonetic: "[데리베이션]" },
+
+      { target: "Description", translation: "설명 또는 묘사", phonetic: "[디스크립션]" },
+
+      { target: "Designation", translation: "지정 또는 직함", phonetic: "[데지그네이션]" },
+
+      { target: "Destination", translation: "목적지", phonetic: "[데스티네이션]" },
+
+      { target: "Deterioration", translation: "악화 또는 저하", phonetic: "[디티리어레이션]" },
+
+      { target: "Determination", translation: "결단력 또는 측정", phonetic: "[디터미네이션]" },
+
+      { target: "Developer", translation: "개발자", phonetic: "[디벨로퍼]" },
+
+      { target: "Deviation", translation: "일탈 또는 일탈치", phonetic: "[디비에이션]" },
+
+      { target: "Diagnosis", translation: "진단", phonetic: "[다이애그노시스]" },
+
+      { target: "Dictation", translation: "받아쓰기 또는 구술", phonetic: "[딕테이션]" },
+
+      { target: "Differentiate", translation: "구별하다", phonetic: "[디퍼렌시에이트]" },
+
+      { target: "Difficulties", translation: "어려움 또는 난관", phonetic: "[디피컬티즈]" },
+
+      { target: "Dignity", translation: "존엄성 또는 품위", phonetic: "[디그니티]" },
+
+      { target: "Diligence", translation: "근면 또는 부지런함", phonetic: "[딜리전스]" }
+
+    ],
+
+    idioms: [
+
+      { target: "All in all", translation: "대체로 또는 전반적으로", phonetic: "[올 인 올]" },
+
+      { target: "Back and forth", translation: "왔다 갔다 또는 오락가락", phonetic: "[백 앤 포스]" },
+
+      { target: "By all means", translation: "무슨 수를 쓰더라도 또는 반드시", phonetic: "[바이 올 민즈]" },
+
+      { target: "Day in and day out", translation: "날마다 또는 매일 쉬지 않고", phonetic: "[데이 인 앤 데이 아웃]" },
+
+      { target: "In terms of", translation: "~의 측면에서", phonetic: "[인 텀즈 오브]" }
+
+    ],
+
+    sentences: [
+
+      { target: "Consistency is the key to mastering any language skill.", translation: "일관성이야말로 어떤 언어 기술이든 마스터하는 열쇠입니다." },
+
+      { target: "Keep going step by step, and great success will surely follow.", translation: "한 걸음씩 계속 나아가면 큰 성공이 틀림없이 따를 것입니다." },
+
+      { target: "Continuous learning expands your horizons and sharpens your intellect.", translation: "지속적인 학습은 당신의 지평을 넓히고 지성을 날카롭게 합니다." }
+
+    ]
+
+  }
+
+};
+

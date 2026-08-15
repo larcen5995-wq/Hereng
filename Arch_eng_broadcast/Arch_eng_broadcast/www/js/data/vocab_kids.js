@@ -1,0 +1,882 @@
+/* ==========================================================================
+
+   VOCALIZE DATA MODULE - 3~5 Toddler & 6~7 Kindergarten
+
+   3~5 Toddler: 100 Words, 20 Idioms, 50 Sweet Daily Sentences
+
+   6~7 Kindergarten: 100 Phonics Words, 20 Daily Idioms, 100 Real Practical Sentences
+
+   ========================================================================== */
+
+
+
+function buildExpanded3to5KidsDataset() {
+
+  const words = [
+
+    { target: "Mommy", translation: "엄마", phonetic: "[마미]" },
+
+    { target: "Mother", translation: "어머니", phonetic: "[머더]" },
+
+    { target: "Daddy", translation: "아빠", phonetic: "[대디]" },
+
+    { target: "Father", translation: "아버지", phonetic: "[파더]" },
+
+    { target: "Baby", translation: "아기", phonetic: "[베이비]" },
+
+    { target: "Infant", translation: "유아 / 아기", phonetic: "[인펀트]" },
+
+    { target: "Brother", translation: "오빠 / 남동생", phonetic: "[브라더]" },
+
+    { target: "Sister", translation: "언니 / 여동생", phonetic: "[시스터]" },
+
+    { target: "Grandma", translation: "할머니", phonetic: "[그랜드마]" },
+
+    { target: "Grandpa", translation: "할아버지", phonetic: "[그랜드파]" },
+
+    { target: "Friend", translation: "친구", phonetic: "[프렌드]" },
+
+    { target: "Puppy", translation: "강아지", phonetic: "[퍼피]" },
+
+    { target: "Dog", translation: "개", phonetic: "[독]" },
+
+    { target: "Kitten", translation: "아기 고양이", phonetic: "[키튼]" },
+
+    { target: "Cat", translation: "고양이", phonetic: "[캣]" },
+
+    { target: "Bunny", translation: "아기 토끼", phonetic: "[버니]" },
+
+    { target: "Rabbit", translation: "토끼", phonetic: "[래빗]" },
+
+    { target: "Bird", translation: "새", phonetic: "[버드]" },
+
+    { target: "Birdie", translation: "아기 새", phonetic: "[버디]" },
+
+    { target: "Duck", translation: "오리", phonetic: "[덕]" },
+
+    { target: "Duckling", translation: "아기 오리", phonetic: "[덕클링]" },
+
+    { target: "Fish", translation: "물고기", phonetic: "[피시]" },
+
+    { target: "Bear", translation: "곰", phonetic: "[베어]" },
+
+    { target: "Teddy bear", translation: "곰 인형", phonetic: "[테디 베어]" },
+
+    { target: "Sun", translation: "해 / 태양", phonetic: "[선]" },
+
+    { target: "Sunny", translation: "화창한 / 햇살 비치는", phonetic: "[서니]" },
+
+    { target: "Star", translation: "별", phonetic: "[스타]" },
+
+    { target: "Starry", translation: "별이 빛나는", phonetic: "[스파리]" },
+
+    { target: "Moon", translation: "달", phonetic: "[문]" },
+
+    { target: "Moonlight", translation: "달빛", phonetic: "[문라이트]" },
+
+    { target: "Tree", translation: "나무", phonetic: "[트리]" },
+
+    { target: "Flower", translation: "꽃", phonetic: "[플라워]" },
+
+    { target: "Water", translation: "물", phonetic: "[워터]" },
+
+    { target: "Rain", translation: "비", phonetic: "[레인]" },
+
+    { target: "Rainy", translation: "비 오는", phonetic: "[레이니]" },
+
+    { target: "Milk", translation: "우유", phonetic: "[밀크]" },
+
+    { target: "Juice", translation: "주스", phonetic: "[주스]" },
+
+    { target: "Apple", translation: "사과", phonetic: "[애플]" },
+
+    { target: "Banana", translation: "바나나", phonetic: "[바나나]" },
+
+    { target: "Bread", translation: "빵", phonetic: "[브레드]" },
+
+    { target: "Cookie", translation: "과자 / 쿠키", phonetic: "[쿠키]" },
+
+    { target: "Watermelon", translation: "수박", phonetic: "[워터멜론]" },
+
+    { target: "Strawberry", translation: "딸기", phonetic: "[스트로베리]" },
+
+    { target: "Soup", translation: "수프 / 국", phonetic: "[수프]" },
+
+    { target: "Rice", translation: "밥 / 쌀", phonetic: "[라이스]" },
+
+    { target: "Toy", translation: "장난감", phonetic: "[토이]" },
+
+    { target: "Doll", translation: "인형", phonetic: "[돌]" },
+
+    { target: "Ball", translation: "공", phonetic: "[볼]" },
+
+    { target: "Block", translation: "블록", phonetic: "[블록]" },
+
+    { target: "Book", translation: "책", phonetic: "[북]" },
+
+    { target: "Bed", translation: "침대", phonetic: "[베드]" },
+
+    { target: "Chair", translation: "의자", phonetic: "[체어]" },
+
+    { target: "Table", translation: "탁자", phonetic: "[테이블]" },
+
+    { target: "Shoe", translation: "신발", phonetic: "[슈]" },
+
+    { target: "Coat", translation: "외투", phonetic: "[코트]" },
+
+    { target: "Sock", translation: "양말", phonetic: "[속]" },
+
+    { target: "Pajamas", translation: "잠옷", phonetic: "[파자마스]" },
+
+    { target: "Spoon", translation: "숟가락", phonetic: "[스푼]" },
+
+    { target: "Cup", translation: "컵", phonetic: "[컵]" },
+
+    { target: "Door", translation: "문", phonetic: "[도어]" },
+
+    { target: "Window", translation: "창문", phonetic: "[윈도우]" },
+
+    { target: "Head", translation: "머리", phonetic: "[헤드]" },
+
+    { target: "Eye", translation: "눈", phonetic: "[아이]" },
+
+    { target: "Nose", translation: "코", phonetic: "[노즈]" },
+
+    { target: "Mouth", translation: "입", phonetic: "[마우스]" },
+
+    { target: "Ear", translation: "귀", phonetic: "[이어]" },
+
+    { target: "Hand", translation: "손", phonetic: "[핸드]" },
+
+    { target: "Foot", translation: "발", phonetic: "[풋]" },
+
+    { target: "Tummy", translation: "배 (신체)", phonetic: "[터미]" },
+
+    { target: "Happy", translation: "행복한", phonetic: "[해피]" },
+
+    { target: "Sad", translation: "슬픈", phonetic: "[새드]" },
+
+    { target: "Tired", translation: "피곤한 / 졸린", phonetic: "[타이어드]" },
+
+    { target: "Sleepy", translation: "졸리운", phonetic: "[슬리피]" },
+
+    { target: "Hungry", translation: "배고픈", phonetic: "[헝그리]" },
+
+    { target: "Thirsty", translation: "목마른", phonetic: "[서스티]" },
+
+    { target: "Big", translation: "커다란", phonetic: "[빅]" },
+
+    { target: "Little", translation: "작은", phonetic: "[리틀]" },
+
+    { target: "Small", translation: "작은", phonetic: "[스몰]" },
+
+    { target: "Hot", translation: "뜨거운", phonetic: "[핫]" },
+
+    { target: "Cold", translation: "차가운", phonetic: "[콜드]" },
+
+    { target: "Warm", translation: "따뜻한", phonetic: "[웜]" },
+
+    { target: "Clean", translation: "깨끗한", phonetic: "[클린]" },
+
+    { target: "Dirty", translation: "지저분한", phonetic: "[더티]" },
+
+    { target: "Red", translation: "빨간색", phonetic: "[레드]" },
+
+    { target: "Blue", translation: "파란색", phonetic: "[블루]" },
+
+    { target: "Yellow", translation: "노란색", phonetic: "[옐로우]" },
+
+    { target: "Green", translation: "초록색", phonetic: "[그린]" },
+
+    { target: "Pink", translation: "분홍색", phonetic: "[핑크]" },
+
+    { target: "Purple", translation: "보라색", phonetic: "[퍼플]" },
+
+    { target: "White", translation: "하얀색", phonetic: "[화이트]" },
+
+    { target: "Orange", translation: "주황색", phonetic: "[오렌지]" },
+
+    { target: "Brown", translation: "갈색", phonetic: "[브라운]" },
+
+    { target: "Black", translation: "검은색", phonetic: "[블랙]" },
+
+    { target: "Gold", translation: "금색", phonetic: "[골드]" },
+
+    { target: "Silver", translation: "은색", phonetic: "[실버]" },
+
+    { target: "Love", translation: "사랑", phonetic: "[러브]" },
+
+    { target: "Joy", translation: "기쁨", phonetic: "[조이]" },
+
+    { target: "Smile", translation: "미소", phonetic: "[스마일]" },
+
+    { target: "Hug", translation: "포옹", phonetic: "[허그]" },
+
+    { target: "Kiss", translation: "뽀뽀", phonetic: "[키스]" }
+
+  ];
+
+
+
+  const idioms = [
+
+    { target: "Good morning", translation: "좋은 아침", phonetic: "[굿 모닝]" },
+
+    { target: "Good night", translation: "잘 자요", phonetic: "[굿 나이트]" },
+
+    { target: "Thank you", translation: "고마워요", phonetic: "[땡큐]" },
+
+    { target: "You are welcome", translation: "천만에요", phonetic: "[유 아 웰컴]" },
+
+    { target: "Clean up", translation: "장난감 정돈하기", phonetic: "[클린 업]" },
+
+    { target: "Wash hands", translation: "손 씻기", phonetic: "[워시 핸즈]" },
+
+    { target: "Brush teeth", translation: "양치질하기", phonetic: "[브러시 티스]" },
+
+    { target: "Put on shoes", translation: "신발 신기", phonetic: "[풋 온 슈즈]" },
+
+    { target: "Take off coat", translation: "외투 벗기", phonetic: "[테이크 오프 코트]" },
+
+    { target: "High five", translation: "하이파이브 하기", phonetic: "[하이 파이브]" },
+
+    { target: "Give a hug", translation: "꼭 안아주기", phonetic: "[기브 어 허그]" },
+
+    { target: "Take a nap", translation: "낮잠 자기", phonetic: "[테이크 어 냅]" },
+
+    { target: "It is your turn", translation: "네 차례야", phonetic: "[잇 이즈 유어 턴]" },
+
+    { target: "Sweet dreams", translation: "달콤한 꿈꿔", phonetic: "[스윗 드림즈]" },
+
+    { target: "Hold my hand", translation: "내 손 잡기", phonetic: "[홀드 마이 핸드]" },
+
+    { target: "Fly a kite", translation: "연 날리기", phonetic: "[플라이 어 카이트]" },
+
+    { target: "Take a stroll", translation: "산책하기", phonetic: "[테이크 어 스트롤]" },
+
+    { target: "Read a book", translation: "책 읽기", phonetic: "[리드 어 북]" },
+
+    { target: "Drink milk", translation: "우유 마시기", phonetic: "[드링크 밀크]" },
+
+    { target: "Play together", translation: "함께 놀기", phonetic: "[플레이 투게더]" }
+
+  ];
+
+
+
+  const sentences = [
+
+    { target: "Good morning, mommy!", translation: "좋은 아침이에요, 엄마!" },
+
+    { target: "Good morning, daddy!", translation: "좋은 아침이에요, 아빠!" },
+
+    { target: "I love you, mommy.", translation: "엄마 사랑해요." },
+
+    { target: "I love you, daddy.", translation: "아빠 사랑해요." },
+
+    { target: "Give me a warm hug.", translation: "나를 따뜻하게 꼭 안아주세요." },
+
+    { target: "Time to wake up.", translation: "일어날 시간이에요." },
+
+    { target: "Let us wash our hands.", translation: "손을 씻자." },
+
+    { target: "Brush your teeth, please.", translation: "이빨을 닦아주세요." },
+
+    { target: "Yummy, yummy apple!", translation: "맛있는 사과예요!" },
+
+    { target: "Drink your warm milk.", translation: "따뜻한 우유를 마셔요." },
+
+    { target: "I am hungry.", translation: "배고파요." },
+
+    { target: "I am sleepy.", translation: "졸려요." },
+
+    { target: "Look at the pretty flower!", translation: "예쁜 꽃을 보세요!" },
+
+    { target: "Look at the yellow star!", translation: "노란 별을 보세요!" },
+
+    { target: "The cute puppy says woof!", translation: "귀여운 강아지가 멍멍 짖어요!" },
+
+    { target: "The little kitten says meow!", translation: "작은 고양이가 야옹해요!" },
+
+    { target: "The bunny hops high.", translation: "토끼가 높이 깡충 뛰어요." },
+
+    { target: "Put on your shoes.", translation: "신발을 신어요." },
+
+    { target: "Take off your coat.", translation: "외투를 벗어요." },
+
+    { target: "Clean up your toys.", translation: "장난감을 정돈해요." },
+
+    { target: "Let us play together!", translation: "함께 놀자!" },
+
+    { target: "Share your toys, please.", translation: "장난감을 나눠 써요." },
+
+    { target: "Say thank you to grandma.", translation: "할머니께 고맙다고 말해요." },
+
+    { target: "Say good night to grandpa.", translation: "할아버지께 안녕히 주무시라고 말해요." },
+
+    { target: "Close your eyes.", translation: "눈을 감아요." },
+
+    { target: "Sweet dreams, my baby.", translation: "달콤한 꿈꿔, 내 아가야." },
+
+    { target: "I can do it!", translation: "나 혼자서도 할 수 있어요!" },
+
+    { target: "Touch your nose!", translation: "네 코를 터치해 봐!" },
+
+    { target: "Clap your hands!", translation: "손뼉을 쳐요!" },
+
+    { target: "Stomp your feet!", translation: "발을 굴러요!" },
+
+    { target: "Spin around happily!", translation: "신나게 빙글빙글 돌아요!" },
+
+    { target: "Hold my hand tightly.", translation: "내 손을 꼭 잡아요." },
+
+    { target: "Where is the red ball?", translation: "빨간 공이 어디 있지?" },
+
+    { target: "Here is your storybook.", translation: "여기 동화책이 있어요." },
+
+    { target: "Read me a story, daddy.", translation: "아빠, 동화책 읽어주세요." },
+
+    { target: "The sun is shining bright.", translation: "해님이 밝게 비추어요." },
+
+    { target: "The moon is in the sky.", translation: "달님이 하늘에 있어요." },
+
+    { target: "It is raining outside.", translation: "밖에 비가 오고 있어요." },
+
+    { target: "Pitter-patter rain drops.", translation: "보슬보슬 빗방울이 떨어져요." },
+
+    { target: "Sing a happy song!", translation: "신나는 노래를 불러요!" },
+
+    { target: "Dance with me!", translation: "나랑 함께 춤추자!" },
+
+    { target: "Smile brightly!", translation: "환하게 웃어봐요!" },
+
+    { target: "Peek-a-boo, I see you!", translation: "까꿍, 너 찾았다!" },
+
+    { target: "High five, buddy!", translation: "하이파이브 하자!" },
+
+    { target: "Be careful, slow down.", translation: "조심해, 천천히 가렴." },
+
+    { target: "Are you okay, baby?", translation: "아가야, 괜찮니?" },
+
+    { target: "Here is a tissue.", translation: "여기 휴지가 있어요." },
+
+    { target: "Taste the sweet watermelon!", translation: "달콤한 수박을 맛봐요!" },
+
+    { target: "Sleep tight, see you tomorrow.", translation: "푹 자고 내일 또 봐요." },
+
+    { target: "I am so happy every day.", translation: "나는 매일매일 정말 행복해요." }
+
+  ];
+
+
+
+  return { words, idioms, sentences };
+
+}
+
+
+
+// 6~7 Kindergarten 100 Phonics Words + 20 Idioms + 100 Sentences
+
+function buildPractical5to7DailySentencesDataset() {
+
+  const words = [
+
+    { target: "Make", translation: "만들다", phonetic: "[메이크]" },
+
+    { target: "Bake", translation: "빵을 굽다", phonetic: "[베이크]" },
+
+    { target: "Cake", translation: "케이크", phonetic: "[케이크]" },
+
+    { target: "Lake", translation: "호수", phonetic: "[레이크]" },
+
+    { target: "Bite", translation: "물다 / 한 입", phonetic: "[바이트]" },
+
+    { target: "Kite", translation: "연", phonetic: "[카이트]" },
+
+    { target: "Life", translation: "삶 / 생명", phonetic: "[라이프]" },
+
+    { target: "Hope", translation: "희망하다", phonetic: "[호프]" },
+
+    { target: "Rope", translation: "밧줄", phonetic: "[로프]" },
+
+    { target: "Cute", translation: "귀여운", phonetic: "[큐트]" },
+
+    { target: "Mute", translation: "조용한", phonetic: "[뮤트]" },
+
+    { target: "Fish", translation: "물고기", phonetic: "[피시]" },
+
+    { target: "Ship", translation: "배 / 선박", phonetic: "[십]" },
+
+    { target: "Shop", translation: "가게", phonetic: "[숍]" },
+
+    { target: "Ring", translation: "반지 / 울리다", phonetic: "[링]" },
+
+    { target: "Sing", translation: "노래하다", phonetic: "[싱]" },
+
+    { target: "King", translation: "왕", phonetic: "[킹]" },
+
+    { target: "Pink", translation: "분홍색", phonetic: "[핑크]" },
+
+    { target: "Jump", translation: "뛰다", phonetic: "[점프]" },
+
+    { target: "Run", translation: "달리다", phonetic: "[런]" },
+
+    { target: "Walk", translation: "걷다", phonetic: "[워크]" },
+
+    { target: "Fly", translation: "날다", phonetic: "[플라이]" },
+
+    { target: "Play", translation: "놀다", phonetic: "[플레이]" },
+
+    { target: "Smile", translation: "미소 짓다", phonetic: "[스마일]" },
+
+    { target: "Laugh", translation: "웃다", phonetic: "[라프]" },
+
+    { target: "Share", translation: "나누다", phonetic: "[쉐어]" },
+
+    { target: "Help", translation: "돕다", phonetic: "[헬프]" },
+
+    { target: "Care", translation: "돌보다", phonetic: "[케어]" },
+
+    { target: "Learn", translation: "배우다", phonetic: "[런]" },
+
+    { target: "Read", translation: "읽다", phonetic: "[리드]" },
+
+    { target: "Write", translation: "쓰다", phonetic: "[라이트]" },
+
+    { target: "Draw", translation: "그리다", phonetic: "[드로]" },
+
+    { target: "Paint", translation: "칠하다", phonetic: "[페인트]" },
+
+    { target: "Dance", translation: "춤추다", phonetic: "[댄스]" },
+
+    { target: "Listen", translation: "듣다", phonetic: "[리슨]" },
+
+    { target: "Watch", translation: "보다", phonetic: "[와치]" },
+
+    { target: "Talk", translation: "말하다", phonetic: "[토크]" },
+
+    { target: "Speak", translation: "말하다", phonetic: "[스피크]" },
+
+    { target: "Whisper", translation: "속삭이다", phonetic: "[휘스퍼]" },
+
+    { target: "Shout", translation: "외치다", phonetic: "[샤우트]" },
+
+    { target: "Think", translation: "생각하다", phonetic: "[씽크]" },
+
+    { target: "Believe", translation: "믿다", phonetic: "[빌리브]" },
+
+    { target: "Dream", translation: "꿈꾸다", phonetic: "[드림]" },
+
+    { target: "Sleep", translation: "자다", phonetic: "[슬립]" },
+
+    { target: "Wake", translation: "깨어나다", phonetic: "[웨이크]" },
+
+    { target: "Eat", translation: "먹다", phonetic: "[잇]" },
+
+    { target: "Drink", translation: "마시다", phonetic: "[드링크]" },
+
+    { target: "Wash", translation: "씻다", phonetic: "[워시]" },
+
+    { target: "Clean", translation: "깨끗이 하다", phonetic: "[클린]" },
+
+    { target: "Open", translation: "열다", phonetic: "[오픈]" },
+
+    { target: "Close", translation: "닫다", phonetic: "[클로즈]" },
+
+    { target: "Push", translation: "밀다", phonetic: "[푸시]" },
+
+    { target: "Pull", translation: "당기다", phonetic: "[풀]" },
+
+    { target: "Give", translation: "주다", phonetic: "[기브]" },
+
+    { target: "Take", translation: "가지다", phonetic: "[테이크]" },
+
+    { target: "Bring", translation: "가져오다", phonetic: "[브링]" },
+
+    { target: "Carry", translation: "나르다", phonetic: "[캐리]" },
+
+    { target: "Hold", translation: "잡다", phonetic: "[홀드]" },
+
+    { target: "Catch", translation: "잡다", phonetic: "[캐치]" },
+
+    { target: "Throw", translation: "던지다", phonetic: "[스로우]" },
+
+    { target: "Hop", translation: "깡충 뛰다", phonetic: "[홉]" },
+
+    { target: "Skip", translation: "건너뛰다", phonetic: "[스킵]" },
+
+    { target: "Climb", translation: "기어오르다", phonetic: "[클라임]" },
+
+    { target: "Slide", translation: "미끄러지다", phonetic: "[슬라이드]" },
+
+    { target: "Swing", translation: "흔들리다", phonetic: "[스윙]" },
+
+    { target: "Hide", translation: "숨다", phonetic: "[하이드]" },
+
+    { target: "Seek", translation: "찾다", phonetic: "[식]" },
+
+    { target: "Find", translation: "발견하다", phonetic: "[파인드]" },
+
+    { target: "Look", translation: "보다", phonetic: "[룩]" },
+
+    { target: "See", translation: "보다", phonetic: "[시]" },
+
+    { target: "Hear", translation: "듣다", phonetic: "[히어]" },
+
+    { target: "Touch", translation: "만지다", phonetic: "[터치]" },
+
+    { target: "Taste", translation: "맛보다", phonetic: "[테이스트]" },
+
+    { target: "Smell", translation: "냄새 맡다", phonetic: "[스멜]" },
+
+    { target: "Feel", translation: "느끼다", phonetic: "[필]" },
+
+    { target: "Love", translation: "사랑하다", phonetic: "[러브]" },
+
+    { target: "Like", translation: "좋아하다", phonetic: "[라이크]" },
+
+    { target: "Enjoy", translation: "즐기다", phonetic: "[엔조이]" },
+
+    { target: "Prefer", translation: "선호하다", phonetic: "[프리퍼]" },
+
+    { target: "Choose", translation: "선택하다", phonetic: "[치우즈]" },
+
+    { target: "Want", translation: "원하다", phonetic: "[원트]" },
+
+    { target: "Need", translation: "필요로 하다", phonetic: "[니드]" },
+
+    { target: "Wish", translation: "바라다", phonetic: "[위시]" },
+
+    { target: "Try", translation: "시도하다", phonetic: "[트라이]" },
+
+    { target: "Start", translation: "시작하다", phonetic: "[스타트]" },
+
+    { target: "Stop", translation: "멈추다", phonetic: "[스탑]" },
+
+    { target: "Wait", translation: "기다리다", phonetic: "[웨이트]" },
+
+    { target: "Follow", translation: "따르다", phonetic: "[팔로우]" },
+
+    { target: "Lead", translation: "이끌다", phonetic: "[리드]" },
+
+    { target: "Build", translation: "짓다", phonetic: "[빌드]" },
+
+    { target: "Create", translation: "창조하다", phonetic: "[크리에이트]" },
+
+    { target: "Fix", translation: "고치다", phonetic: "[픽스]" },
+
+    { target: "Change", translation: "바꾸다", phonetic: "[체인지]" },
+
+    { target: "Grow", translation: "자라다", phonetic: "[그로우]" },
+
+    { target: "Bloom", translation: "꽃피다", phonetic: "[블룸]" },
+
+    { target: "Shine", translation: "빛나다", phonetic: "[샤인]" },
+
+    { target: "Sparkle", translation: "반짝이다", phonetic: "[스파클]" },
+
+    { target: "Glow", translation: "빛을 내다", phonetic: "[글로우]" },
+
+    { target: "Twinkle", translation: "반짝반짝 빛나다", phonetic: "[트윙클]" }
+
+  ];
+
+
+
+  const idioms = [
+
+    { target: "Clean up", translation: "정리정돈하기", phonetic: "[클린 업]" },
+
+    { target: "Wash hands", translation: "손 씻기", phonetic: "[워시 핸즈]" },
+
+    { target: "Brush teeth", translation: "양치질하기", phonetic: "[브러시 티스]" },
+
+    { target: "Put on shoes", translation: "신발 신기", phonetic: "[풋 온 슈즈]" },
+
+    { target: "Take off coat", translation: "외투 벗기", phonetic: "[테이크 오프 코트]" },
+
+    { target: "Give a hug", translation: "꼭 안아주기", phonetic: "[기브 어 허그]" },
+
+    { target: "Take a nap", translation: "낮잠 자기", phonetic: "[테이크 어 냅]" },
+
+    { target: "It is your turn", translation: "네 차례야", phonetic: "[잇 이즈 유어 턴]" },
+
+    { target: "Sweet dreams", translation: "달콤한 꿈꿔", phonetic: "[스윗 드림즈]" },
+
+    { target: "Hold my hand", translation: "내 손 잡기", phonetic: "[홀드 마이 핸드]" },
+
+    { target: "Fly a kite", translation: "연 날리기", phonetic: "[플라이 어 카이트]" },
+
+    { target: "Take a stroll", translation: "산책하기", phonetic: "[테이크 어 스트롤]" },
+
+    { target: "Read a book", translation: "책 읽기", phonetic: "[리드 어 북]" },
+
+    { target: "Drink milk", translation: "우유 마시기", phonetic: "[드링크 밀크]" },
+
+    { target: "Play together", translation: "함께 놀기", phonetic: "[플레이 투게더]" },
+
+    { target: "Open the door", translation: "문 열기", phonetic: "[오픈 더 도어]" },
+
+    { target: "Close the window", translation: "창문 닫기", phonetic: "[클로즈 더 윈도우]" },
+
+    { target: "Turn on light", translation: "전등 켜기", phonetic: "[턴 온 라이트]" },
+
+    { target: "High five", translation: "하이파이브 하기", phonetic: "[하이 파이브]" },
+
+    { target: "Good morning", translation: "좋은 아침 인사하기", phonetic: "[굿 모닝]" }
+
+  ];
+
+
+
+  // 100 Real Practical Daily Life Sentences (5 Sentences x 20 Daily Idioms)
+
+  const sentences = [
+
+    { target: "Let us clean up our toys before dinner.", translation: "저녁 먹기 전에 장난감을 정리정돈하자." },
+
+    { target: "Can you help clean up the building blocks?", translation: "쌓기 블록 정리를 도와줄 수 있니?" },
+
+    { target: "Time to clean up your room and put things away.", translation: "방을 정리하고 물건들을 제자리에 둘 시간이야." },
+
+    { target: "We always clean up after playing together.", translation: "우리는 함께 논 뒤에 항상 정리를 해요." },
+
+    { target: "Please clean up your desk before drawing a picture.", translation: "그림을 그리기 전에 책상을 정리해 주렴." },
+
+    { target: "Remember to wash your hands with warm water and soap.", translation: "따뜻한 물과 비누로 손 씻는 것을 잊지 마렴." },
+
+    { target: "Wash your hands before eating your lunch.", translation: "점심을 먹기 전에 손을 씻으렴." },
+
+    { target: "Did you wash your hands after playing outside?", translation: "밖에서 놀고 난 뒤 손을 씻었니?" },
+
+    { target: "Let us wash our hands together at the sink.", translation: "세면대에서 함께 손을 씻자." },
+
+    { target: "Clean hands keep us healthy and happy.", translation: "깨끗한 손은 우리를 건강하고 행복하게 해 줘." },
+
+    { target: "Time to brush your teeth before going to bed.", translation: "잠자리에 들기 전에 이빨을 닦을 시간이야." },
+
+    { target: "Brush your teeth gently for two minutes.", translation: "2분 동안 구석구석 살살 양치질을 하렴." },
+
+    { target: "Did you brush your teeth after eating breakfast?", translation: "아침 식사를 한 뒤 양치질을 했니?" },
+
+    { target: "Mommy will help you brush your back teeth.", translation: "엄마가 어금니 닦는 것을 도와줄게." },
+
+    { target: "Brushing your teeth makes a bright clean smile.", translation: "양치질을 하면 환하고 깨끗한 미소가 만들어져." },
+
+    { target: "Put on your shoes, we are going to the park.", translation: "신발을 신으렴, 공원에 갈 거야." },
+
+    { target: "Can you put on your shoes by yourself?", translation: "혼자서 신발을 신을 수 있니?" },
+
+    { target: "Make sure to put on your right shoe on your right foot.", translation: "오른발에 오른쪽 신발을 잘 맞추어 신으렴." },
+
+    { target: "Put on your sneakers for running on the playground.", translation: "운동장에서 뛰놀기 위해 운동화를 신으렴." },
+
+    { target: "Let us put on our shoes and meet our friends outside.", translation: "신발을 신어 보고 밖에서 친구들을 만나자." },
+
+    { target: "Take off your coat when you come inside the house.", translation: "집 안으로 들어오면 외투를 벗으렴." },
+
+    { target: "Hang up your coat after taking it off.", translation: "외투를 벗은 뒤 옷걸이에 걸어 두렴." },
+
+    { target: "It is warm inside, so take off your heavy jacket.", translation: "실내가 따뜻하니 두꺼운 재킷을 벗으렴." },
+
+    { target: "Please help your brother take off his coat.", translation: "남동생이 외투 벗는 것을 도와주렴." },
+
+    { target: "Take off your coat and sit down to rest.", translation: "외투를 벗고 앉아서 휴식을 취하렴." },
+
+    { target: "Give mommy a big warm hug before you go.", translation: "가기 전에 엄마를 따뜻하게 꼭 안아주렴." },
+
+    { target: "I love giving you a cozy hug every morning.", translation: "매일 아침 너를 포근하게 안아주는 것을 참 좋아해." },
+
+    { target: "Give your friend a hug to say thank you.", translation: "고맙다는 표시로 친구를 꼭 안아주렴." },
+
+    { target: "When you feel sad, a big hug makes you feel better.", translation: "슬플 때 꼭 안아주면 기분이 훨씬 좋아져?" },
+
+    { target: "Give daddy a hug and wish him a happy day.", translation: "아빠를 안아드리고 행복한 하루를 응원해 드리렴." },
+
+    { target: "It is time to take a quiet nap in the afternoon.", translation: "오후에 조용히 낮잠을 잘 시간이야." },
+
+    { target: "Close your eyes and take a cozy nap on your bed.", translation: "눈을 감고 침대에서 아늑하게 낮잠을 자렴." },
+
+    { target: "You will feel full of energy after you take a nap.", translation: "낮잠을 자고 나면 에너지가 충전될 거야." },
+
+    { target: "Let us listen to soft music while taking a nap.", translation: "낮잠을 자는 동안 부드러운 음악을 듣자." },
+
+    { target: "The little puppy is taking a nap under the blanket.", translation: "작은 강아지가 담요 아래에서 낮잠을 자고 있어." },
+
+    { target: "It is your turn to roll the game dice.", translation: "게임 주사위를 굴릴 네 차례야." },
+
+    { target: "Wait patiently, it will be your turn soon.", translation: "차분히 기다리렴, 곧 네 차례가 될 거야." },
+
+    { target: "It is your turn to choose a fun storybook tonight.", translation: "오늘 밤 재미있는 동화책을 고를 네 차례야." },
+
+    { target: "Taking turns makes playing together much more fun.", translation: "순서를 지키는 것은 함께 노는 것을 훨씬 재미있게 해 줘." },
+
+    { target: "Now it is your turn to slide down the playground.", translation: "이제 미끄럼틀을 탈 네 차례야." },
+
+    { target: "Close your eyes, sweet dreams, I love you.", translation: "눈을 감으렴, 달콤한 꿈꿔, 사랑해." },
+
+    { target: "Good night, sweet dreams, and see you tomorrow morning.", translation: "잘 자, 달콤한 꿈꾸고 내일 아침에 또 보자." },
+
+    { target: "May you have sweet dreams about cute puppies and stars.", translation: "귀여운 강아지와 별들이 나오는 달콤한 꿈을 꾸길 바래?" },
+
+    { target: "Sleep tight and have sweet dreams tonight.", translation: "오늘 밤 푹 자고 달콤한 꿈을 꾸렴." },
+
+    { target: "Mommy wishes you sweet dreams every night.", translation: "엄마는 매일 밤 네가 달콤한 꿈을 꾸길 바 간단다." },
+
+    { target: "Hold my hand tightly when crossing the street.", translation: "길을 건널 때는 내 손을 꼭 잡으렴." },
+
+    { target: "Hold my hand while walking through the store.", translation: "매장을 지날 때는 내 손을 잡으렴." },
+
+    { target: "I feel safe when you hold my hand.", translation: "네가 내 손을 잡으면 마음이 안심돼." },
+
+    { target: "Hold my hand and let us walk up the stairs together.", translation: "내 손을 잡고 함께 계단을 올라가자." },
+
+    { target: "Hold my hand so we do not get separated.", translation: "길을 잃어버리지 않게 내 손을 잡으렴." },
+
+    { target: "Let us fly a kite on the windy grassy hill.", translation: "바람 부는 잔디 언덕에서 연을 날리자." },
+
+    { target: "Watch the red kite fly high up in the blue sky.", translation: "빨간 연이 파란 하늘 높이 날아가는 것을 보렴." },
+
+    { target: "Flying a kite with daddy is super exciting.", translation: "아빠와 함께 연을 날리는 것은 정말 신나." },
+
+    { target: "Hold the string tight while you fly your kite.", translation: "연을 날리는 동안 실을 꼭 잡으렴." },
+
+    { target: "Look at how fast our kite flies in the breeze.", translation: "산들바람 속에서 우리 연이 얼마나 빠르게 날아가는지 보렴." },
+
+    { target: "We take a relaxing stroll in the park every evening.", translation: "우리는 매일 저녁 공원에서 편안한 산책을 해요." },
+
+    { target: "Taking a stroll with our dog makes me happy.", translation: "강아지와 산책을 하는 것은 나를 행복하게 해 줘." },
+
+    { target: "Look at the pretty flowers while we take a stroll.", translation: "산책을 하는 동안 예쁜 꽃들을 바라보렴." },
+
+    { target: "Let us take a peaceful stroll under the shady trees.", translation: "그늘진 나무 아래에서 평화로운 산책을 하자." },
+
+    { target: "Taking a daily stroll keeps our family healthy.", translation: "매일 산책을 하는 것은 우리 가족을 건강하게 지켜 줘." },
+
+    { target: "Let us read an exciting storybook together before sleep.", translation: "잠들기 전에 신나는 동화책을 함께 읽자." },
+
+    { target: "Can you read a storybook about wild animals to me?", translation: "야생 동물에 관한 동화책을 읽어 줄 수 있니?" },
+
+    { target: "Reading a book opens up a whole new magical world.", translation: "책을 읽는 것은 완전히 새로운 마법의 세계를 열어 줘." },
+
+    { target: "We read a new picture book every day at school.", translation: "우리는 유치원에서 매일 새로운 그림책을 읽어요." },
+
+    { target: "I love pointing at pictures while reading a book.", translation: "책을 읽는 동안 그림을 손으로 가리키는 것을 좋아해요." },
+
+    { target: "Drink your cup of warm milk before bedtime.", translation: "잠자리에 들기 전에 따뜻한 우유 한 컵을 마시렴." },
+
+    { target: "Drinking milk helps your bones grow strong and healthy.", translation: "우유를 마시면 뼈가 튼튼하고 건강하게 자란단다." },
+
+    { target: "Would you like to drink cold milk with your cookie?", translation: "쿠키와 함께 차가운 우유를 마시고 싶니?" },
+
+    { target: "He drinks a glass of fresh milk every morning.", translation: "그는 매일 아침 신선한 우유 한 잔을 마셔요." },
+
+    { target: "Finish drinking your milk before going out to play.", translation: "놀러 나가기 전에 우유를 다 마시렴." },
+
+    { target: "It is always more fun when we play together with friends.", translation: "친구들과 함께 놀 때 항상 훨씬 더 재미있어." },
+
+    { target: "Let me share my toy blocks so we can play together.", translation: "함께 놀 수 있도록 내 블록 장난감을 나눠 줄게." },
+
+    { target: "Children play together happily on the playground.", translation: "아이들이 놀이터에서 함께 기쁘게 놀아요." },
+
+    { target: "We build a giant sandcastle when we play together.", translation: "함께 놀 때 우리는 커다란 모래성을 만들어요." },
+
+    { target: "Playing together teaches us how to share and care.", translation: "함께 노는 것은 양보하고 배려하는 법을 가르쳐 줘." },
+
+    { target: "Please open the door for grandma when she arrives.", translation: "할머니가 오시면 문을 열어 드리렴." },
+
+    { target: "Open the door carefully so the cat does not run out.", translation: "고양이가 밖으로 나가지 않게 조심해서 문을 열으렴." },
+
+    { target: "Knock gently before you open the classroom door.", translation: "교실 문을 열기 전에 살살 노크를 하렴." },
+
+    { target: "Can you help open the front door for me?", translation: "현관문을 여는 것을 도와줄 수 있니?" },
+
+    { target: "Open the door and feel the cool fresh morning breeze.", translation: "문을 열고 시원하고 상쾌한 아침 바람을 느껴 보렴." },
+
+    { target: "Please close the window because it is getting cold outside.", translation: "밖이 추워지고 있으니 창문을 닫아 주렴." },
+
+    { target: "Close the window when rain starts to fall.", translation: "비가 내리기 시작하면 창문을 닫으렴." },
+
+    { target: "Mommy helped close the bedroom window before sleep.", translation: "엄마가 잠들기 전에 침실 창문 닫는 것을 도와주셨어." },
+
+    { target: "Make sure to close the window to keep the room warm.", translation: "방을 따뜻하게 유지하기 위해 창문을 꼭 닫으렴." },
+
+    { target: "Close the window so the loud noise does not bother you.", translation: "시끄러운 소음이 방해하지 않게 창문을 닫으렴." },
+
+    { target: "Turn on the light when it gets dark in the room.", translation: "방 안이 어두워지면 전등을 켜렴." },
+
+    { target: "Can you reach up and turn on the desk light?", translation: "손을 뻗어 책상 전등을 켜 줄 수 있니?" },
+
+    { target: "Turning on the light makes reading storybooks easy.", translation: "전등을 켜면 동화책 읽기가 편해진단다." },
+
+    { target: "Please turn on the light in the hallway.", translation: "복도 전등을 켜 주렴." },
+
+    { target: "We turn on the night light so you do not feel scared.", translation: "네가 무서워하지 않도록 수면등을 켜 둘게." },
+
+    { target: "Give me a high five for doing such a great job.", translation: "정말 잘해내 주어서 엄마랑 하이파이브 하자." },
+
+    { target: "He gave his teammate a high five after winning the game.", translation: "그는 게임에서 이긴 뒤 팀원과 하이파이브를 했어." },
+
+    { target: "High five! You cleaned up all your toys so fast.", translation: "하이파이브! 장난감을 정말 빠르게 정리했구나." },
+
+    { target: "Give teacher a high five when you finish your drawing.", translation: "그림을 다 그리면 선생님과 하이파이브를 하렴." },
+
+    { target: "A high five always puts a big smile on my face.", translation: "하이파이브를 하면 항상 얼굴에 큰 미소가 번져." },
+
+    { target: "Good morning! Did you sleep well last night?", translation: "좋은 아침! 어젯밤 푹 잘 잤니?" },
+
+    { target: "Say good morning to your teacher when you enter the room.", translation: "교실에 들어갈 때 선생님께 좋은 아침이라고 인사하렴." },
+
+    { target: "Good morning! The sun is shining brightly outside.", translation: "좋은 아침! 밖에는 태양이 밝게 비치고 있어." },
+
+    { target: "Mommy wakes me up with a gentle good morning kiss.", translation: "엄마는 다정한 아침 뽀뽀로 나를 깨워 주셔." },
+
+    { target: "Good morning! Let me prepare a delicious breakfast for you.", translation: "좋은 아침! 맛있는 아침 식사를 준비해 줄게." }
+
+  ];
+
+
+
+  return { words, idioms, sentences };
+
+}
+
+
+
+const expanded3to5Kids = buildExpanded3to5KidsDataset();
+
+const practical5to7Daily = buildPractical5to7DailySentencesDataset();
+
+
+
+const VOCAB_KIDS = window.VOCAB_KIDS =  {
+
+  toddler_3_5: {
+
+    label: '🍼 3~5세 유아 말문 터지기 (단어 100개, 숙어 20개, 대화 50개)',
+
+    words: expanded3to5Kids.words,
+
+    idioms: expanded3to5Kids.idioms,
+
+    sentences: expanded3to5Kids.sentences
+
+  },
+
+
+
+  kindergarten_6_7: {
+
+    label: '🧒 6~7세 유치원 파닉스 (단어 100개, 숙어 20개, 실전 100개 문장)',
+
+    words: practical5to7Daily.words,
+
+    idioms: practical5to7Daily.idioms,
+
+    sentences: practical5to7Daily.sentences
+
+  }
+
+};
+

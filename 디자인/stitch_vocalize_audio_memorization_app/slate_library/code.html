@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Library &amp; Saved Content</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#31394d",
+                        "on-primary-fixed-variant": "#3e4852",
+                        "on-secondary-fixed": "#0b1c30",
+                        "on-tertiary": "#3e2d22",
+                        "inverse-primary": "#565f6a",
+                        "background": "#0b1326",
+                        "on-secondary-container": "#a9bad3",
+                        "surface-container-lowest": "#060e20",
+                        "primary-fixed": "#dae3f0",
+                        "secondary": "#b7c8e1",
+                        "on-tertiary-fixed": "#27180e",
+                        "on-primary": "#28313b",
+                        "on-surface": "#dae2fd",
+                        "surface-container": "#171f33",
+                        "surface-dim": "#0b1326",
+                        "error-container": "#93000a",
+                        "on-tertiary-container": "#6c574a",
+                        "surface-tint": "#bdc8d3",
+                        "primary-fixed-dim": "#bdc8d3",
+                        "inverse-surface": "#dae2fd",
+                        "on-surface-variant": "#c4c6cb",
+                        "surface-container-low": "#131b2e",
+                        "outline": "#8e9195",
+                        "secondary-container": "#3a4a5f",
+                        "surface-container-highest": "#2d3449",
+                        "surface-variant": "#2d3449",
+                        "outline-variant": "#44474b",
+                        "surface": "#0b1326",
+                        "on-error": "#690005",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-background": "#dae2fd",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed": "#faddcc",
+                        "primary-container": "#cbd5e1",
+                        "tertiary-container": "#ebcebe",
+                        "primary": "#e7f1fe",
+                        "secondary-fixed": "#d3e4fe",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-tertiary-fixed-variant": "#564337",
+                        "tertiary": "#ffece3",
+                        "inverse-on-surface": "#283044",
+                        "on-primary-container": "#525c66",
+                        "surface-container-high": "#222a3d",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#131d25",
+                        "tertiary-fixed-dim": "#ddc1b1",
+                        "on-secondary": "#213145"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "xl": "40px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "64px",
+                        "gutter": "20px",
+                        "sm": "8px",
+                        "xs": "4px",
+                        "lg": "24px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "body-md": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "label-sm": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: #0b1326; /* surface */
+            color: #dae2fd; /* on-surface */
+        }
+        .glass-panel {
+            background-color: rgba(23, 31, 51, 0.7); /* surface-container with opacity */
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .glass-panel-hover:hover {
+            background-color: rgba(23, 31, 51, 0.8);
+            transition: background-color 0.3s ease;
+        }
+        
+        /* Hide scrollbar for horizontal scroll areas but keep functionality */
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col pb-24 md:pb-0 pt-16">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full bg-surface/70 dark:bg-surface/70 backdrop-blur-xl border-b border-white/10 shadow-2xl flex justify-between items-center px-gutter h-16 z-50">
+<div class="flex items-center gap-4">
+<button aria-label="Menu" class="text-primary dark:text-primary hover:opacity-90 transition-opacity scale-95 transition-transform">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+</button>
+<h1 class="font-headline-md text-headline-md tracking-widest text-primary-fixed-dim dark:text-primary-fixed-dim">VOCALIZE</h1>
+</div>
+<!-- Desktop Navigation Cluster (Hidden on Mobile) -->
+<nav class="hidden md:flex gap-8 items-center">
+<a class="font-label-md text-label-md text-primary flex flex-col items-center hover:opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">library_music</span>
+                Library
+            </a>
+<a class="font-label-md text-label-md text-outline-variant flex flex-col items-center hover:opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">mic</span>
+                Record
+            </a>
+<a class="font-label-md text-label-md text-outline-variant flex flex-col items-center hover:opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">cloud_upload</span>
+                Upload
+            </a>
+<a class="font-label-md text-label-md text-outline-variant flex flex-col items-center hover:opacity-90 transition-opacity" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="flex items-center">
+<button aria-label="User profile" class="hover:opacity-90 transition-opacity rounded-full overflow-hidden w-8 h-8 border border-white/10">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A small, circular avatar portrait of a professional individual against a neutral, dark slate background. The lighting is soft and studio-quality, emphasizing a composed, executive appearance suitable for a high-end corporate application. The color palette is strictly muted greys and subtle skin tones." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4f1fZK8Ya6j-RZhwaeYVz-tJFlzGL-Q0xD6CAdPtRMzY2zpz6op1oBFU9puSH-gHiEDVz6Eg1oVxaCToOA3Qz_NOW-os2n6lLuklUBLNEE3qc-kbx9mQJTToF7MdTlKz2HPWtDhmCvx0U6FP1-V6yQYknaHRd8Bk_KtKLYj03wNf_oB87y_1fKHpKoxc2C_ADFNSNpXX1P7H16FMfdcY7pREymZM4ZfYxtgKZgD0PQP0kT5TkJcSFig"/>
+</button>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow w-full max-w-7xl mx-auto px-margin-mobile md:px-margin-desktop py-xl flex flex-col gap-xl">
+<!-- Header & Search Section -->
+<section class="flex flex-col md:flex-row justify-between items-start md:items-end gap-md">
+<div>
+<h2 class="font-display-lg text-display-lg text-on-surface md:font-display-lg hidden md:block">Library</h2>
+<h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface md:hidden">Library</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant mt-sm">Manage your saved vocalizations and scripts.</p>
+</div>
+<div class="w-full md:w-96 relative">
+<span class="material-symbols-outlined absolute left-md top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="w-full bg-surface-dim/50 border border-surface-highest rounded-full py-md pl-12 pr-md font-body-md text-body-md text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all placeholder:text-outline-variant" placeholder="Search files, folders..." type="text"/>
+</div>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Folders Overview (Spans 4 columns on desktop) -->
+<section class="md:col-span-4 flex flex-col gap-md">
+<h3 class="font-headline-md text-headline-md text-on-surface">Categories</h3>
+<div class="glass-panel rounded-xl p-md flex flex-col gap-xs glass-panel-hover cursor-pointer relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between z-10 relative">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary">description</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">Words</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">124 Files</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col gap-xs glass-panel-hover cursor-pointer relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between z-10 relative">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">short_text</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">Sentences</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">86 Files</span>
+</div>
+</div>
+<div class="glass-panel rounded-xl p-md flex flex-col gap-xs glass-panel-hover cursor-pointer relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+<div class="flex items-center justify-between z-10 relative">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-lg bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">menu_book</span>
+</div>
+<span class="font-body-lg text-body-lg text-on-surface">Novels</span>
+</div>
+<span class="font-label-md text-label-md text-on-surface-variant">12 Files</span>
+</div>
+</div>
+</section>
+<!-- Recent Uploads (Spans 8 columns on desktop) -->
+<section class="md:col-span-8 flex flex-col gap-md">
+<div class="flex justify-between items-center">
+<h3 class="font-headline-md text-headline-md text-on-surface">Recent Files</h3>
+<button class="font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors">View All</button>
+</div>
+<div class="glass-panel rounded-xl overflow-hidden">
+<div class="flex flex-col">
+<!-- List Item 1 -->
+<div class="flex items-center justify-between p-md border-b border-outline-variant/30 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">audio_file</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Chapter_1_Draft_V2.wav</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Novels • 14.2 MB • Today, 10:42 AM</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Play" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</button>
+<button aria-label="More options" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- List Item 2 -->
+<div class="flex items-center justify-between p-md border-b border-outline-variant/30 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">text_snippet</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Corporate_Greeting_Script.txt</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Sentences • 12 KB • Yesterday, 2:15 PM</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="View" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">visibility</span>
+</button>
+<button aria-label="More options" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- List Item 3 -->
+<div class="flex items-center justify-between p-md border-b border-outline-variant/30 hover:bg-white/5 transition-colors cursor-pointer group">
+<div class="flex items-center gap-md w-full md:w-auto">
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant">audio_file</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Vowel_Articulation_Practice.wav</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">Words • 3.5 MB • Oct 24, 2023</span>
+</div>
+</div>
+<div class="hidden md:flex items-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Play" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_circle</span>
+</button>
+<button aria-label="More options" class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 bg-surface-container/70 dark:bg-surface-container/70 backdrop-blur-2xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.4)] flex justify-around items-center h-20 px-4 pb-2">
+<a class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-4 py-1 active:scale-90 transition-all font-label-sm text-label-sm" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">library_music</span>
+            Library
+        </a>
+<a class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all font-label-sm text-label-sm px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">mic</span>
+            Record
+        </a>
+<a class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all font-label-sm text-label-sm px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">cloud_upload</span>
+            Upload
+        </a>
+<a class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all font-label-sm text-label-sm px-4 py-1 rounded-xl" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+            Settings
+        </a>
+</nav>
+</body></html>

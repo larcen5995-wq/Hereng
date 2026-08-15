@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Upload &amp; Conversion - Slate Theme</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-fixed-dim": "#bdc8d3",
+                        "outline-variant": "#44474b",
+                        "on-primary": "#28313b",
+                        "surface-tint": "#bdc8d3",
+                        "on-surface": "#dae2fd",
+                        "surface-container-lowest": "#060e20",
+                        "on-surface-variant": "#c4c6cb",
+                        "background": "#0b1326",
+                        "outline": "#8e9195",
+                        "surface-container-highest": "#2d3449",
+                        "error-container": "#93000a",
+                        "on-background": "#dae2fd",
+                        "primary": "#e7f1fe",
+                        "surface": "#0b1326",
+                        "on-tertiary": "#3e2d22",
+                        "on-tertiary-fixed-variant": "#564337",
+                        "secondary-fixed": "#d3e4fe",
+                        "primary-container": "#cbd5e1",
+                        "inverse-surface": "#dae2fd",
+                        "tertiary": "#ffece3",
+                        "surface-dim": "#0b1326",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#565f6a",
+                        "on-secondary-container": "#a9bad3",
+                        "on-secondary-fixed": "#0b1c30",
+                        "primary-fixed": "#dae3f0",
+                        "tertiary-fixed": "#faddcc",
+                        "on-primary-fixed-variant": "#3e4852",
+                        "surface-container-high": "#222a3d",
+                        "on-secondary-fixed-variant": "#38485d",
+                        "on-secondary": "#213145",
+                        "surface-variant": "#2d3449",
+                        "on-primary-fixed": "#131d25",
+                        "tertiary-container": "#ebcebe",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#27180e",
+                        "inverse-on-surface": "#283044",
+                        "tertiary-fixed-dim": "#ddc1b1",
+                        "on-error-container": "#ffdad6",
+                        "secondary": "#b7c8e1",
+                        "secondary-container": "#3a4a5f",
+                        "on-tertiary-container": "#6c574a",
+                        "surface-bright": "#31394d",
+                        "surface-container-low": "#131b2e",
+                        "surface-container": "#171f33",
+                        "secondary-fixed-dim": "#b7c8e1",
+                        "on-primary-container": "#525c66"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "base": "4px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "gutter": "20px",
+                        "margin-mobile": "16px",
+                        "lg": "24px",
+                        "margin-desktop": "64px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Outfit"],
+                        "headline-md": ["Outfit"],
+                        "headline-lg-mobile": ["Outfit"],
+                        "body-lg": ["Outfit"],
+                        "headline-lg": ["Outfit"],
+                        "label-md": ["Outfit"],
+                        "label-sm": ["Outfit"],
+                        "display-lg": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["28px", { "lineHeight": "36px", "fontWeight": "600" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500" }],
+                        "label-sm": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Outfit', sans-serif; }
+        .glass-panel {
+            background-color: rgba(45, 52, 73, 0.7); /* surface-variant */
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glass-panel:hover {
+            background-color: rgba(45, 52, 73, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col pb-20 md:pb-0">
+<!-- TopAppBar -->
+<header class="bg-surface/70 dark:bg-surface/70 text-primary dark:text-primary font-headline-md text-headline-md fixed top-0 w-full backdrop-blur-xl border-b border-white/10 shadow-2xl flex justify-between items-center px-gutter w-full h-16 z-50">
+<div class="flex items-center gap-sm cursor-pointer hover:opacity-90 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-headline-md">graphic_eq</span>
+</div>
+<div class="font-headline-md text-headline-md tracking-widest text-primary-fixed-dim dark:text-primary-fixed-dim">
+            VOCALIZE
+        </div>
+<div class="flex items-center cursor-pointer hover:opacity-90 transition-opacity active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-headline-md">account_circle</span>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow pt-24 px-margin-mobile md:px-margin-desktop max-w-7xl mx-auto w-full flex flex-col gap-xl">
+<div class="flex flex-col gap-sm">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg">Upload Audio</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Securely upload and convert your high-fidelity audio files.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-lg">
+<!-- Upload Zone -->
+<div class="md:col-span-8 glass-panel rounded-xl p-lg flex flex-col gap-md border border-dashed border-outline-variant hover:border-primary transition-colors cursor-pointer group h-64 justify-center items-center">
+<div class="p-sm bg-surface-container-high rounded-full group-hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-[48px] text-primary">cloud_upload</span>
+</div>
+<div class="text-center">
+<p class="font-headline-md text-headline-md">Drag &amp; Drop</p>
+<p class="font-body-md text-body-md text-on-surface-variant">or click to browse files</p>
+</div>
+<p class="font-label-sm text-label-sm text-outline-variant mt-sm">WAV, FLAC, MP3 up to 500MB</p>
+</div>
+<!-- Notes / Settings -->
+<div class="md:col-span-4 glass-panel rounded-xl p-lg flex flex-col gap-md">
+<h2 class="font-headline-md text-headline-md">Conversion Settings</h2>
+<div class="flex flex-col gap-xs">
+<label class="font-label-md text-label-md text-on-surface-variant">Target Format</label>
+<select class="bg-surface-dim/50 border border-outline-variant rounded-md p-sm font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none">
+<option>WAV (Lossless)</option>
+<option>MP3 (320kbps)</option>
+<option>FLAC</option>
+</select>
+</div>
+<div class="flex flex-col gap-xs flex-grow">
+<label class="font-label-md text-label-md text-on-surface-variant">Session Notes</label>
+<textarea class="bg-surface-dim/50 border border-outline-variant rounded-md p-sm font-body-md text-body-md focus:border-primary focus:ring-1 focus:ring-primary outline-none flex-grow resize-none" placeholder="Add metadata or notes..."></textarea>
+</div>
+<button class="bg-primary text-on-primary font-label-md text-label-md py-sm rounded-md hover:opacity-90 transition-opacity">
+                    Process Files
+                </button>
+</div>
+</div>
+<!-- Recent Conversions -->
+<div class="flex flex-col gap-md mb-xl">
+<h2 class="font-headline-md text-headline-md border-b border-surface-variant pb-sm">Recent Conversions</h2>
+<div class="flex flex-col gap-sm">
+<!-- Item 1 -->
+<div class="glass-panel rounded-lg p-md flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">audio_file</span>
+<div>
+<p class="font-body-md text-body-md">Interview_Raw_01.wav</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Converted to FLAC • 2 mins ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">download</span>
+</div>
+<!-- Item 2 -->
+<div class="glass-panel rounded-lg p-md flex items-center justify-between hover:bg-white/5 transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<span class="material-symbols-outlined text-secondary">audio_file</span>
+<div>
+<p class="font-body-md text-body-md">Podcast_Ep42_Final.mp3</p>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Converted from WAV • 1 hour ago</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-primary transition-colors">download</span>
+</div>
+</div>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="md:hidden bg-surface-container/70 dark:bg-surface-container/70 text-primary dark:text-primary font-label-sm text-label-sm fixed bottom-0 w-full z-50 backdrop-blur-2xl border-t border-white/10 shadow-[0_-10px_30px_rgba(0,0,0,0.4)] flex justify-around items-center h-20 px-4 pb-2">
+<div class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all cursor-pointer p-2 rounded-xl">
+<span class="material-symbols-outlined">library_music</span>
+<span>Library</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all cursor-pointer p-2 rounded-xl">
+<span class="material-symbols-outlined">mic</span>
+<span>Record</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-primary text-on-primary rounded-xl px-4 py-1 hover:bg-white/5 active:scale-90 transition-all cursor-pointer">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">cloud_upload</span>
+<span>Upload</span>
+</div>
+<div class="flex flex-col items-center justify-center text-outline-variant hover:bg-white/5 active:scale-90 transition-all cursor-pointer p-2 rounded-xl">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</div>
+</nav>
+</body></html>

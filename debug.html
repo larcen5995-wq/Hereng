@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<title>HearEng Debug</title>
+<style>
+body { font-family: monospace; background: #111; color: #0f0; padding: 16px; font-size: 13px; }
+h2 { color: #ff0; }
+.ok  { color: #0f0; }
+.err { color: #f44; }
+.warn { color: #fa0; }
+button { margin: 6px; padding: 8px 16px; cursor: pointer; font-size: 14px; border-radius: 6px; border: none; }
+#log { background: #1a1a1a; padding: 12px; border-radius: 8px; max-height: 400px; overflow-y: auto; white-space: pre-wrap; }
+</style>
+</head>
+<body>
+<h2>🔍 HearEng 재생 디버그 콘솔</h2>
+
+<button onclick="runDiag()" style="background:#6366f1;color:#fff;">🔎 전체 진단 실행</button>
+<button onclick="testPlay()" style="background:#10b981;color:#fff;">▶️ 직접 재생 테스트</button>
+<button onclick="testSpeech()" style="background:#f59e0b;color:#000;">🔊 speechSynthesis 테스트</button>
+<button onclick="clearLog()" style="background:#444;color:#fff;">🗑 로그 지우기</button>
+
+<div id="log">버튼을 눌러 진단을 시작하세요...\n</div>
+
+<!-- 모든 데이터 파일 로드 -->
+<script src="js/data/vocab_kids.js"></script>
+<script src="js/data/vocab_exam.js"></script>
+<script src="js/data/vocab_elementary_essential.js"></script>
+<script src="js/data/vocab_middle_1800.js"></script>
+<script src="js/data/vocab_essential_5000.js"></script>
+<script src="js/data/vocab_core.js"></script>
+<script src="js/engine/audioTimer.js"></script>
+<script src="js/engine/admobEngine.js"></script>
+<script src="js/engine/ttsEngine.js"></script>
+
+<script>
+const logEl = document.getElementById('log');
+function log(msg, cls) {
+  const span = document.createElement('span');
+  span.className = cls || '';
+  span.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg + '\n';
+  logEl.appendChild(span);
+  logEl.scrollTop = logEl.scrollHeight;
+}
+function clearLog() { logEl.innerHTML = ''; }
+
+function runDiag() {
+  log('=== 전체 진단 시작 ===');
+
+  // 1. ttsEngine 확인
+  if (window.ttsEngine) {
+    log('✅ window.ttsEngine 존재', 'ok');
+    log('   isPlaying: ' + window.ttsEngine.isPlaying);
+    log('   currentIndex: ' + window.ttsEngine.currentIndex);
+    log('   playlist.length: ' + (window.ttsEngine.playlist ? window.ttsEngine.playlist.length : 'NULL'));
+    log('   synth: ' + (window.ttsEngine.synth ? '✅ speechSynthesis OK' : '❌ NULL'), window.ttsEngine.synth ? 'ok' : 'err');
+    log('   rate: ' + window.ttsEngine.rate);
+    log('   targetRepeatCount: ' + window.ttsEngine.targetRepeatCount);
+  } else {
+    log('❌ window.ttsEngine 없음!', 'err');
+  }
+
+  // 2. VOCABULARY_DATA 확인
+  if (window.VOCABULARY_DATA && window.VOCABULARY_DATA['EN_KO']) {
+    const levels = window.VOCABULARY_DATA['EN_KO'].levels;
+    const keys = Object.keys(levels || {});
+    log('✅ VOCABULARY_DATA 존재, 레벨 수: ' + keys.length, 'ok');
+    if (levels['toddler_3_5']) {
+      const d = levels['toddler_3_5'];
+      if (Array.isArray(d)) log('   toddler_3_5 (Array): ' + d.length + '개', 'ok');
+      else log('   toddler_3_5 (Object) keys: ' + Object.keys(d).join(', '), 'warn');
+    } else {
+      log('   ⚠️ toddler_3_5 키 없음!', 'warn');
+      log('   존재하는 키 (처음 5개): ' + keys.slice(0,5).join(', '));
+    }
+  } else {
+    log('❌ VOCABULARY_DATA 없음!', 'err');
+  }
+
+  // 3. speechSynthesis 확인
+  if (window.speechSynthesis) {
+    log('✅ speechSynthesis 사용 가능', 'ok');
+    const voices = window.speechSynthesis.getVoices();
+    log('   음성 목록 수: ' + voices.length + (voices.length === 0 ? ' (아직 로딩 중일 수 있음)' : ''));
+    if (voices.length > 0) {
+      const en = voices.filter(v => v.lang.startsWith('en'));
+      const ko = voices.filter(v => v.lang.startsWith('ko'));
+      log('   영어 음성: ' + en.length + '개', en.length > 0 ? 'ok' : 'warn');
+      log('   한국어 음성: ' + ko.length + '개', ko.length > 0 ? 'ok' : 'warn');
+      if (en.length > 0) log('   첫 영어 음성: ' + en[0].name + ' (' + en[0].lang + ')');
+    }
+    log('   speaking: ' + window.speechSynthesis.speaking);
+    log('   pending: ' + window.speechSynthesis.pending);
+    log('   paused: ' + window.speechSynthesis.paused);
+  } else {
+    log('❌ speechSynthesis 없음! (이 브라우저는 지원 안 함)', 'err');
+  }
+
+  // 4. DOM 요소 확인
+  ['btnPlayPause','mainCategorySelect','subLevelSelect','targetWord'].forEach(id => {
+    const el = document.getElementById(id);
+    log((el ? '✅' : '❌') + ' #' + id, el ? 'ok' : 'err');
+  });
+
+  // 5. loadDatasetByLevelKey 시도
+  log('--- 데이터 로드 테스트 ---');
+  if (window.VOCABULARY_DATA && window.VOCABULARY_DATA['EN_KO'] && window.VOCABULARY_DATA['EN_KO'].levels) {
+    const levels = window.VOCABULARY_DATA['EN_KO'].levels;
+    const key = Object.keys(levels)[0];
+    if (key) {
+      const data = levels[key];
+      if (Array.isArray(data)) {
+        log('✅ 키 "' + key + '" Array 데이터: ' + data.length + '개', 'ok');
+        if (data.length > 0) log('   첫 항목: ' + JSON.stringify(data[0]).slice(0, 80));
+        // ttsEngine에 직접 로드 테스트
+        if (window.ttsEngine) {
+          window.ttsEngine.setPlaylist(data);
+          window.ttsEngine.currentIndex = 0;
+          log('✅ ttsEngine.playlist 로드 완료: ' + window.ttsEngine.playlist.length + '개', 'ok');
+        }
+      } else {
+        const subkeys = Object.keys(data);
+        log('⚠️ 키 "' + key + '" Object: ' + subkeys.join(', '), 'warn');
+        const arr = data.words || data.sentences || data.idioms || data[subkeys[0]];
+        if (arr && Array.isArray(arr)) {
+          log('   서브키 "' + (data.words ? 'words' : subkeys[0]) + '": ' + arr.length + '개', 'ok');
+          if (window.ttsEngine) {
+            window.ttsEngine.setPlaylist(arr);
+            window.ttsEngine.currentIndex = 0;
+            log('✅ ttsEngine.playlist 로드 완료: ' + arr.length + '개', 'ok');
+          }
+        }
+      }
+    }
+  }
+
+  log('=== 진단 완료 ===');
+}
+
+function testSpeech() {
+  log('--- speechSynthesis 직접 테스트 ---');
+  if (!window.speechSynthesis) { log('❌ speechSynthesis 없음', 'err'); return; }
+
+  // 음성 목록 먼저 확인
+  let voices = window.speechSynthesis.getVoices();
+  log('음성 수: ' + voices.length);
+
+  window.speechSynthesis.cancel();
+  const utt = new SpeechSynthesisUtterance('Hello World');
+  utt.lang = 'en-US';
+  utt.rate = 1.0;
+  utt.onstart = () => log('✅ onstart 발화 시작!', 'ok');
+  utt.onend   = () => log('✅ onend 발화 완료!', 'ok');
+  utt.onerror = (e) => log('❌ onerror: ' + e.error, 'err');
+  try {
+    window.speechSynthesis.resume();
+    window.speechSynthesis.speak(utt);
+    log('speak() 호출 완료, 결과 대기중...', 'warn');
+    // 3초 후 상태 확인
+    setTimeout(() => {
+      log('3초 후 상태 - speaking: ' + window.speechSynthesis.speaking + ', pending: ' + window.speechSynthesis.pending + ', paused: ' + window.speechSynthesis.paused);
+    }, 3000);
+  } catch(e) { log('❌ speak() 예외: ' + e.message, 'err'); }
+}
+
+function testPlay() {
+  log('--- ttsEngine.play() 직접 테스트 ---');
+  if (!window.ttsEngine) { log('❌ ttsEngine 없음', 'err'); return; }
+
+  if (!window.ttsEngine.playlist || window.ttsEngine.playlist.length === 0) {
+    log('⚠️ playlist 비어있음, 먼저 데이터 로드...', 'warn');
+    // 데이터 강제 로드
+    if (window.VOCABULARY_DATA && window.VOCABULARY_DATA['EN_KO']) {
+      const levels = window.VOCABULARY_DATA['EN_KO'].levels;
+      const key = Object.keys(levels || {})[0];
+      if (key) {
+        const data = levels[key];
+        const arr = Array.isArray(data) ? data : (data.words || data.sentences || []);
+        window.ttsEngine.setPlaylist(arr);
+        window.ttsEngine.currentIndex = 0;
+        log('데이터 로드 완료: ' + arr.length + '개');
+      }
+    }
+  }
+
+  log('playlist: ' + window.ttsEngine.playlist.length + '개');
+  log('currentIndex: ' + window.ttsEngine.currentIndex);
+  if (window.ttsEngine.playlist.length > 0) {
+    const item = window.ttsEngine.playlist[0];
+    log('첫 항목: ' + JSON.stringify(item).slice(0, 100));
+  }
+
+  // onCardChange, onSpeechStart 임시 연결
+  window.ttsEngine.onCardChange = (item, idx) => log('📋 onCardChange: [' + idx + '] ' + (item.target || ''), 'ok');
+  window.ttsEngine.onSpeechStart = () => log('🔊 onSpeechStart!', 'ok');
+  window.ttsEngine.onSpeechEnd = () => log('⏹ onSpeechEnd', 'warn');
+
+  log('play() 호출...');
+  window.ttsEngine.play();
+  log('play() 호출 후 isPlaying: ' + window.ttsEngine.isPlaying);
+}
+
+// 페이지 로드 완료 시 자동 진단
+window.addEventListener('load', () => {
+  // 음성 목록 로딩 대기
+  if (window.speechSynthesis) {
+    window.speechSynthesis.onvoiceschanged = () => {
+      const v = window.speechSynthesis.getVoices();
+      log('🔔 voices 로드됨: ' + v.length + '개');
+    };
+  }
+  setTimeout(runDiag, 1000);
+});
+</script>
+</body>
+</html>

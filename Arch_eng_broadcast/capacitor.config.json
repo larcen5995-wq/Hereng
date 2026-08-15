@@ -1,0 +1,13 @@
+{
+	"appId": "com.heareng.app.kr",
+	"appName": "HearEng - 24시간 귀로 외우는 영어공부",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"AdMob": {
+			"appId": "com.heareng.app.kr"
+		}
+	}
+}

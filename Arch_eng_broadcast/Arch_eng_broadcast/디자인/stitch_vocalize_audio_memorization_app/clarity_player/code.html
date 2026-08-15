@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport"/>
+<title>Audio Player - Clarity White</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#464555",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#7e3000",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-background": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#3525cd",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-container": "#4f46e5",
+                        "outline": "#777587",
+                        "on-secondary-fixed": "#25005a",
+                        "primary-fixed": "#e2dfff",
+                        "secondary": "#712ae2",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#8a4cfc",
+                        "inverse-primary": "#c3c0ff",
+                        "on-surface": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "secondary-fixed": "#eaddff",
+                        "tertiary-container": "#a44100",
+                        "on-secondary-container": "#fffbff",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "inverse-surface": "#2d3133",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "surface-tint": "#4d44e3",
+                        "on-primary-container": "#dad7ff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8",
+                        "on-primary-fixed-variant": "#3323cc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "margin-desktop": "64px",
+                        "base": "4px",
+                        "xs": "4px",
+                        "pb-safe": "env(safe-area-inset-bottom)"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid theme('colors.surface-variant');
+        }
+
+        .visualizer-bar {
+            animation: pulse-bar 1.5s infinite ease-in-out alternate;
+            transform-origin: bottom;
+        }
+
+        @keyframes pulse-bar {
+            0% { transform: scaleY(0.2); opacity: 0.6; }
+            100% { transform: scaleY(1); opacity: 1; }
+        }
+
+        .visualizer-bar:nth-child(1) { animation-delay: 0.1s; }
+        .visualizer-bar:nth-child(2) { animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(3) { animation-delay: 0.2s; }
+        .visualizer-bar:nth-child(4) { animation-delay: 0.5s; }
+        .visualizer-bar:nth-child(5) { animation-delay: 0.4s; }
+        .visualizer-bar:nth-child(6) { animation-delay: 0.6s; }
+        .visualizer-bar:nth-child(7) { animation-delay: 0.3s; }
+        .visualizer-bar:nth-child(8) { animation-delay: 0.7s; }
+        .visualizer-bar:nth-child(9) { animation-delay: 0.5s; }
+        .visualizer-bar:nth-child(10) { animation-delay: 0.2s; }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen relative font-body-md text-body-md pb-[80px]">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center h-16 px-gutter w-full bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/5 transition-colors active:scale-95 transition-transform text-primary">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+</button>
+<div class="font-headline-md text-headline-md font-bold text-primary tracking-widest uppercase">
+            VOCALIZE
+        </div>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/5 transition-colors active:scale-95 transition-transform text-primary overflow-hidden">
+<span class="material-symbols-outlined" data-icon="user_profile_avatar">face</span>
+</button>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop pt-24 pb-8 w-full max-w-4xl mx-auto space-y-xl">
+<!-- Now Playing / Subject Card -->
+<section class="w-full flex flex-col items-center">
+<div class="glass-card rounded-[2rem] p-lg md:p-xl w-full max-w-md flex flex-col items-center space-y-lg shadow-[0_8px_32px_rgba(0,0,0,0.04)] transition-all duration-300 hover:shadow-[0_12px_48px_rgba(53,37,205,0.08)]">
+<!-- Category/Tag -->
+<div class="bg-secondary/10 px-sm py-base rounded-full">
+<span class="font-label-md text-label-md text-secondary uppercase tracking-widest">Pronunciation Practice</span>
+</div>
+<!-- Main Word Display -->
+<div class="text-center space-y-sm">
+<h1 class="font-display-lg text-display-lg text-on-surface">Ephemeral</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant italic">/ɪˈfem.ər.əl/</p>
+</div>
+<!-- Definition / Context -->
+<p class="font-body-md text-body-md text-on-surface-variant text-center max-w-xs">
+                    Lasting for a very short time; transient.
+                </p>
+<!-- Visualizer -->
+<div class="w-full h-16 flex items-end justify-center space-x-1 mt-md">
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-full visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-3/4 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-1/2 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-5/6 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-2/3 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-full visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-1/3 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-3/4 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-1/2 visualizer-bar"></div>
+<div class="w-2 bg-gradient-to-t from-primary to-secondary rounded-t-full h-5/6 visualizer-bar"></div>
+</div>
+<!-- Progress Bar -->
+<div class="w-full space-y-sm mt-md">
+<div class="w-full h-2 bg-surface-variant rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-1/3 relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-3 h-3 bg-white border-2 border-primary rounded-full shadow-sm"></div>
+</div>
+</div>
+<div class="flex justify-between w-full font-label-sm text-label-sm text-outline">
+<span>0:04</span>
+<span>0:12</span>
+</div>
+</div>
+<!-- Primary Controls -->
+<div class="flex items-center justify-center space-x-lg mt-md w-full">
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[28px]" data-icon="replay_10">replay_10</span>
+</button>
+<button class="w-16 h-16 flex items-center justify-center rounded-full bg-primary text-white shadow-md hover:bg-primary-container transition-colors active:scale-95 shadow-[0_4px_16px_rgba(53,37,205,0.3)]">
+<span class="material-symbols-outlined text-[36px]" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+<button class="w-12 h-12 flex items-center justify-center rounded-full text-on-surface-variant hover:text-primary hover:bg-primary/5 transition-colors">
+<span class="material-symbols-outlined text-[28px]" data-icon="forward_10">forward_10</span>
+</button>
+</div>
+<!-- Secondary Controls -->
+<div class="flex items-center justify-between w-full pt-md mt-sm border-t border-surface-variant/50">
+<button class="flex items-center justify-center p-sm rounded-full text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="speed">speed</span>
+</button>
+<button class="flex items-center justify-center p-sm rounded-full text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="closed_caption">closed_caption</span>
+</button>
+<button class="flex items-center justify-center p-sm rounded-full text-outline hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite_border">favorite_border</span>
+</button>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full h-20 z-50 flex justify-around items-center px-4 pb-safe bg-surface/70 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl md:hidden">
+<!-- Library (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</button>
+<!-- Record (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="mic">mic</span>
+<span class="font-label-sm text-label-sm">Record</span>
+</button>
+<!-- Memory / Player (Active state - assuming "Memory" maps closest to practicing/playing words) -->
+<button class="flex flex-col items-center justify-center text-primary font-bold hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="psychology" style="font-variation-settings: 'FILL' 1;">psychology</span>
+<span class="font-label-sm text-label-sm">Memory</span>
+</button>
+<!-- Settings (Inactive) -->
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+</body></html>

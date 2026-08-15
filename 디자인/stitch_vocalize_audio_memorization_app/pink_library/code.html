@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vocalize - Library</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;family=Syne:wght@400;700;800&amp;family=Be+Vietnam+Pro:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary": "#ffb0cd",
+                      "surface-container-highest": "#3b3140",
+                      "inverse-primary": "#b4136d",
+                      "surface-container-high": "#302635",
+                      "tertiary-container": "#ae83ab",
+                      "on-tertiary": "#462446",
+                      "surface": "#19101e",
+                      "on-surface": "#eeddf1",
+                      "on-secondary-fixed-variant": "#6900b3",
+                      "on-primary": "#640039",
+                      "inverse-surface": "#eeddf1",
+                      "inverse-on-surface": "#372d3c",
+                      "background": "#19101e",
+                      "on-tertiary-fixed-variant": "#5e3a5d",
+                      "surface-dim": "#19101e",
+                      "error-container": "#93000a",
+                      "secondary-container": "#6f00be",
+                      "primary-container": "#f751a1",
+                      "surface-tint": "#ffb0cd",
+                      "tertiary-fixed-dim": "#e7b8e2",
+                      "primary-fixed": "#ffd9e4",
+                      "surface-bright": "#403545",
+                      "on-error-container": "#ffdad6",
+                      "secondary-fixed": "#f0dbff",
+                      "on-tertiary-container": "#3e1d3f",
+                      "tertiary": "#e7b8e2",
+                      "surface-container": "#251c2a",
+                      "on-secondary-fixed": "#2c0051",
+                      "surface-container-low": "#211826",
+                      "primary-fixed-dim": "#ffb0cd",
+                      "secondary": "#ddb7ff",
+                      "error": "#ffb4ab",
+                      "surface-variant": "#3b3140",
+                      "outline-variant": "#574048",
+                      "on-background": "#eeddf1",
+                      "on-tertiary-fixed": "#2e0f30",
+                      "on-secondary-container": "#d6a9ff",
+                      "outline": "#a68992",
+                      "on-error": "#690005",
+                      "on-primary-fixed-variant": "#8c0053",
+                      "on-secondary": "#490080",
+                      "tertiary-fixed": "#ffd6f9",
+                      "on-surface-variant": "#debec8",
+                      "secondary-fixed-dim": "#ddb7ff",
+                      "on-primary-fixed": "#3e0022",
+                      "surface-container-lowest": "#130b18",
+                      "on-primary-container": "#570032"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "8px",
+                      "gutter": "16px",
+                      "container-margin": "24px",
+                      "section-gap": "48px"
+              },
+              "fontFamily": {
+                      "label-sm": [
+                              "Space Mono"
+                      ],
+                      "headline-md": [
+                              "Syne"
+                      ],
+                      "body-md": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg-mobile": [
+                              "Syne"
+                      ],
+                      "body-lg": [
+                              "Be Vietnam Pro"
+                      ],
+                      "display-lg": [
+                              "Syne"
+                      ]
+              },
+              "fontSize": {
+                      "label-sm": [
+                              "12px",
+                              {
+                                      "lineHeight": "16px",
+                                      "letterSpacing": "0.05em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "headline-md": [
+                              "24px",
+                              {
+                                      "lineHeight": "32px",
+                                      "fontWeight": "700"
+                              }
+                      ],
+                      "body-md": [
+                              "16px",
+                              {
+                                      "lineHeight": "24px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg-mobile": [
+                              "32px",
+                              {
+                                      "lineHeight": "40px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ],
+                      "body-lg": [
+                              "18px",
+                              {
+                                      "lineHeight": "28px",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "display-lg": [
+                              "48px",
+                              {
+                                      "lineHeight": "56px",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "800"
+                              }
+                      ]
+              }
+            }
+          }
+        }
+      </script>
+<style>
+        body {
+            background-color: #0f0714;
+            color: #eeddf1;
+            font-family: 'Be Vietnam Pro', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(49, 17, 50, 0.6);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(231, 184, 226, 0.1);
+        }
+
+        .neon-glow {
+            box-shadow: 0 4px 20px rgba(255, 176, 205, 0.3);
+        }
+
+        .text-glow {
+            text-shadow: 0 0 10px rgba(255, 176, 205, 0.4);
+        }
+
+        .gradient-text {
+            background: linear-gradient(to right, #e7b8e2, #ffb0cd);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Fluid background effect */
+        .bg-fluid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(247, 81, 161, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 85% 30%, rgba(111, 0, 190, 0.15) 0%, transparent 50%);
+            animation: pulseBg 15s infinite alternate ease-in-out;
+        }
+
+        @keyframes pulseBg {
+            0% { transform: scale(1); opacity: 0.8; }
+            100% { transform: scale(1.1); opacity: 1; }
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col pb-24 md:pb-0">
+<div class="bg-fluid"></div>
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 border-b border-white/10 backdrop-blur-xl shadow-[0_4_20px_rgba(255,176,205,0.1)] hidden md:block">
+<div class="flex items-center justify-between px-container-margin h-16 w-full max-w-7xl mx-auto">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl hover:opacity-80 transition-opacity active:scale-95 transition-transform cursor-pointer" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+<span class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary drop-shadow-[0_0_10px_rgba(255,176,205,0.4)]">VOCALIZE</span>
+</div>
+<nav class="hidden md:flex items-center gap-8">
+<a class="text-primary font-bold hover:opacity-80 transition-opacity" href="#">Library</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Record</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Discover</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors hover:opacity-80" href="#">Profile</a>
+</nav>
+</div>
+</header>
+<!-- Mobile Top App Bar (Simplified) -->
+<header class="fixed top-0 w-full z-50 bg-surface/60 border-b border-white/10 backdrop-blur-xl shadow-[0_4_20px_rgba(255,176,205,0.1)] md:hidden">
+<div class="flex items-center justify-between px-container-margin h-16 w-full">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary text-3xl" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+<span class="font-display-lg-mobile text-display-lg-mobile tracking-tighter text-primary drop-shadow-[0_0_10px_rgba(255,176,205,0.4)]">VOCALIZE</span>
+</div>
+</div>
+</header>
+<main class="flex-1 w-full max-w-7xl mx-auto px-container-margin pt-24 md:pt-32 pb-section-gap">
+<div class="mb-12">
+<h1 class="font-display-lg-mobile md:font-display-lg text-display-lg-mobile md:text-display-lg gradient-text mb-2">Your Library</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Saved frequencies and vocal experiments.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 gap-gutter md:gap-container-margin">
+<!-- Left Column: Saved Audio -->
+<section class="md:col-span-8 space-y-gutter">
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Saves</h2>
+<button class="font-label-sm text-label-sm text-primary hover:text-white transition-colors uppercase tracking-wider bg-transparent border border-outline rounded-full px-4 py-2 flex items-center gap-2 glass-card hover:bg-primary/20">
+                        Filter <span class="material-symbols-outlined text-sm">tune</span>
+</button>
+</div>
+<!-- Audio Track Item 1 -->
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 hover:neon-glow transition-all duration-300 cursor-pointer group">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center relative overflow-hidden flex-shrink-0">
+<div class="absolute inset-0 bg-gradient-to-br from-primary-container to-secondary-container opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<span class="material-symbols-outlined text-white z-10 text-3xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-body-lg text-body-lg font-bold text-white truncate mb-1 group-hover:text-primary transition-colors">Neon Night Run</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Synthwave • 140 BPM</p>
+</div>
+<div class="flex items-center gap-3 hidden sm:flex">
+<span class="font-label-sm text-label-sm text-tertiary px-3 py-1 bg-tertiary-container/30 rounded-full border border-tertiary/20">Vocal</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">3:42</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Audio Track Item 2 -->
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 hover:neon-glow transition-all duration-300 cursor-pointer group">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center relative overflow-hidden flex-shrink-0">
+<div class="absolute inset-0 bg-gradient-to-br from-secondary to-primary-container opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<span class="material-symbols-outlined text-white z-10 text-3xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-body-lg text-body-lg font-bold text-white truncate mb-1 group-hover:text-primary transition-colors">Deep Breathing Ex. 4</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Meditation • Vocal Coach</p>
+</div>
+<div class="flex items-center gap-3 hidden sm:flex">
+<span class="font-label-sm text-label-sm text-tertiary px-3 py-1 bg-tertiary-container/30 rounded-full border border-tertiary/20">Exercise</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">5:15</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Audio Track Item 3 -->
+<div class="glass-card rounded-xl p-4 flex items-center gap-4 hover:neon-glow transition-all duration-300 cursor-pointer group">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center relative overflow-hidden flex-shrink-0">
+<div class="absolute inset-0 bg-gradient-to-br from-tertiary-container to-secondary-container opacity-50 group-hover:opacity-80 transition-opacity"></div>
+<span class="material-symbols-outlined text-white z-10 text-3xl drop-shadow-md" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div class="flex-1 min-w-0">
+<h3 class="font-body-lg text-body-lg font-bold text-white truncate mb-1 group-hover:text-primary transition-colors">Cyberspace Echo</h3>
+<p class="font-body-md text-body-md text-on-surface-variant truncate">Ambient • Experimental</p>
+</div>
+<div class="flex items-center gap-3 hidden sm:flex">
+<span class="font-label-sm text-label-sm text-tertiary px-3 py-1 bg-tertiary-container/30 rounded-full border border-tertiary/20">Soundscape</span>
+<span class="font-label-sm text-label-sm text-on-surface-variant">8:20</span>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined">more_vert</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Right Column: Trending Packs (Bento style) -->
+<section class="md:col-span-4 space-y-gutter">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-4">Trending Packs</h2>
+<!-- Bento Grid for Packs -->
+<div class="grid grid-cols-2 md:grid-cols-1 gap-gutter">
+<!-- Pack Card 1: Featured -->
+<div class="col-span-2 md:col-span-1 glass-card rounded-2xl p-6 relative overflow-hidden group cursor-pointer border border-primary/20 hover:neon-glow transition-all duration-300">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-container rounded-full blur-[50px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<div class="flex justify-between items-start mb-12">
+<span class="font-label-sm text-label-sm text-background bg-primary px-3 py-1 rounded-full font-bold shadow-[0_0_10px_rgba(255,176,205,0.6)]">HOT</span>
+<span class="material-symbols-outlined text-primary text-3xl opacity-50 group-hover:opacity-100 transition-opacity">electric_bolt</span>
+</div>
+<h3 class="font-headline-md text-headline-md font-bold text-white mb-2">Synth Pop Vocals</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Master 80s style vocal processing.</p>
+</div>
+<!-- Pack Card 2 -->
+<div class="col-span-1 glass-card rounded-xl p-4 relative overflow-hidden group cursor-pointer hover:border-secondary/50 transition-colors">
+<div class="absolute -bottom-4 -right-4 w-24 h-24 bg-secondary-container rounded-full blur-[30px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<span class="material-symbols-outlined text-secondary text-2xl mb-4 block">mic_external_on</span>
+<h3 class="font-body-lg text-body-lg font-bold text-white mb-1">Podcast Pro</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Clear speech</p>
+</div>
+<!-- Pack Card 3 -->
+<div class="col-span-1 glass-card rounded-xl p-4 relative overflow-hidden group cursor-pointer hover:border-tertiary/50 transition-colors">
+<div class="absolute -top-4 -left-4 w-24 h-24 bg-tertiary-container rounded-full blur-[30px] opacity-20 group-hover:opacity-40 transition-opacity"></div>
+<span class="material-symbols-outlined text-tertiary text-2xl mb-4 block">graphic_eq</span>
+<h3 class="font-body-lg text-body-lg font-bold text-white mb-1">Lo-Fi Beats</h3>
+<p class="font-label-sm text-label-sm text-on-surface-variant">Chill vibes</p>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 w-full z-50 rounded-t-xl bg-surface-container-low/80 border-t border-white/5 shadow-[0_-4px_24px_rgba(0,0,0,0.4)] md:hidden">
+<div class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-2 backdrop-blur-2xl">
+<!-- Active: Library -->
+<a class="flex flex-col items-center justify-center text-primary font-bold bg-primary-container/20 rounded-full px-4 py-1 shadow-[0_0_15px_rgba(247,81,161,0.3)] hover:opacity-80 transition-opacity active:scale-90 transition-transform duration-200" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">library_music</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform duration-200 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">mic</span>
+<span class="font-label-sm text-label-sm">Record</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform duration-200 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">explore</span>
+<span class="font-label-sm text-label-sm">Discover</span>
+</a>
+<a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform duration-200 group" href="#">
+<span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors">person</span>
+<span class="font-label-sm text-label-sm">Profile</span>
+</a>
+</div>
+</nav>
+</body></html>

@@ -1,0 +1,29 @@
+{
+  "name": "heareng-app",
+  "version": "2.08.0",
+  "description": "HearEng - Hear Eng 귀로외우는영어",
+  "main": "index.html",
+  "scripts": {
+    "start": "python -m http.server 8080",
+    "cap:add": "npx cap add android",
+    "cap:sync": "npx cap sync",
+    "cap:open": "npx cap open android"
+  },
+  "keywords": [
+    "HearEng",
+    "AdMob",
+    "Capacitor",
+    "Android",
+    "APK"
+  ],
+  "author": "HearEng Team",
+  "license": "ISC",
+  "dependencies": {
+    "@capacitor/android": "^5.7.0",
+    "@capacitor/core": "^5.7.0",
+    "@capacitor/ios": "^5.7.8"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "^5.7.0"
+  }
+}

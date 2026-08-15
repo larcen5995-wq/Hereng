@@ -1,0 +1,26 @@
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
+import javax.net.ssl.HostnameVerifier
+import java.security.SecureRandom
+
+class TrustAllManager implements X509TrustManager {
+    void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) {}
+    void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) {}
+    java.security.cert.X509Certificate[] getAcceptedIssuers() { return null }
+}
+
+class TrustAllHostnameVerifier implements HostnameVerifier {
+    boolean verify(String hostname, javax.net.ssl.SSLSession session) { return true }
+}
+
+try {
+    SSLContext sc = SSLContext.getInstance("TLS")
+    sc.init(null, [new TrustAllManager()] as TrustManager[], new SecureRandom())
+    HttpsURLConnection.setDefaultSSLSocketFactory(sc.getSocketFactory())
+    HttpsURLConnection.setDefaultHostnameVerifier(new TrustAllHostnameVerifier())
+    System.out.println("=== GRADLE SSL TRUST ALL INITIALIZED SUCCESSFULLY ===")
+} catch (Exception e) {
+    e.printStackTrace()
+}

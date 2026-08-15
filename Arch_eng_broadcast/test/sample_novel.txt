@@ -1,0 +1,29 @@
+# ==========================================================================
+# 📖 HearEng TXT 소설/스토리 연속 낭독 전용 샘플
+# --------------------------------------------------------------------------
+# 💡 사용 안내 및 주의사항:
+# 1. 본 TXT 파일은 2개 성우 교대(Target-Explanation)를 하지 않고,
+#    상단 [학습 성우 (TARGET)]로 선택하신 단일 원어민 성우 하나가
+#    처음부터 끝까지 연속으로 문장을 읽어주는 [소설 낭독 모드] 전용 파일입니다.
+#
+# 2. 영어 소설인 경우 상단 [학습 성우 (TARGET)]를
+#    US/UK/AU 원어민 성우(Aria, Jenny, Guy, Sonia 등)로 지정해 주세요.
+#    (한국어 성우로 선택 시 영어 발음이 어색할 수 있습니다.)
+# ==========================================================================
+
+Once upon a time, there lived a wise old king in a peaceful and prosperous kingdom.
+He loved his people with all his heart and listened to their stories every single day.
+One dollar and eighty-seven cents. That was all Della had saved to buy a Christmas gift for Jim.
+Sixty cents of it was in pennies, saved one and two at a time by bulldozing the grocer and the vegetable man.
+Three times Della counted it. One dollar and eighty-seven cents.
+And the next day would be Christmas.
+There was clearly nothing to do but flop down on the shabby little couch and cry.
+So Della did it. Which instigates the moral reflection that life is made of sobs, sniffles, and smiles.
+Jim and Della possessed two treasures in which they both took a mighty pride.
+One was Jim's gold watch that had been his father's and his grandfather's.
+The other was Della's beautiful long shining hair that fell about her like a cascade of brown waters.
+Della decided to sell her hair to buy a grand platinum watch chain for Jim.
+When Jim came home, he looked at Della's short hair with a strange expression.
+He had sold his gold watch to buy a set of expensive tortoiseshell combs for Della's hair.
+They were both wise, for they gave the greatest sacrifice out of pure love.
+They lived happily ever after, holding each other's hands with deep gratitude and everlasting joy.

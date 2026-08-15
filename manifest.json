@@ -1,0 +1,22 @@
+{
+  "name": "HearEng - 24시간 귀로 외우는 영어공부",
+  "short_name": "HearEng",
+  "version": "1.04",
+  "versionCode": 104,
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#eab308",
+  "icons": [
+    {
+      "src": "img/icon_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "img/icon_512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

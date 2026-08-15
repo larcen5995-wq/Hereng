@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Upload &amp; Conversion - Vocalize</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@500&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface-variant": "#464555",
+                        "on-tertiary-fixed-variant": "#7b2f00",
+                        "surface-container-highest": "#e0e3e5",
+                        "tertiary": "#7e3000",
+                        "primary-fixed-dim": "#c3c0ff",
+                        "on-background": "#191c1e",
+                        "surface-bright": "#f7f9fb",
+                        "primary": "#3525cd",
+                        "on-secondary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-variant": "#e0e3e5",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#0f0069",
+                        "surface-container-lowest": "#ffffff",
+                        "tertiary-fixed": "#ffdbcc",
+                        "primary-container": "#4f46e5",
+                        "outline": "#777587",
+                        "on-secondary-fixed": "#25005a",
+                        "primary-fixed": "#e2dfff",
+                        "secondary": "#712ae2",
+                        "on-tertiary": "#ffffff",
+                        "secondary-container": "#8a4cfc",
+                        "inverse-primary": "#c3c0ff",
+                        "on-surface": "#191c1e",
+                        "on-primary": "#ffffff",
+                        "on-tertiary-container": "#ffd2be",
+                        "surface-container-low": "#f2f4f6",
+                        "background": "#f7f9fb",
+                        "secondary-fixed": "#eaddff",
+                        "tertiary-container": "#a44100",
+                        "on-secondary-container": "#fffbff",
+                        "secondary-fixed-dim": "#d2bbff",
+                        "inverse-surface": "#2d3133",
+                        "error": "#ba1a1a",
+                        "surface-container": "#eceef0",
+                        "on-secondary-fixed-variant": "#5a00c6",
+                        "surface-tint": "#4d44e3",
+                        "on-primary-container": "#dad7ff",
+                        "error-container": "#ffdad6",
+                        "on-error-container": "#93000a",
+                        "inverse-on-surface": "#eff1f3",
+                        "tertiary-fixed-dim": "#ffb695",
+                        "surface-dim": "#d8dadc",
+                        "on-error": "#ffffff",
+                        "on-tertiary-fixed": "#351000",
+                        "outline-variant": "#c7c4d8",
+                        "on-primary-fixed-variant": "#3323cc"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "md": "16px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "sm": "8px",
+                        "xl": "40px",
+                        "lg": "24px",
+                        "margin-desktop": "64px",
+                        "base": "4px",
+                        "xs": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Inter"],
+                        "body-md": ["Inter"],
+                        "headline-lg": ["Hanken Grotesk"],
+                        "label-md": ["JetBrains Mono"],
+                        "headline-md": ["Hanken Grotesk"],
+                        "body-sm": ["Inter"],
+                        "label-sm": ["JetBrains Mono"],
+                        "headline-lg-mobile": ["Hanken Grotesk"],
+                        "display-lg": ["Hanken Grotesk"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "label-sm": ["10px", { "lineHeight": "14px", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { background-color: #f7f9fb; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid #e2e8f0;
+        }
+        .upload-zone {
+            border: 2px dashed #c7c4d8;
+            transition: all 0.2s ease;
+        }
+        .upload-zone:hover {
+            border-color: #3525cd;
+            background-color: rgba(53, 37, 205, 0.03);
+        }
+    </style>
+</head>
+<body class="text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm flex justify-between items-center h-16 px-gutter md:px-margin-desktop">
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/5 transition-colors text-primary active:scale-95 transition-transform">
+<span class="material-symbols-outlined" data-icon="graphic_eq">graphic_eq</span>
+</button>
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-widest uppercase">VOCALIZE</h1>
+<button class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-primary/5 transition-colors active:scale-95 transition-transform overflow-hidden">
+<img alt="User Profile Avatar" class="w-full h-full object-cover rounded-full" data-alt="A clean, minimalist portrait of a professional user in a bright, modern office space. Soft natural lighting, highly detailed, realistic, light-mode aesthetic, serene expression. The color palette focuses on whites, light grays, and subtle cool tones to match a pristine user interface." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZ2SIyb2wb-0kMSYLpJHLI7kc_9nK54Qi1I3NSufjp4bW-FctU1PEE6QU25XZ0dgWebyqQZlEf5IMNJza6KIF0s9oWCRZLceAwJDHRXFnCXVrqkSRaSk5NGvo6EMQf5YYdYYjHZJzFa5NEvFZql4Vcf0yp37Re5DBhiwgiE25RwAXb2P1Wrrl93D-pOae-WWG3hcatLcW_sENDSix7oRrDW_X1E3Kqij0pZwIVKFadGCRoHdkaGqSUfA"/>
+</button>
+</header>
+<!-- Main Content -->
+<main class="pt-24 px-gutter md:px-margin-desktop max-w-5xl mx-auto space-y-xl">
+<!-- Header Section -->
+<section class="text-center space-y-sm mt-8">
+<h2 class="font-display-lg text-display-lg text-on-surface">Upload &amp; Convert</h2>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mx-auto">Transform your audio files into high-fidelity text with our advanced recognition engine. Supports MP3, WAV, and M4A up to 50MB.</p>
+</section>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-md md:gap-lg">
+<!-- Upload Area (Takes up 2 columns on desktop) -->
+<div class="md:col-span-2 glass-card rounded-xl p-lg flex flex-col items-center justify-center min-h-[320px] upload-zone cursor-pointer relative group">
+<input accept="audio/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" type="file"/>
+<div class="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mb-md group-hover:scale-110 transition-transform duration-300">
+<span class="material-symbols-outlined text-[40px] text-primary" data-icon="cloud_upload">cloud_upload</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-xs">Drag &amp; Drop Audio</h3>
+<p class="font-body-md text-body-md text-on-surface-variant text-center">or click to browse your device</p>
+<div class="mt-md flex gap-sm">
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md border border-outline-variant/30">MP3</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md border border-outline-variant/30">WAV</span>
+<span class="px-3 py-1 rounded-full bg-surface-container-low text-on-surface-variant font-label-md text-label-md border border-outline-variant/30">M4A</span>
+</div>
+</div>
+<!-- Settings Sidebar -->
+<div class="md:col-span-1 space-y-md">
+<div class="glass-card rounded-xl p-md">
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="translate">translate</span>
+                        Language
+                    </h4>
+<select class="w-full bg-surface-bright border border-outline-variant rounded-lg px-md py-sm font-body-md text-body-md text-on-surface focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-colors">
+<option value="en">English (US)</option>
+<option value="en-gb">English (UK)</option>
+<option value="es">Spanish</option>
+<option value="fr">French</option>
+</select>
+</div>
+<div class="glass-card rounded-xl p-md">
+<h4 class="font-headline-sm text-headline-sm font-semibold text-on-surface mb-md flex items-center gap-xs">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome">auto_awesome</span>
+                        Model Type
+                    </h4>
+<div class="space-y-sm">
+<label class="flex items-center gap-sm cursor-pointer group">
+<input checked="" class="text-primary focus:ring-primary border-outline-variant" name="model" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">High Accuracy</span>
+</label>
+<label class="flex items-center gap-sm cursor-pointer group">
+<input class="text-primary focus:ring-primary border-outline-variant" name="model" type="radio"/>
+<span class="font-body-md text-body-md text-on-surface group-hover:text-primary transition-colors">Fast Processing</span>
+</label>
+</div>
+</div>
+<button class="w-full h-12 bg-primary text-on-primary font-label-md text-label-md uppercase tracking-wider rounded-lg hover:bg-primary/90 active:scale-95 transition-all shadow-sm flex items-center justify-center gap-xs">
+<span class="material-symbols-outlined text-[18px]" data-icon="play_arrow">play_arrow</span>
+                    Start Conversion
+                </button>
+</div>
+</div>
+<!-- Recent Uploads / Conversions Queue -->
+<section class="mt-xl">
+<div class="flex justify-between items-end mb-md border-b border-outline-variant/30 pb-sm">
+<h3 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Recent Files</h3>
+<button class="text-primary font-label-md text-label-md hover:underline hover:text-primary/80 transition-colors">View All</button>
+</div>
+<div class="space-y-sm">
+<!-- List Item 1: Processing -->
+<div class="glass-card rounded-lg p-md flex items-center justify-between group">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary animate-pulse" data-icon="sync">sync</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Interview_Draft_01.wav</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant flex items-center gap-xs">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+                                Processing... 45%
+                            </p>
+</div>
+</div>
+<button class="text-outline hover:text-error transition-colors p-2 rounded-full hover:bg-error/10">
+<span class="material-symbols-outlined" data-icon="close">close</span>
+</button>
+</div>
+<!-- List Item 2: Completed -->
+<div class="glass-card rounded-lg p-md flex items-center justify-between group hover:border-primary/30 transition-colors cursor-pointer">
+<div class="flex items-center gap-md">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="description">description</span>
+</div>
+<div>
+<p class="font-body-md text-body-md font-medium text-on-surface">Meeting_Notes_Oct12.mp3</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Completed • 12 MB • 2 hours ago</p>
+</div>
+</div>
+<div class="flex gap-sm opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="text-on-surface-variant hover:text-primary p-2 rounded-full hover:bg-primary/10 transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Visible on Mobile, Hidden on Desktop typically, but per prompt instruction we show active state for 'Record/Upload' intent) -->
+<!-- Assuming 'Record' maps closest to 'Upload' intent based on available labels: Library, Record, Memory, Settings -->
+<nav class="md:hidden fixed bottom-0 left-0 w-full h-20 z-50 flex justify-around items-center px-4 pb-safe bg-surface/70 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0_-4px_12px_rgba(0,0,0,0.05)] rounded-t-xl">
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="library_music">library_music</span>
+<span class="font-label-sm text-label-sm">Library</span>
+</button>
+<!-- Active Tab: Mapped 'Record' to Upload intent -->
+<button class="flex flex-col items-center justify-center text-primary font-bold active:scale-90 transition-transform w-16 relative">
+<div class="absolute -top-3 w-12 h-1 bg-primary rounded-full"></div>
+<span class="material-symbols-outlined mb-1" data-icon="mic" style="font-variation-settings: 'FILL' 1;">mic</span>
+<span class="font-label-sm text-label-sm">Record</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="psychology">psychology</span>
+<span class="font-label-sm text-label-sm">Memory</span>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 transition-transform w-16">
+<span class="material-symbols-outlined mb-1" data-icon="settings">settings</span>
+<span class="font-label-sm text-label-sm">Settings</span>
+</button>
+</nav>
+</body></html>

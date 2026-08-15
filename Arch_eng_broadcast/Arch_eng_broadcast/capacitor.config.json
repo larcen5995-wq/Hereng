@@ -1,0 +1,13 @@
+{
+	"appId": "com.heareng.app.kr",
+	"appName": "Hear Eng 귀로외우는영어",
+	"webDir": "www",
+	"server": {
+		"androidScheme": "https"
+	},
+	"plugins": {
+		"AdMob": {
+			"appId": "com.heareng.app.kr"
+		}
+	}
+}

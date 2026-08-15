@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">HearEng PRO 귀로외우는영어</string>
+    <string name="title_activity_main">HearEng PRO 귀로외우는영어</string>
+    <string name="package_name">com.heareng.radio.audiobook</string>
+    <string name="custom_url_scheme">com.heareng.radio.audiobook</string>
+</resources>

@@ -1,0 +1,12 @@
+node_modules/
+.gradle/
+android/app/build/
+android/.gradle/
+android/build/
+ios/App/build/
+backup/
+apk_build/
+*.zip
+*.apk
+*.aab
+*.log

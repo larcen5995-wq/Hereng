@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bible Reader - John 1</title>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Google Fonts: EB Garamond, Literata, Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@400;600&amp;family=Inter:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,400&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                            "surface-container-low": "#f6f3ee",
+                            "on-tertiary-fixed-variant": "#3c475a",
+                            "tertiary-fixed": "#d8e3fb",
+                            "on-secondary-fixed": "#331200",
+                            "surface-container-high": "#ebe8e3",
+                            "outline-variant": "#dcc1b9",
+                            "primary-container": "#7c2d12",
+                            "on-primary-fixed-variant": "#7c2d12",
+                            "secondary-fixed": "#ffdbca",
+                            "outline": "#89726c",
+                            "on-primary-container": "#ff9b7b",
+                            "surface-container-lowest": "#ffffff",
+                            "on-primary": "#ffffff",
+                            "secondary-fixed-dim": "#ffb68e",
+                            "primary-fixed-dim": "#ffb59e",
+                            "secondary": "#9b4500",
+                            "tertiary-container": "#3c475a",
+                            "inverse-primary": "#ffb59e",
+                            "on-secondary-fixed-variant": "#763300",
+                            "surface-bright": "#fcf9f4",
+                            "primary": "#5e1700",
+                            "on-tertiary": "#ffffff",
+                            "tertiary": "#263143",
+                            "on-primary-fixed": "#3a0b00",
+                            "primary-fixed": "#ffdbd0",
+                            "on-surface": "#1c1c19",
+                            "on-secondary-container": "#682c00",
+                            "background": "#fcf9f4",
+                            "tertiary-fixed-dim": "#bcc7de",
+                            "secondary-container": "#fd8a42",
+                            "on-error": "#ffffff",
+                            "error-container": "#ffdad6",
+                            "on-error-container": "#93000a",
+                            "surface-tint": "#9b4427",
+                            "on-tertiary-fixed": "#111c2d",
+                            "on-tertiary-container": "#aab5cc",
+                            "error": "#ba1a1a",
+                            "on-secondary": "#ffffff",
+                            "surface": "#fcf9f4",
+                            "on-background": "#1c1c19",
+                            "inverse-surface": "#31302d",
+                            "surface-container": "#f0ede8",
+                            "on-surface-variant": "#55423d",
+                            "surface-dim": "#dcdad5",
+                            "surface-variant": "#e5e2dd",
+                            "surface-container-highest": "#e5e2dd",
+                            "inverse-on-surface": "#f3f0eb"
+                    },
+                    "borderRadius": {
+                            "DEFAULT": "0.125rem",
+                            "lg": "0.25rem",
+                            "xl": "0.5rem",
+                            "full": "0.75rem"
+                    },
+                    "spacing": {
+                            "margin-mobile": "20px",
+                            "stack-gap": "24px",
+                            "margin-desktop": "120px",
+                            "gutter": "16px",
+                            "reading-max-width": "680px"
+                    },
+                    "fontFamily": {
+                            "label-sm": ["Inter"],
+                            "verse-number": ["Inter"],
+                            "headline-lg-mobile": ["EB Garamond"],
+                            "display-lg": ["EB Garamond"],
+                            "reading-body": ["Literata"],
+                            "headline-lg": ["EB Garamond"],
+                            "reading-body-mobile": ["Literata"]
+                    },
+                    "fontSize": {
+                            "label-sm": ["13px", {"lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "500"}],
+                            "verse-number": ["12px", {"lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "600"}],
+                            "headline-lg-mobile": ["28px", {"lineHeight": "34px", "fontWeight": "600"}],
+                            "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "600"}],
+                            "reading-body": ["20px", {"lineHeight": "32px", "fontWeight": "400"}],
+                            "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                            "reading-body-mobile": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            /* Fallback font to ensure text renders if custom fonts fail */
+            font-family: 'Literata', serif;
+        }
+        .verse-highlight {
+            background-color: rgba(217, 119, 6, 0.1); /* Soft Gold #D97706 at 10% */
+            border-left: 2px solid #D97706; /* Vertical gold line */
+            padding-left: 8px;
+            margin-left: -10px; /* Offset the padding to keep alignment */
+            border-radius: 0 4px 4px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Custom scrollbar for webkit */
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background-color: #dcc1b9; /* outline-variant */
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface h-screen flex flex-col overflow-hidden antialiased md:items-center">
+<!-- 
+      TopAppBar from JSON 
+      Name: TopAppBar
+      Type: small_center_aligned
+      Headline: Scripture
+    -->
+<header class="bg-surface dark:bg-surface-dim text-primary dark:text-primary-fixed docked full-width top-0 border-b border-outline-variant flat no shadows flex justify-between items-center px-margin-mobile h-16 w-full z-40 flex-shrink-0 md:max-w-reading-max-width md:border-x">
+<button aria-label="Menu" class="p-2 hover:bg-surface-container-high transition-colors rounded-full text-on-surface-variant flex items-center justify-center active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">menu</span>
+</button>
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile text-primary font-bold tracking-tight">Scripture</h1>
+<button aria-label="Settings" class="p-2 hover:bg-surface-container-high transition-colors rounded-full text-on-surface-variant flex items-center justify-center active:scale-95 duration-150">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 0;">settings</span>
+</button>
+</header>
+<!-- Main Content Area -->
+<main class="flex-1 overflow-y-auto w-full md:max-w-reading-max-width md:border-x md:border-outline-variant relative pb-32">
+<!-- Header Image & Chapter Title -->
+<div class="relative w-full h-48 sm:h-56">
+<div class="absolute inset-0 bg-cover bg-center w-full h-full" data-alt="A serene, soft-focus landscape of rolling hills at dawn, bathed in gentle warm sunlight. The scene evokes a deep sense of peace, reverence, and antiquity, perfectly suited for a sacred reading app. The color palette features muted earthy tones, soft golds, and parchment-like creams, creating a tranquil and historic atmosphere." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAkpHquG24E8Cu8D1Lul1d9w6OEsxzRqlIi9xhkEEVjMc7ZX8Fq5MBktNtQ9dKXHgrS_7ESVfIb4D32yAQ4EgYv_106hLUzxsQ8tDKsOFUxZsK8il9ZA1b5AygrAB8X97JBeJ2brkBLSEaXoGeVZTImrV1tYHRRZ2Mb1fuxdzNWXRiIqLJs3tKLWs6cCRmhIcoR1JGrcN2Q2AocPQBDkSWLMAlYlVQihYjN5Byti1waH0kSbcX6nEjE')"></div>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-surface via-surface/70 to-transparent"></div>
+<div class="absolute bottom-6 left-margin-mobile md:left-8 right-margin-mobile flex justify-between items-end">
+<div>
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-widest mb-1 block">The Gospel According to</span>
+<h2 class="font-display-lg text-display-lg text-primary m-0 leading-tight">John 1</h2>
+</div>
+<button aria-label="Play Chapter" class="p-2 bg-surface-container-low rounded-full shadow-sm text-secondary hover:bg-surface-container-high transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</button>
+</div>
+</div>
+<!-- Scripture Reading Canvas -->
+<article class="px-margin-mobile md:px-8 py-8 max-w-reading-max-width mx-auto font-reading-body-mobile md:font-reading-body text-on-surface leading-relaxed space-y-6 pb-20">
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">1</sup>In the beginning was the Word, and the Word was with God, and the Word was God. 
+                <sup class="font-verse-number text-verse-number text-on-surface-variant mx-1">2</sup>The same was in the beginning with God.
+            </p>
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">3</sup>All things were made by him; and without him was not any thing made that was made.
+            </p>
+<p class="verse-highlight py-1">
+<sup class="font-verse-number text-verse-number text-secondary mr-1">4</sup>In him was life; and the life was the light of men.
+            </p>
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">5</sup>And the light shineth in darkness; and the darkness comprehended it not.
+            </p>
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">6</sup>There was a man sent from God, whose name was John. 
+                <sup class="font-verse-number text-verse-number text-on-surface-variant mx-1">7</sup>The same came for a witness, to bear witness of the Light, that all men through him might believe.
+            </p>
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">8</sup>He was not that Light, but was sent to bear witness of that Light.
+            </p>
+<p>
+<sup class="font-verse-number text-verse-number text-on-surface-variant mr-1">9</sup>That was the true Light, which lighteth every man that cometh into the world.
+                 <sup class="font-verse-number text-verse-number text-on-surface-variant mx-1">10</sup>He was in the world, and the world was made by him, and the world knew him not.
+                 <sup class="font-verse-number text-verse-number text-on-surface-variant mx-1">11</sup>He came unto his own, and his own received him not.
+            </p>
+<!-- Adding some extra text to ensure scrolling -->
+<div class="h-32 flex items-center justify-center border-t border-outline-variant mt-12 pt-8">
+<span class="font-label-sm text-label-sm text-on-surface-variant">End of Sample</span>
+</div>
+</article>
+</main>
+<!-- 
+      Integrated Audio Mini-Player (Replacing standard BottomNavBar for this specific reading/listening state)
+      Uses Glassmorphism and parchment tones.
+    -->
+<div class="fixed bottom-0 left-0 w-full z-50 flex justify-center px-2 sm:px-4 pb-4 pt-2 pointer-events-none">
+<div class="pointer-events-auto w-full md:max-w-[640px] bg-surface/90 dark:bg-surface-dim/90 backdrop-blur-md rounded-xl shadow-[0_4px_24px_rgba(124,45,18,0.1)] border border-outline-variant/50 flex flex-col overflow-hidden">
+<!-- Progress Bar -->
+<div class="h-1 w-full bg-surface-variant relative cursor-pointer group">
+<div class="absolute top-0 left-0 h-full bg-secondary w-1/3 group-hover:h-1.5 transition-all"></div>
+</div>
+<div class="px-4 py-3 flex items-center justify-between gap-4">
+<!-- Info & Radio Toggle -->
+<div class="flex items-center gap-3 min-w-[120px]">
+<button class="text-on-surface-variant hover:text-primary transition-colors flex flex-col items-center justify-center">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">radio</span>
+<span class="text-[10px] uppercase font-semibold tracking-wider mt-0.5">Radio</span>
+</button>
+<div class="flex flex-col hidden sm:flex">
+<span class="font-label-sm text-label-sm text-on-surface font-semibold line-clamp-1">John 1:4</span>
+<span class="text-[11px] text-on-surface-variant line-clamp-1">David Suchet</span>
+</div>
+</div>
+<!-- Playback Controls -->
+<div class="flex items-center justify-center gap-4 sm:gap-6 flex-1">
+<button aria-label="Rewind 15 seconds" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">replay_10</span>
+</button>
+<button aria-label="Pause" class="w-12 h-12 rounded-full bg-secondary text-on-primary flex items-center justify-center shadow-md shadow-primary/20 hover:bg-secondary-container hover:text-on-secondary-container transition-all active:scale-95">
+<span class="material-symbols-outlined text-[32px]" style="font-variation-settings: 'FILL' 1;">pause</span>
+</button>
+<button aria-label="Forward 15 seconds" class="text-on-surface-variant hover:text-primary transition-colors active:scale-95 flex items-center justify-center">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 0;">forward_10</span>
+</button>
+</div>
+<!-- Expand / Volume -->
+<div class="flex items-center justify-end gap-2 min-w-[60px] sm:min-w-[120px]">
+<button class="text-on-surface-variant hover:text-primary transition-colors hidden sm:flex items-center justify-center p-2 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 0;">volume_up</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors flex items-center justify-center p-2 rounded-full hover:bg-surface-variant/50">
+<span class="material-symbols-outlined text-[24px]" style="font-variation-settings: 'FILL' 0;">expand_less</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</body></html>

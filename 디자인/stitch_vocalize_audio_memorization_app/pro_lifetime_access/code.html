@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vocalize - Pro Lifetime</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Outfit:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-error": "#690005",
+                        "surface-container-high": "#272a34",
+                        "error": "#ffb4ab",
+                        "surface-container-lowest": "#0b0e17",
+                        "surface-bright": "#363943",
+                        "primary": "#c0c1ff",
+                        "on-error-container": "#ffdad6",
+                        "on-secondary-fixed": "#001f26",
+                        "outline-variant": "#464554",
+                        "surface": "#10131c",
+                        "on-tertiary-container": "#400071",
+                        "on-background": "#e0e2ef",
+                        "tertiary-fixed": "#f0dbff",
+                        "tertiary-container": "#b76dff",
+                        "outline": "#908fa0",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "inverse-surface": "#e0e2ef",
+                        "surface-dim": "#10131c",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "on-secondary-container": "#00424e",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#32343f",
+                        "primary-container": "#8083ff",
+                        "on-surface": "#e0e2ef",
+                        "on-secondary": "#003640",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "tertiary": "#ddb7ff",
+                        "primary-fixed": "#e1e0ff",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "surface-tint": "#c0c1ff",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-primary-fixed": "#07006c",
+                        "inverse-primary": "#494bd6",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "on-primary-container": "#0d0096",
+                        "on-tertiary-fixed": "#2c0051",
+                        "secondary-container": "#03b5d3",
+                        "on-primary": "#1000a9",
+                        "surface-variant": "#32343f",
+                        "background": "#10131c",
+                        "surface-container": "#1c1f29",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-tertiary": "#490080",
+                        "surface-container-low": "#181b25",
+                        "secondary": "#4cd7f6",
+                        "secondary-fixed": "#acedff",
+                        "inverse-on-surface": "#2d303a"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "touch-target": "48px",
+                        "gutter": "16px",
+                        "container-margin": "24px",
+                        "unit": "8px"
+                    },
+                    "fontFamily": {
+                        "mono-label": ["Inter"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"],
+                        "label-caps": ["Inter"],
+                        "display-lg-mobile": ["Outfit"],
+                        "display-lg": ["Outfit"],
+                        "headline-md": ["Outfit"]
+                    },
+                    "fontSize": {
+                        "mono-label": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .shimmer {
+            background: linear-gradient(90deg, transparent, rgba(192,193,255,0.1), transparent);
+            background-size: 200% 100%;
+            animation: shimmer 3s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: -200% 0; }
+            100% { background-position: 200% 0; }
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen w-full relative overflow-hidden flex items-center justify-center p-gutter md:p-container-margin">
+<!-- Simulated App Background (Blurred) to provide context for the modal -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-cover bg-center opacity-40 blur-sm scale-105" data-alt="A blurred, abstract representation of a modern digital audio player interface. The scene features dark, moody indigo tones with faint, glowing cyan and neon purple sound wave visualizers in the background. The aesthetic is cyber-minimalist, suggesting a high-tech, premium streaming app running in dark mode." style="background-image: url('https://lh3.googleusercontent.com/aida-public/AB6AXuAQ405MK5jq5i6ReUDmnPPkLUfwZbG8ypCg-cTvYEm06iIb9sxNMBeucV-Cb1NPpODclCpz43RTnHlfJMEvys4lccb04WJW_NqRNZjGNT6JqnO3xf4Of6yHkdCxS5RoH3oN-PmQTwKr50QboVkad9h_86Vv3VyzLipjmLT7s2P_Ci1sWi1gOI3_jpw-Svx3LxyOen7wecIgpAnpIzQVdO3OFUcVJ3GEqaW7l-DuhhO04VBAIhN2OsRS6g')"></div>
+<!-- Dark Dimmed Overlay -->
+<div class="absolute inset-0 bg-background/80 backdrop-blur-md"></div>
+</div>
+<!-- Modal Container -->
+<main class="relative z-10 w-full max-w-[420px] glass-card rounded-[24px] shadow-[0_20px_40px_rgba(0,0,0,0.5)] overflow-hidden flex flex-col">
+<!-- Header -->
+<header class="p-[32px] pb-[16px] text-center flex flex-col items-center gap-unit relative">
+<!-- Decorative ambient glow -->
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[80%] h-24 bg-primary/20 blur-[40px] rounded-full pointer-events-none"></div>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-primary relative z-10">
+                Go Pro. Forever.
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant relative z-10">
+                One-time payment. No subscriptions.
+            </p>
+</header>
+<!-- Options Grid -->
+<div class="p-[32px] pt-[16px] flex flex-col gap-[16px]">
+<!-- Option 1: Free Tier -->
+<div class="relative p-[24px] rounded-xl bg-surface-container/30 border border-white/5 flex flex-col gap-[16px] transition-colors hover:bg-surface-container/50">
+<div class="flex justify-between items-center w-full">
+<h2 class="font-headline-md text-headline-md text-on-surface-variant">Free Tier</h2>
+<span class="font-label-caps text-label-caps text-on-surface-variant/80 bg-white/5 border border-white/10 px-3 py-1 rounded-full uppercase">
+                        Current Plan
+                    </span>
+</div>
+<ul class="flex flex-col gap-unit font-body-md text-body-md text-on-surface-variant/70">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] opacity-70" style="font-variation-settings: 'FILL' 0;">campaign</span>
+                        Ad-supported
+                    </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] opacity-70" style="font-variation-settings: 'FILL' 0;">schedule</span>
+                        1-hour radio ad break
+                    </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] opacity-70" style="font-variation-settings: 'FILL' 0;">record_voice_over</span>
+                        Standard voice
+                    </li>
+</ul>
+</div>
+<!-- Option 2: Pro Lifetime (Highlighted) -->
+<div class="relative rounded-xl p-[2px] bg-gradient-to-br from-primary via-tertiary-container to-transparent shadow-[0_0_24px_rgba(192,193,255,0.15)] group">
+<!-- Shimmer effect on the border -->
+<div class="absolute inset-0 rounded-xl shimmer pointer-events-none"></div>
+<div class="relative p-[24px] rounded-xl bg-surface-container-highest flex flex-col gap-[16px] h-full overflow-hidden">
+<!-- Subtle inner glow -->
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/10 blur-3xl rounded-full"></div>
+<div class="flex justify-between items-start w-full relative z-10">
+<div class="flex flex-col">
+<h2 class="font-headline-md text-headline-md text-primary drop-shadow-[0_0_8px_rgba(192,193,255,0.3)]">Pro Lifetime</h2>
+<span class="font-mono-label text-mono-label text-tertiary-fixed-dim mt-1">$4.99 (1-Time)</span>
+</div>
+<span class="font-label-caps text-label-caps text-surface bg-primary px-3 py-1 rounded-full uppercase shadow-[0_0_12px_rgba(192,193,255,0.6)] font-bold">
+                            Recommended
+                        </span>
+</div>
+<ul class="flex flex-col gap-unit font-body-md text-body-md text-on-surface relative z-10">
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary drop-shadow-[0_0_4px_rgba(192,193,255,0.4)]" style="font-variation-settings: 'FILL' 1;">block</span>
+                            100% Ad-Free
+                        </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary drop-shadow-[0_0_4px_rgba(192,193,255,0.4)]" style="font-variation-settings: 'FILL' 1;">graphic_eq</span>
+                            High-fidelity AI voices
+                        </li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[20px] text-primary drop-shadow-[0_0_4px_rgba(192,193,255,0.4)]" style="font-variation-settings: 'FILL' 1;">wifi_off</span>
+                            Offline mode
+                        </li>
+</ul>
+</div>
+</div>
+</div>
+<!-- Action Area -->
+<div class="p-[32px] pt-0 flex flex-col gap-[16px] relative">
+<button class="relative w-full h-touch-target rounded-xl bg-inverse-primary text-on-primary font-headline-md text-headline-md flex items-center justify-center gap-2 shadow-[0_4px_20px_rgba(73,75,214,0.4)] hover:shadow-[0_6px_24px_rgba(73,75,214,0.6)] hover:bg-[#5a5ce0] hover:-translate-y-0.5 transition-all duration-300 group overflow-hidden border-t border-white/20">
+<!-- Button Highlight -->
+<div class="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700 ease-in-out"></div>
+<span class="material-symbols-outlined transition-transform group-hover:scale-110" style="font-variation-settings: 'FILL' 1;">lock_open</span>
+                Unlock Pro Lifetime
+            </button>
+<footer class="flex items-center justify-center gap-2 text-on-surface-variant/50 font-mono-label text-mono-label">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">gpp_good</span>
+                Secure checkout via App Store / Play Store
+            </footer>
+</div>
+</main>
+</body></html>

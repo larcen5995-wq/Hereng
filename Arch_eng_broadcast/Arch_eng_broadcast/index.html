@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    /* PRO Version Ad-Free Complete Suppression */
+    body.is-pro-version #bottomAdMobBannerCard,
+    body.is-pro-version #tab1SponsorAdBox,
+    body.is-pro-version #nativeInlineAdCardTab3,
+    body.is-pro-version #cardSupportDev,
+    body.is-pro-version #btnWatchAdSupport,
+    body.is-pro-version #btnWatchExtraAdBanner,
+    body.is-pro-version #btnUnlockProLicense,
+    body.is-pro-version #btnHeaderProUnlock,
+    body.is-pro-version #adModal,
+    body.is-pro-version #dailyAdModal,
+    body.is-pro-version #daily7amRadioAdModal,
+    body.is-pro-version .ad-banner-container,
+    body.is-pro-version .sponsor-box {
+      display: none !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+      height: 0 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+  </style>
+  <title>HearEng - 24시간 귀로 외우는 영어공부</title>
+  <meta name="description" content="HearEng - 24시간 귀로 들으며 배우는 라디오 영어 낭독 오디오북 & 무제한 커스텀 학습 플랫폼">
+  <meta name="keywords" content="HearEng, 영어 라디오, 영어 낭독, 오디오북, 쉐도잉, 영어 단어장, 수면 영어, 운전 영어">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+    <!-- Google AdSense & AdMob Web Script -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8036094597229084" crossorigin="anonymous"></script>
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" type="image/png" href="img/icon_192.png">
+  <link rel="apple-touch-icon" href="img/icon_512.png">
+</head>
+<body class="theme-midnight">
+
+  <div class="app-viewport">
+    
+    <!-- Top Header -->
+    <header class="app-header">
+      <div class="brand-logo">
+        <img src="img/icon_192.png" style="width: 36px; height: 36px; border-radius: 10px; box-shadow: 0 3px 12px rgba(99,102,241,0.5); object-fit: cover;" alt="HearEng App Icon">
+        <div>
+          <h1 class="brand-title">HearEng <span style="font-size:0.75rem; background:rgba(234,179,8,0.25); color:#eab308; padding:2px 6px; border-radius:6px; font-weight:bold;">PRO v2.13</span></h1>
+        </div>
+      </div>
+      <div style="display: flex; gap: 8px; align-items: center;">
+        <button class="badge-edition" id="btnDualEditionToggle" style="border: none; cursor: pointer; background: linear-gradient(135deg, #6366f1, #4f46e5); color: #fff; font-weight: 800; padding: 6px 10px; border-radius: 20px;">
+          <span id="editionStatusText">⚡ [무료 광고버전] ➔ 👑 $5 PRO 무광고</span>
+        </button>
+        <button class="btn-icon" id="btnThemeToggle" title="디자인 테마 변경"><i class="fa-solid fa-palette"></i></button>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs -->
+    <nav class="nav-tabs">
+      <button class="tab-btn active" data-tab="tabVocab"><i class="fa-solid fa-book-open"></i> 단어장</button>
+      <button class="tab-btn" data-tab="tabAudiobook"><i class="fa-solid fa-file-audio"></i> 소설/단어 업로드</button>
+      <button class="tab-btn" data-tab="tabPricing"><i class="fa-solid fa-sliders"></i> 테마 & 환경 설정</button>
+    </nav>
+
+    <!-- Main Content Area -->
+    <main class="app-content">
+
+      <!-- ===================================================================
+           TAB 1: VOCABULARY PLAYER (단어/숙어/문장 암기 모드)
+           =================================================================== -->
+      <section id="tabVocab" class="tab-pane active">
+        
+        <!-- Auto Resume Toast Banner -->
+        <div class="resume-toast-card" id="resumeToastBanner" style="display: none;">
+          <div class="resume-info">
+            <div class="resume-title"><i class="fa-solid fa-bookmark"></i> 이전 학습 이어서 듣기</div>
+            <div class="resume-sub" id="resumeToastText">이전 기록: [3~5세 유아] 18 / 1160 카드</div>
+          </div>
+          <button class="btn-resume" id="btnApplyResume">18번으로 이어서 듣기</button>
+        </div>
+
+
+        <!-- 3-TIER CATEGORY TAXONOMY SYSTEM (대/중/소 깔끔한 분류) -->
+        <div class="taxonomy-card">
+          <!-- 1. 대분류 (Main Category) -->
+          <div class="taxonomy-row">
+            <span class="taxonomy-label">1. 대분류 (Main Category)</span>
+            <select id="mainCategorySelect" class="taxonomy-select">
+              <option value="exam">🎓 수험생 / 교과서 (유아, 유치원, 초/중/고 수능)</option>
+              <option value="business">💼 직장인 / 실생활 (IT, 이메일, 출장, 쇼핑, 수면)</option>
+              <option value="pop">🍿 미드 & 영화 팝컬처 시리즈 (5,000문장)</option>
+              <option value="user_custom">📁 사용자 커스텀 학습 (내 업로드 파일)</option>
+            </select>
+          </div>
+
+          <!-- 2. 중분류 (Sub-Level) -->
+          <div class="taxonomy-row">
+            <div style="display: flex; align-items: center; justify-content: space-between;">
+              <span class="taxonomy-label">2. 중분류 (Sub Level)</span>
+              <button id="btnDeleteCurrentCustomFile" style="display: none; background: #ef4444; color: #fff; border: none; border-radius: 6px; padding: 2px 8px; font-size: 10px; font-weight: 700; cursor: pointer; align-items: center; gap: 4px;">
+                <i class="fa-solid fa-trash-can"></i> 선택한 파일 삭제
+              </button>
+            </div>
+            <select id="subLevelSelect" class="taxonomy-select">
+              <!-- Dynamically populated based on Main Category -->
+            </select>
+          </div>
+
+          <!-- 3. 소분류 (Content Type) -->
+          <div class="taxonomy-row">
+            <span class="taxonomy-label">3. 소분류 (Type)</span>
+            <div class="segmented-control" id="contentTypeSegment">
+              <button class="segment-btn active" data-type="words"><i class="fa-solid fa-font"></i> 단어 (Words)</button>
+              <button class="segment-btn" data-type="idioms"><i class="fa-solid fa-layer-group"></i> 숙어 (Idioms)</button>
+              <button class="segment-btn" data-type="sentences"><i class="fa-solid fa-quote-left"></i> 문장 (Sentences)</button>
+            </div>
+          </div>
+
+          
+        </div>
+
+        <!-- Card Showcase Container -->
+        <div class="card-player" id="cardPlayer">
+          <span class="card-badge" id="cardCategoryBadge">3~5세 유아 • WORDS</span>
+          
+          <!-- Clickable Interactive Radio Count Badge (e.g. 18 / 1160 📻) -->
+          <button class="card-count-btn" id="btnOpenRadioWheel" title="라디오 다이얼 위치 이동">
+            <span id="cardIndexCount">18 / 1160</span>
+            <i class="fa-solid fa-radio" style="color: var(--primary);"></i>
+          </button>
+          
+          <div class="word-target" id="targetWord">Cow</div>
+          <div class="word-phonetic" id="phoneticText">[카우]</div>
+          <div class="word-translation" id="translationWord">소</div>
+
+          <!-- Equalizer Visualizer Waves -->
+          <div class="visualizer-box" id="visualizer">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+          </div>
+        </div>
+
+        <!-- RADIO FREQUENCY TUNING WHEEL (라디오 주파수 휠 감기 탐색 바) -->
+        <div class="radio-tuner-card">
+          <div class="tuner-header">
+            <span class="tuner-title"><i class="fa-solid fa-radio" style="color: var(--primary);"></i> 라디오 다이얼 휠 탐색</span>
+            <div style="display: flex; align-items: center; gap: 6px;">
+              <input type="number" id="cardJumpInput" class="jump-input" value="18" min="1" max="1160">
+              <span style="font-size: 11px; font-weight: 700; color: var(--text-dim);">/ <span id="cardTotalSpan">1160</span></span>
+              <button class="btn-jump-go" id="btnJumpGo">이동</button>
+            </div>
+          </div>
+
+          <!-- Radio Wheel Spin Box -->
+          <div class="tuner-wheel-box">
+            <button class="btn-wheel-spin" id="btnSpinPrev" title="이전 단어로 감기"><i class="fa-solid fa-chevron-left"></i></button>
+            <div class="tuner-display-number" id="wheelDisplayNum">18 / 1160</div>
+            <button class="btn-wheel-spin" id="btnSpinNext" title="다음 단어로 감기"><i class="fa-solid fa-chevron-right"></i></button>
+          </div>
+
+          <input type="range" id="cardSlider" class="card-slider" min="1" max="1160" value="18">
+
+          <!-- Quick Jump Pills (-100, -10, +10, +100) -->
+          <div class="quick-skip-row">
+            <button class="skip-pill-btn" id="btnSkipBack100">-100개</button>
+            <button class="skip-pill-btn" id="btnSkipBack10">-10개</button>
+            <button class="skip-pill-btn" id="btnSkipNext10">+10개</button>
+            <button class="skip-pill-btn" id="btnSkipNext100">+100개</button>
+          </div>
+        </div>
+
+        <!-- Audio Player Main Controls -->
+        <div class="player-controls">
+          <div class="controls-row-main">
+            <button class="btn-control" id="btnPrev" title="이전"><i class="fa-solid fa-backward-step"></i></button>
+            <button class="btn-control play-btn" id="btnPlayPause" title="재생/일시정지"><i class="fa-solid fa-play"></i></button>
+            <button class="btn-control" id="btnNext" title="다음"><i class="fa-solid fa-forward-step"></i></button>
+            <button class="btn-control" id="btnShuffle" title="랜덤 셔플 플레이 (ON/OFF)"><i class="fa-solid fa-shuffle"></i></button>
+            <button class="btn-control" id="btnToggleHide" title="뜻 가리기"><i class="fa-solid fa-eye-slash"></i></button>
+            <button class="btn-control" id="btnOpenRepeatSystem" title="🔄 24시간 라디오 반복시스템 설정"><i class="fa-solid fa-rotate" style="color: var(--accent);"></i></button>
+          </div>
+
+          <!-- Unified Master 24-Hour Radio & Background Continuous Playback Button -->
+          <button class="btn-primary" id="btnToggleRadioMode" style="background: linear-gradient(135deg, #6366f1, #10b981); font-size: 12px; font-weight: 800; padding: 12px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; word-break: keep-all; margin-top: 10px; width: 100%; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);">
+            <i class="fa-solid fa-tower-broadcast"></i> 📻 24시간 라디오 & 화면꺼짐 무제한 연속 재생 (ON)
+          </button>
+
+          <!-- Quick Preset Mode Recommendation Bar -->
+          <div style="margin-top: 10px; display: flex; flex-direction: column; gap: 6px;">
+            <div style="font-size: 11px; font-weight: 800; color: var(--primary); text-align: left; display: flex; align-items: center; justify-content: space-between;">
+              <span><i class="fa-solid fa-wand-magic-sparkles"></i> 원클릭 학습 모드 추천 프리셋</span>
+              <span style="font-size: 10px; color: var(--text-dim);">원터치 적용 후 개별 미세조정 가능</span>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px;">
+              <button class="btn-preset" id="btnPresetSpeed" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff; border: none; border-radius: 8px; padding: 6px 4px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                ⚡ 스피드
+              </button>
+              <button class="btn-preset" id="btnPresetShadowing" style="background: linear-gradient(135deg, #6366f1, #3b82f6); color: #fff; border: none; border-radius: 8px; padding: 6px 4px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                🎧 섀도잉
+              </button>
+              <button class="btn-preset" id="btnPresetSleep" style="background: linear-gradient(135deg, #8b5cf6, #ec4899); color: #fff; border: none; border-radius: 8px; padding: 6px 4px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                🌙 수면힐링
+              </button>
+              <button class="btn-preset" id="btnPresetDictation" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff; border: none; border-radius: 8px; padding: 6px 4px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                ✍️ 받아쓰기
+              </button>
+            </div>
+          </div>
+
+          
+          <!-- 24-Hour Radio Repeat System Card in Tab 1 (단어장 탭) -->
+          <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid var(--primary); border-radius: 12px; padding: 12px; margin-top: 10px; text-align: left;">
+            <div style="font-size: 12px; font-weight: 800; color: var(--primary); margin-bottom: 6px; display: flex; align-items: center; justify-content: space-between;">
+              <span><i class="fa-solid fa-rotate"></i> 🔄 24시간 스마트 라디오 반복 시스템 설정</span>
+              <button id="btnOpenRepeatModalInline" style="background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                🔍 상세 설정
+              </button>
+            </div>
+            <select id="tab1RepeatSystemSelect" class="edition-select" style="width: 100%; font-size: 11px; font-weight: 700;">
+              <option value="type_sequence" selected>🔹 [단어 ➔ 숙어 ➔ 문장] 순차 무한 반복</option>
+              <option value="sublevel_descending">🔹 중분류 폴더 내림차순 반복 (상위 ➔ 하위)</option>
+              <option value="sublevel_ascending">🔹 중분류 폴더 오름차순 반복 (하위 ➔ 상위)</option>
+              <option value="current_level">🔹 현재 단어장 전용 무한 반복</option>
+            </select>
+            <div style="margin-top: 8px; display: flex; gap: 8px; align-items: center;">
+              <button id="btnTestAd10s" style="background: linear-gradient(135deg, #f59e0b, #ef4444); color: #fff; border: none; border-radius: 8px; padding: 8px 12px; font-size: 11px; font-weight: 800; cursor: pointer; flex: 1;">
+                ⚡ [실시간 테스트] 10초 후 광고 & CM 멘트 발동
+              </button>
+              <span id="testAdCountdownText" style="font-size: 11px; font-weight: 800; color: #f59e0b; display: none;">10초 남음</span>
+            </div>
+          </div>
+
+          <!-- Comprehensive Custom Audio Tuning Deck (사용자 100% 자율 세부 조절) -->
+          <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 12px; padding: 12px; margin-top: 10px; text-align: left;">
+            <div style="font-size: 12px; font-weight: 800; color: var(--text-main); margin-bottom: 8px; display: flex; align-items: center; justify-content: space-between;">
+              <span><i class="fa-solid fa-sliders" style="color: var(--primary);"></i> 사용자 커스텀 초정밀 세부 조절 패널</span>
+              <button id="btnSaveCustomPreset" style="background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: 3px 8px; font-size: 10px; font-weight: 800; cursor: pointer;">
+                💾 내 설정 저장
+              </button>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px;">
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">🔤 영어 반복 횟수</label>
+                <select id="targetRepeatSelect" class="setting-select">
+                  <option value="1">1회 반복</option>
+                  <option value="2">2회 반복</option>
+                  <option value="3" selected>3회 (기본)</option>
+                  <option value="4">4회 반복</option>
+                  <option value="5">5회 반복</option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">⏱️ 영어 간 대기 간격</label>
+                <select id="targetIntraGapSelect" class="setting-select">
+                  <option value="100">0.1초 (초스피드)</option>
+                  <option value="200">0.2초</option>
+                  <option value="300">0.3초</option>
+                  <option value="500" selected>0.5초 (기본)</option>
+                  <option value="800">0.8초</option>
+                  <option value="1000">1.0초</option>
+                  <option value="1500">1.5초</option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">🗣️ 한글 뜻 반복 횟수</label>
+                <select id="explanationRepeatSelect" class="setting-select">
+                  <option value="0">0회 (뜻 끄기/받아쓰기)</option>
+                  <option value="1" selected>1회 (기본)</option>
+                  <option value="2">2회 반복</option>
+                  <option value="3">3회 반복</option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">🔄 영어➔뜻 전환 대기</label>
+                <select id="targetToExpGapSelect" class="setting-select">
+                  <option value="200">0.2초</option>
+                  <option value="300">0.3초</option>
+                  <option value="500" selected>0.5초 (기본)</option>
+                  <option value="800">0.8초</option>
+                  <option value="1000">1.0초</option>
+                  <option value="1500">1.5초</option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">⏭️ 다음 카드 이동 대기</label>
+                <select id="delayNextCardSelect" class="setting-select">
+                  <option value="300">0.3초</option>
+                  <option value="500">0.5초</option>
+                  <option value="1000" selected>1.0초 (기본)</option>
+                  <option value="1500">1.5초</option>
+                  <option value="2000">2.0초</option>
+                  <option value="3000">3.0초</option>
+                </select>
+              </div>
+
+              <div class="setting-item">
+                <label style="font-size: 10px; font-weight: 700; color: var(--text-muted);">🚀 음성 말하기 속도</label>
+                <select id="speedSelect" class="setting-select">
+                  <option value="0.7">0.7배속 (매우 느림)</option>
+                  <option value="0.8">0.8배속 (차분함)</option>
+                  <option value="0.9">0.9배속</option>
+                  <option value="1.0" selected>1.0배속 (표준)</option>
+                  <option value="1.2">1.2배속 (빠름)</option>
+                  <option value="1.5">1.5배속 (스피드)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Google AdMob Bottom Banner Ad Container (귀찮지 않은 띠배너) -->
+        <div id="tab1SponsorAdBox" style="background: rgba(255,255,255,0.5); border: 1px dashed var(--primary); border-radius: 12px; padding: 10px; text-align: center; font-size: 11px; color: var(--text-muted); display: flex; align-items: center; justify-content: space-between; margin-top: 10px;">
+          <span><i class="fa-solid fa-rectangle-ad" style="color: var(--primary);"></i> [Google AdMob 하단 스폰서 띠 배너 구역]</span>
+          <button class="btn-jump-go" id="btnWatchExtraAdBanner" style="background: #ec4899; color: #fff; padding: 4px 8px; font-size: 10px;">
+            <i class="fa-solid fa-heart"></i> ❤️ 응원 광고 한 번 더 보기
+          </button>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           TAB 2: CUSTOM AUDIOBOOK & FILE UPLOAD (소설 / 사용자 텍스트)
+           =================================================================== -->
+      <section id="tabAudiobook" class="tab-pane">
+        
+        <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 16px; display: flex; flex-direction: column; gap: 14px;">
+          <h2 style="font-size: 16px; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-book-bookmark"></i> 나만의 소설 & 단어 업로드 오디오북 단어장</h2>
+          <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+            직접 만든 <strong>.txt</strong> 또는 <strong>.csv</strong> 파일(소설 문장, 단어장 목록)을 업로드해 보세요. 한번 올려두면 <strong>단어장 저장소에 영구 보존</strong>되며, 보관함에서 원하시는 파일을 <strong>[▶️ 선택하여 플레이어로 바로 재생]</strong>하거나 <strong>[🗑️ 삭제]</strong>하실 수 있습니다!
+          </p>
+
+          <!-- 1. Sample Template Download Buttons -->
+          <div style="background: rgba(99, 102, 241, 0.06); border: 1px dashed var(--primary); border-radius: var(--radius-md); padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+            <div style="font-size: 12px; font-weight: 800; color: var(--primary); display: flex; align-items: center; gap: 6px;">
+              <i class="fa-solid fa-file-csv"></i> CSV / TXT 표준 작성 양식 다운로드 (클릭 시 다운로드)
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="btn-jump-go" id="btnDownloadWordCsv" style="background: var(--primary); padding: 6px 12px; font-size: 11px;">
+                <i class="fa-solid fa-download"></i> [단어/숙어] CSV 예제 다운로드
+              </button>
+              <button class="btn-jump-go" id="btnDownloadSentenceCsv" style="background: var(--secondary); padding: 6px 12px; font-size: 11px;">
+                <i class="fa-solid fa-download"></i> [문장/소설] CSV 예제 다운로드
+              </button>
+              <button class="btn-jump-go" id="btnDownloadTxtSample" style="background: #10b981; padding: 6px 12px; font-size: 11px;">
+                <i class="fa-solid fa-download"></i> [일반 텍스트] sample_novel.txt 다운로드
+              </button>
+            </div>
+          </div>
+
+          <!-- 2. Beginner Guide Collapsible Accordion -->
+          <div style="background: rgba(255, 255, 255, 0.6); border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden;">
+            <button id="btnToggleGuide" style="width: 100%; padding: 12px 14px; background: transparent; border: none; font-size: 12px; font-weight: 800; color: var(--primary); display: flex; justify-content: space-between; align-items: center; cursor: pointer;">
+              <span><i class="fa-solid fa-circle-question"></i> 초보자를 위한 파일 작성 & 카톡/PC 전송 가이드 (클릭 시 열기)</span>
+              <i class="fa-solid fa-chevron-down" id="guideArrowIcon"></i>
+            </button>
+            
+            <div id="guideContentBox" style="display: none; padding: 14px; border-top: 1px solid var(--border-glass); font-size: 11px; color: var(--text-main); display: flex; flex-direction: column; gap: 10px; line-height: 1.6;">
+              <div style="background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid var(--primary);">
+                <strong>📌 1단계: CSV/TXT 파일이란?</strong><br>
+                엑셀(Excel)이나 메모장에 영어 단어/문장과 한글 해석을 적어서 저장한 파일입니다. 양식이 없으시다면 위의 <strong>[예제 다운로드]</strong> 버튼을 눌러 양식을 받아보세요!
+              </div>
+
+              <div style="background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid var(--secondary);">
+                <strong>📌 2단계: PC 엑셀(Excel)에서 만드는 방법</strong><br>
+                1. 엑셀을 열고 <strong>A열: 영어문장/단어</strong>, <strong>B열: 한글해석</strong>, <strong>C열: 한글발음(선택)</strong>을 입력합니다.<br>
+                2. <code>[파일] ➔ [다른 이름으로 저장]</code>을 누릅니다.<br>
+                3. 파일 형식을 반드시 <strong>CSV UTF-8(쉼표로 분리) (*.csv)</strong>로 선택 후 저장하세요!
+              </div>
+
+              <div style="background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid #10b981;">
+                <strong>📌 3단계: 컴퓨터(PC)에서 작성한 파일 스마트폰으로 옮기기</strong><br>
+                - <strong>카카오톡 이용</strong>: PC 카카오톡의 <code>'나와의 채팅방'</code>으로 작성한 CSV/TXT 파일을 보낸 뒤, 스마트폰 카톡에서 <code>[저장]</code>을 누르세요!<br>
+                - <strong>이메일/구글드라이브 이용</strong>: 자신에게 이메일을 보내거나 구글 드라이브에 올린 후 스마트폰에서 저장하세요.
+              </div>
+
+              <div style="background: var(--bg-card); padding: 10px; border-radius: 6px; border-left: 3px solid #f59e0b;">
+                <strong>📌 4단계: Vocalize 앱에서 업로드하고 공부하기</strong><br>
+                아래 <strong>[TXT / CSV 파일 업로드]</strong> 구역을 눌러 스마트폰에 저장된 파일을 선택하세요.<br>
+                업로드가 완료되면 단어장 저장소에 보존되며 <strong>'단어장' 탭 ➔ 1. 대분류: [📁 사용자 커스텀 학습] ➔ 2. 중분류: [내 업로드 파일명]</strong>으로 자동 연동되어 플레이어로 즉시 탐색 및 연속 낭독이 이어집니다!
+              </div>
+            </div>
+          </div>
+
+          <!-- File Upload Zone -->
+          <div class="upload-dropzone" id="dropzone">
+            <i class="fa-solid fa-file-arrow-up upload-icon"></i>
+            <div class="upload-text" style="font-size: 14px; font-weight: 700; color: var(--text-main);">TXT / CSV 소설 & 단어 파일 업로드</div>
+            <div style="font-size: 12px; color: var(--text-muted);">클릭하여 파일 선택 또는 드래그 앤 드롭</div>
+            <input type="file" id="fileInput" accept=".txt,.csv" style="display: none;">
+          </div>
+
+          <!-- Textarea Input -->
+          <textarea id="customTextInput" class="custom-text-input" placeholder="예시:&#10;Apple, 사과&#10;Banana, 바나나&#10;또는 긴 소설 문장을 입력하세요."></textarea>
+
+          <button class="btn-primary" id="btnLoadCustomText"><i class="fa-solid fa-headphones"></i> 소설/단어장 저장 및 단어장 플레이어로 바로 연속 재생</button>
+        </div>
+
+        <!-- 3. Saved Custom Files List & Manager -->
+        <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 16px; margin-top: 14px; display: flex; flex-direction: column; gap: 12px;">
+          <h3 style="font-size: 14px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; justify-content: space-between;">
+            <span><i class="fa-solid fa-folder-open" style="color: var(--primary);"></i> 내 소설/단어 업로드 보관함 (선택 재생 & 삭제)</span>
+            <span style="font-size: 11px; font-weight: 700; color: var(--primary);" id="userCustomFilesCount">총 0개 파일</span>
+          </h3>
+          <p style="font-size: 11px; color: var(--text-muted);">
+            한번 업로드한 파일들이 자동 보존됩니다. 원하시는 파일의 <strong>[▶️ 선택 재생]</strong>을 누르면 단어장 플레이어로 즉시 이동하여 연속 낭독 및 탐색이 시작되며, <strong>[🗑️ 삭제]</strong> 버튼으로 필요 없는 파일은 보관함에서 삭제할 수 있습니다.
+          </p>
+          <div id="userCustomFilesList" style="display: flex; flex-direction: column; gap: 8px;">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- ===================================================================
+           TAB 3: ALL-IN-ONE VOICE ACTOR AUDITION & THEME SETTINGS
+           =================================================================== -->
+      <section id="tabPricing" class="tab-pane">
+        
+
+
+        <div style="background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-lg); padding: 18px; display: flex; flex-direction: column; gap: 14px; text-align: center;">
+          <h2 style="font-size: 16px; font-weight: 800; color: var(--text-main);"><i class="fa-solid fa-palette" style="color: var(--primary);"></i> 앱 디자인 테마 선택</h2>
+          
+          <div class="edition-selector-card">
+            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-align: left;">디자인 스타일 테마</label>
+            <select id="themeSelect" class="edition-select">
+              <option value="theme-midnight" selected>🔮 Midnight Neon Berry (핑크/네온 딥 다크)</option>
+              <option value="theme-slate">🏙️ Slate Dark Minimal (슬레이트 그레이/시안)</option>
+              <option value="theme-clarity">☀️ Clarity Light White (깔끔한 화이트 글래스)</option>
+            </select>
+          </div>
+
+          <div class="edition-selector-card">
+            <label style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-align: left;">🌙 수면 슬립 타이머 (자동 종료)</label>
+            <select id="sleepTimerSelect" class="edition-select">
+              <option value="0" selected>끄기 (계속 재생)</option>
+              <option value="900">15분 후 자동 종료</option>
+              <option value="1800">30분 후 자동 종료</option>
+              <option value="3600">1시간 후 자동 종료</option>
+            </select>
+          <div class="edition-selector-card" id="cardSupportDev" style="border: 1px dashed var(--primary); background: rgba(99, 102, 241, 0.05); text-align: left;">
+            <label style="font-size: 12px; font-weight: 700; color: var(--primary);">📺 무료 음원 광고 한번 더보기 (개발진 응원하기)</label>
+            <p style="font-size: 10px; color: var(--text-muted); margin: 4px 0 8px 0;">클릭 시 "광고 시간입니다." 멘트 출력 후 스폰서 광고가 재생되며, 완료 후 낭독이 자동 재개됩니다.</p>
+            <button id="btnWatchAdSupport" class="btn-primary" style="width: 100%; font-size: 12px; font-weight: 800; background: linear-gradient(135deg, #6366f1, #8b5cf6);">
+              <i class="fa-solid fa-play"></i> 📺 광고 1회 청취 및 스폰서 응원하기
+            </button>
+          </div>
+
+
+          </div>
+
+          
+          
+
+  <!-- MODAL: RADIO FREQUENCY TUNING WHEEL MODAL -->
+  <div class="modal-overlay" id="radioWheelModal">
+    <div class="modal-card">
+      <i class="fa-solid fa-radio modal-icon" style="font-size: 44px; color: var(--primary);"></i>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main);">📻 라디오 주파수 다이얼 탐색</h3>
+      <p style="font-size: 12px; color: var(--text-muted);">
+        원하는 카드 위치 번호로 직접 이동하거나<br>아래 휠 버튼을 눌러 빠르게 주파수를 맞추세요.
+      </p>
+
+      <div style="width: 100%; background: var(--bg-dark); padding: 16px; border-radius: 16px; border: 1px solid var(--border-glass); display: flex; flex-direction: column; gap: 12px;">
+        <div style="display: flex; align-items: center; justify-content: center; gap: 8px;">
+          <input type="number" id="modalJumpInput" class="jump-input" value="18" style="width: 90px; font-size: 18px; padding: 6px;" min="1">
+          <span style="font-size: 16px; font-weight: 800; color: var(--text-dim);">/ <span id="modalTotalSpan">1160</span></span>
+        </div>
+
+        <div style="display: flex; justify-content: center; gap: 10px;">
+          <button class="btn-wheel-spin" id="modalWheelPrev"><i class="fa-solid fa-minus"></i></button>
+          <button class="btn-wheel-spin" id="modalWheelNext"><i class="fa-solid fa-plus"></i></button>
+        </div>
+      </div>
+
+      <button class="btn-primary" id="btnConfirmRadioJump">이 위치로 이동하기</button>
+      <button class="filter-pill" id="btnCloseRadioModal" style="width: 100%;">닫기</button>
+    </div>
+  </div>
+
+  <!-- MODAL: RADIO AD TIME NOTIFICATION MODAL -->
+  <div class="modal-overlay" id="adModal">
+    <div class="modal-card">
+      <i class="fa-solid fa-radio modal-icon" style="font-size: 40px; color: var(--warning);"></i>
+      <h3 style="font-size: 18px; font-weight: 800; color: var(--text-main);">📻 광고 타임입니다!</h3>
+      <p style="font-size: 12px; color: var(--text-muted); line-height: 1.5;">
+        연속 1시간 학습 수고하셨습니다!<br>
+        잠시 뇌를 식히는 15초 광고 타임입니다.
+      </p>
+      <div style="width: 100%; background: rgba(0,0,0,0.2); padding: 16px; border-radius: 12px; border: 1px dashed var(--warning);">
+        <div style="font-size: 13px; font-weight: 700; color: var(--text-main);">[스폰서 배너 광고]</div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Google AdMob 전면 광고 시뮬레이션</div>
+      </div>
+      <button class="btn-primary" id="btnCloseAdModal">광고 닫고 계속 공부하기</button>
+    </div>
+  </div>
+
+  <!-- MODAL: DAILY 7:00 AM RADIO STATION OPENING AD MODAL -->
+  <div class="modal-overlay" id="daily7amRadioAdModal">
+    <div class="modal-card" style="border: 2px solid var(--primary); text-align: center; max-width: 400px;">
+      <i class="fa-solid fa-tower-broadcast modal-icon" style="font-size: 44px; color: var(--primary);"></i>
+      <div style="font-size: 11px; font-weight: 800; color: var(--primary); letter-spacing: 1px; margin-top: 4px;">LIVE RADIO STATION</div>
+      <h3 style="font-size: 17px; font-weight: 800; color: var(--text-main); margin-top: 4px;">📻 HearEng 오늘 아침 7시 라디오 방송</h3>
+      
+      <div style="background: rgba(99, 102, 241, 0.08); padding: 12px; border-radius: 12px; border: 1px dashed var(--primary); margin-top: 8px; font-size: 11px; color: var(--text-main); line-height: 1.6; text-align: left;">
+        <div style="font-weight: 800; color: var(--primary); margin-bottom: 4px;"><i class="fa-solid fa-microphone"></i> [DJ 시그널 오프닝 멘트]</div>
+        <em>"시청자 여러분 안녕하십니까. 오늘 하루도 HearEng 라디오 낭독 방송과 함께 시작하십시오. 잠시 협찬 라디오 광고 후 낭독 방송이 계속해서 이어집니다."</em>
+      </div>
+
+      <div style="background: rgba(245, 158, 11, 0.08); padding: 10px; border-radius: 10px; border: 1px solid rgba(245, 158, 11, 0.3); margin-top: 8px; font-size: 10px; color: var(--text-main); line-height: 1.5; text-align: left;">
+        <strong>🙏 시청자 여러분께 정중히 양해를 구합니다</strong><br>
+        HearEng은 무제한 무료 라디오 낭독 서비스를 제공하기 위해 <strong>[1일 1회 첫 실행 시 전면 광고]</strong> 및 <strong>[연속 1시간 사용 시 1회 라디오 광고]</strong>를 진행합니다. 너른 양해 부탁드립니다.
+      </div>
+
+      <div style="width: 100%; background: rgba(0,0,0,0.3); padding: 14px; border-radius: 12px; border: 1px solid var(--border-glass); margin-top: 10px;">
+        <div style="font-size: 12px; font-weight: 700; color: #f59e0b;">[Google AdMob 전면 라디오 스폰서 광고]</div>
+        <div style="font-size: 10px; color: var(--text-muted); margin-top: 4px;">매일 아침 7시 기준 1회 첫 실행 전면 광고 시청 후 연속 감상!</div>
+      </div>
+
+      <!-- $5 PRO Purchase Button -->
+      <div style="display: flex; gap: 8px; flex-direction: column; width: 100%; margin-top: 12px;">
+        <button class="btn-primary" id="btnUnlockProLicense" style="background: linear-gradient(135deg, #eab308, #ca8a04); color: #000; font-weight: 800;">
+          <i class="fa-solid fa-crown"></i> 👑 $5 (₩6,900) PRO 평생 무광고 소장하기
+        </button>
+        <button class="btn-primary" id="btnCloseDailyAdModal" style="background: rgba(255,255,255,0.1); border: 1px solid var(--border-glass);">
+          <span id="dailyAdBtnText">무료 광고 시청 후 24시간 라디오 낭독 듣기</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modular JavaScript Pipeline Files -->
+  <script src="js/data/vocabulary.js"></script>
+  <script src="js/data/vocab_master_15k.js"></script>
+  <script src="js/data/vocab_kids.js"></script>
+  <script src="js/data/vocab_elementary_essential.js"></script>
+  <script src="js/data/vocab_middle_1800.js"></script>
+  <script src="js/data/vocab_middle_400_idioms.js"></script>
+  <script src="js/data/vocab_essential_5000.js"></script>
+  <script src="js/data/vocab_high_3000.js"></script>
+  <script src="js/data/vocab_high_600_idioms.js"></script>
+  <script src="js/data/vocab_high_500_idioms.js"></script>
+  <script src="js/data/vocab_real_life_200.js"></script>
+  <script src="js/data/vocab_native_500.js"></script>
+  <script src="js/data/vocab_practical_1000.js"></script>
+  <script src="js/data/vocab_situations_master.js"></script>
+  <script src="js/data/vocab_biz_nouns_500.js"></script>
+  <script src="js/data/vocab_biz_workplace_500.js"></script>
+  <script src="js/data/vocab_situations_12k.js"></script>
+  <script src="js/data/vocab_tv_slang_500.js"></script>
+  <script src="js/data/vocab_tv_slang_1000.js"></script>
+  <script src="js/data/vocab_movie_quotes_1000.js"></script>
+  <script src="js/data/vocab_sitcom_comedy_1000.js"></script>
+  <script src="js/data/vocab_crime_medical_1000.js"></script>
+  <script src="js/data/vocab_scifi_action_1000.js"></script>
+  <script src="js/data/vocab_exam.js"></script>
+  <script src="js/data/vocab_idioms.js"></script>
+  <script src="js/data/vocab_situations.js"></script>
+  <script src="js/data/vocab_pop_media.js"></script>
+  <script src="js/data/vocab_tech_business.js"></script>
+  <script src="js/data/vocab_jlpt_korean.js"></script>
+  <script src="js/data/vocab_core.js"></script>
+  <script src="js/engine/ttsEngine.js"></script>
+  <script src="js/engine/audioTimer.js"></script>
+  <script src="js/engine/admobEngine.js"></script>
+
+  <!-- REPEAT SYSTEM SETTINGS MODAL (24시간 라디오 반복시스템 설정 모달) -->
+  <div class="modal-overlay" id="repeatSystemModal">
+    <div class="modal-card" style="max-width: 420px; text-align: left;">
+      <div class="modal-header">
+        <h3 style="font-size: 16px; font-weight: 800; color: var(--text-main); display: flex; align-items: center; gap: 8px;">
+          <i class="fa-solid fa-rotate" style="color: var(--primary);"></i> 🔄 24시간 라디오 반복시스템 설정
+        </h3>
+        <button class="btn-icon" id="btnCloseRepeatModal"><i class="fa-solid fa-xmark"></i></button>
+      </div>
+
+      <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 14px; line-height: 1.5;">
+        선택한 컨텐츠(단어/숙어/문장) 및 중분류 폴더의 24시간 연속 라디오 반복 순서를 설정하세요.
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 10px;">
+        <label class="repeat-option-card" style="background: var(--bg-surface); border: 2px solid var(--border-glass); border-radius: 12px; padding: 12px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+          <input type="radio" name="repeatSystemMode" value="type_sequence" checked style="margin-top: 3px;">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; color: var(--primary);">🔹 [단어 ➔ 숙어 ➔ 문장] 순차 무한 반복</div>
+            <div style="font-size: 10px; color: var(--text-dim); margin-top: 3px;">
+              선택한 폴더의 단어 낭독 완료 후 ➔ 숙어 낭독 ➔ 문장 낭독으로 자동 전환되어 24시간 끊김 없이 무한 순환합니다.
+            </div>
+          </div>
+        </label>
+
+        <label class="repeat-option-card" style="background: var(--bg-surface); border: 2px solid var(--border-glass); border-radius: 12px; padding: 12px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+          <input type="radio" name="repeatSystemMode" value="sublevel_descending" style="margin-top: 3px;">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; color: var(--accent);">🔹 중분류 폴더 내림차순 반복 (상위 ➔ 하위)</div>
+            <div style="font-size: 10px; color: var(--text-dim); margin-top: 3px;">
+              현재 폴더(예: 10단계) 낭독이 끝나면 ➔ 9단계 ➔ 8단계... ➔ 1단계 폴더로 자동 이동하며 내림차순 낭독합니다.
+            </div>
+          </div>
+        </label>
+
+        <label class="repeat-option-card" style="background: var(--bg-surface); border: 2px solid var(--border-glass); border-radius: 12px; padding: 12px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+          <input type="radio" name="repeatSystemMode" value="sublevel_ascending" style="margin-top: 3px;">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; color: #10b981;">🔹 중분류 폴더 오름차순 반복 (하위 ➔ 상위)</div>
+            <div style="font-size: 10px; color: var(--text-dim); margin-top: 3px;">
+              현재 폴더(예: 1단계) 낭독이 끝나면 ➔ 2단계 ➔ 3단계... ➔ 10단계 폴더로 자동 이동하며 오름차순 낭독합니다.
+            </div>
+          </div>
+        </label>
+
+        <label class="repeat-option-card" style="background: var(--bg-surface); border: 2px solid var(--border-glass); border-radius: 12px; padding: 12px; display: flex; align-items: flex-start; gap: 10px; cursor: pointer;">
+          <input type="radio" name="repeatSystemMode" value="current_level" style="margin-top: 3px;">
+          <div>
+            <div style="font-weight: 800; font-size: 12px; color: var(--text-main);">🔹 현재 단어장 전용 무한 반복</div>
+            <div style="font-size: 10px; color: var(--text-dim); margin-top: 3px;">
+              선택된 현재 1개 단어장 목록만 처음부터 끝까지 24시간 반복합니다.
+            </div>
+          </div>
+        </label>
+      </div>
+
+      <button class="btn-jump-go" id="btnSaveRepeatSystem" style="width: 100%; margin-top: 16px; padding: 12px; font-size: 13px; font-weight: 800; background: linear-gradient(135deg, var(--primary), var(--accent)); color: #fff; border: none; border-radius: 12px; cursor: pointer;">
+        ✓ 반복 시스템 적용 및 저장
+      </button>
+  </div> <!-- end .app-viewport -->
+
+    </div>
+  </div> <!-- end .app-viewport -->
+
+  <script src="js/app.js"></script>
+</body>
+</html>

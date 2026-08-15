@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>User Profile - Vocalize</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;family=Outfit:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-dim": "#10131c",
+                        "on-primary-fixed": "#07006c",
+                        "inverse-primary": "#494bd6",
+                        "tertiary-container": "#b76dff",
+                        "primary-container": "#8083ff",
+                        "tertiary": "#ddb7ff",
+                        "surface-container-high": "#272a34",
+                        "error": "#ffb4ab",
+                        "inverse-on-surface": "#2d303a",
+                        "on-background": "#e0e2ef",
+                        "primary": "#c0c1ff",
+                        "on-secondary-fixed-variant": "#004e5c",
+                        "on-error": "#690005",
+                        "surface-bright": "#363943",
+                        "secondary-fixed-dim": "#4cd7f6",
+                        "tertiary-fixed-dim": "#ddb7ff",
+                        "error-container": "#93000a",
+                        "on-tertiary": "#490080",
+                        "on-secondary": "#003640",
+                        "surface": "#10131c",
+                        "on-error-container": "#ffdad6",
+                        "inverse-surface": "#e0e2ef",
+                        "background": "#10131c",
+                        "primary-fixed": "#e1e0ff",
+                        "outline-variant": "#464554",
+                        "surface-variant": "#32343f",
+                        "on-primary-container": "#0d0096",
+                        "surface-container-lowest": "#0b0e17",
+                        "on-secondary-fixed": "#001f26",
+                        "outline": "#908fa0",
+                        "on-primary-fixed-variant": "#2f2ebe",
+                        "secondary-fixed": "#acedff",
+                        "surface-container-highest": "#32343f",
+                        "surface-container-low": "#181b25",
+                        "on-tertiary-fixed": "#2c0051",
+                        "secondary": "#4cd7f6",
+                        "tertiary-fixed": "#f0dbff",
+                        "on-tertiary-container": "#400071",
+                        "secondary-container": "#03b5d3",
+                        "on-surface-variant": "#c7c4d7",
+                        "on-secondary-container": "#00424e",
+                        "primary-fixed-dim": "#c0c1ff",
+                        "on-tertiary-fixed-variant": "#6900b3",
+                        "on-surface": "#e0e2ef",
+                        "surface-tint": "#c0c1ff",
+                        "surface-container": "#1c1f29",
+                        "on-primary": "#1000a9"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "unit": "8px",
+                        "container-margin": "24px",
+                        "touch-target": "48px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Inter"],
+                        "headline-md": ["Outfit"],
+                        "mono-label": ["Inter"],
+                        "display-lg": ["Outfit"],
+                        "display-lg-mobile": ["Outfit"],
+                        "label-caps": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }],
+                        "mono-label": ["14px", { "lineHeight": "20px", "fontWeight": "500" }],
+                        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg-mobile": ["36px", { "lineHeight": "42px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "label-caps": ["12px", { "lineHeight": "16px", "letterSpacing": "0.1em", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body {
+            background-color: theme('colors.background');
+            color: theme('colors.on-background');
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glow-primary {
+            box-shadow: 0 0 20px rgba(192, 193, 255, 0.2);
+        }
+        .glow-text-primary {
+            text-shadow: 0 0 10px rgba(192, 193, 255, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col font-body-md pb-24 md:pb-0 pt-20">
+<!-- TopAppBar -->
+<header class="fixed top-0 w-full z-50 flex justify-between items-center px-container-margin h-touch-target bg-transparent backdrop-blur-xl bg-surface-container/50 border-b border-white/10 shadow-[0_0_20px_rgba(192,193,255,0.1)]">
+<button class="text-primary hover:text-primary transition-colors h-touch-target w-touch-target flex items-center justify-center">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg tracking-tighter text-primary uppercase glow-text-primary">VOCALIZE</h1>
+<button class="text-primary hover:text-primary transition-colors font-label-caps text-label-caps uppercase h-touch-target px-unit flex items-center">
+            EN
+        </button>
+</header>
+<!-- Main Content -->
+<main class="flex-grow px-gutter md:px-container-margin max-w-7xl mx-auto w-full flex flex-col gap-unit * 3 mt-6">
+<!-- Profile Header -->
+<section class="glass-card rounded-xl p-8 flex flex-col md:flex-row items-center gap-6 relative overflow-hidden">
+<div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/20 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="relative w-32 h-32 rounded-full overflow-hidden border-2 border-primary/50 shadow-[0_0_30px_rgba(192,193,255,0.3)] shrink-0">
+<img alt="User Avatar" class="w-full h-full object-cover" data-alt="A cinematic, high-resolution portrait of a futuristic cyberpunk character in deep midnight lighting, illuminated by soft neon purple and cyan glows. The character has a sleek, minimalist aesthetic matching the dark, premium glassmorphism UI. 8k, highly detailed, dramatic shadows." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_6sDuCxb3gkC-Lt7YMxiqB-ciBDNH3g0wWCBBXJduzo1e6EFOCdyreQoTXzsTo7OIqKLUVl9bJQCmVlK1s90xCwjyFokleJNRsHdwLsyj02aKU6eY-KKpKd3YwTbp49NVSvLmBb7tlZP43Rr1I1O5Mk9OtAwAv-U2ri2S6XX6Q8IXlSD5pAYZzpcv-eZXMBCEbj3NLbufphU-kFkiEWPqihilEp-nUP9hkoVnf7WqbW6PDpdfYrN29w"/>
+</div>
+<div class="flex flex-col items-center md:items-start text-center md:text-left z-10">
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Alex Mercer</h2>
+<div class="flex items-center gap-2 mb-4">
+<span class="material-symbols-outlined text-secondary text-sm" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-mono-label text-mono-label text-secondary tracking-widest uppercase">Pro Lifetime</span>
+</div>
+<p class="text-on-surface-variant font-body-md max-w-md">Immersive audio learner focusing on technical documentation and sci-fi audiobooks.</p>
+</div>
+<button class="md:ml-auto mt-4 md:mt-0 bg-primary text-on-primary font-mono-label text-mono-label px-6 py-3 rounded-lg shadow-[inset_0_1px_1px_rgba(255,255,255,0.4)] hover:opacity-90 transition-opacity flex items-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="edit">edit</span> Edit Profile
+            </button>
+</section>
+<!-- Stats Grid -->
+<section class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl" data-icon="headphones">headphones</span>
+<span class="font-headline-md text-headline-md text-on-surface">342h</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Listened</span>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-secondary mb-2 text-3xl" data-icon="translate">translate</span>
+<span class="font-headline-md text-headline-md text-on-surface">12.5k</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Words Learned</span>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-tertiary mb-2 text-3xl" data-icon="library_books">library_books</span>
+<span class="font-headline-md text-headline-md text-on-surface">48</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Books Finished</span>
+</div>
+<div class="glass-card rounded-xl p-6 flex flex-col items-center justify-center text-center">
+<span class="material-symbols-outlined text-primary mb-2 text-3xl" data-icon="local_fire_department">local_fire_department</span>
+<span class="font-headline-md text-headline-md text-on-surface">14</span>
+<span class="font-label-caps text-label-caps text-on-surface-variant uppercase mt-1">Day Streak</span>
+</div>
+</section>
+<!-- Preferences Bento -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Playback Settings -->
+<div class="glass-card rounded-xl p-6 md:col-span-2 flex flex-col">
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="tune">tune</span> Playback Preferences
+                </h3>
+<div class="space-y-6">
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface">Default Playback Speed</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Set your preferred listening pace</p>
+</div>
+<div class="flex items-center gap-3 bg-surface-container-high rounded-full p-1 border border-white/5">
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">1x</button>
+<button class="w-10 h-10 rounded-full bg-primary/20 text-primary border border-primary/30 flex items-center justify-center glow-primary">1.2x</button>
+<button class="w-10 h-10 rounded-full flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors">1.5x</button>
+</div>
+</div>
+<div class="h-px bg-white/10 w-full"></div>
+<div class="flex justify-between items-center">
+<div>
+<p class="font-body-lg text-body-lg text-on-surface">Smart Pausing</p>
+<p class="font-body-md text-body-md text-on-surface-variant">Automatically pause when speaking</p>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-11 h-6 bg-surface-variant rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-0.5 after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary shadow-[0_0_10px_rgba(192,193,255,0.5)]"></div>
+</label>
+</div>
+</div>
+</div>
+<!-- Voice Selection -->
+<div class="glass-card rounded-xl p-6 flex flex-col relative overflow-hidden">
+<div class="absolute -bottom-10 -right-10 w-32 h-32 bg-secondary/20 rounded-full blur-[60px] pointer-events-none"></div>
+<h3 class="font-headline-md text-headline-md text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" data-icon="record_voice_over">record_voice_over</span> Primary Voice
+                </h3>
+<div class="flex-grow flex flex-col gap-4">
+<div class="p-4 rounded-lg bg-surface-container-high border border-secondary/30 flex items-center justify-between cursor-pointer hover:bg-surface-container-highest transition-colors">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-secondary/20 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow" data-weight="fill" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label text-on-surface">Nova (UK)</p>
+<p class="text-xs text-secondary">Active</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="check_circle" data-weight="fill" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="p-4 rounded-lg bg-transparent border border-white/10 flex items-center justify-between cursor-pointer hover:bg-surface-container-high transition-colors text-on-surface-variant">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm" data-icon="play_arrow">play_arrow</span>
+</div>
+<div>
+<p class="font-mono-label text-mono-label">Echo (US)</p>
+</div>
+</div>
+</div>
+</div>
+<button class="mt-6 w-full py-3 border border-secondary/50 text-secondary rounded-lg font-mono-label text-mono-label hover:bg-secondary/10 transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm" data-icon="explore">explore</span> Browse Voices
+                </button>
+</div>
+</section>
+</main>
+<!-- BottomNavBar (Mobile Only) -->
+<nav class="fixed bottom-0 w-full z-50 flex justify-around items-center h-20 pb-safe px-gutter bg-surface-container/30 backdrop-blur-2xl rounded-t-xl border-t border-white/10 shadow-[0_-4px_24px_rgba(0,0,0,0.5)] md:hidden">
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-secondary group w-full h-full">
+<div class="group-active:scale-110 transition-transform duration-300 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined" data-icon="play_circle">play_circle</span>
+<span class="font-label-caps text-label-caps">Player</span>
+</div>
+</button>
+<button class="flex flex-col items-center justify-center text-on-surface-variant/70 hover:text-secondary group w-full h-full">
+<div class="group-active:scale-110 transition-transform duration-300 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined" data-icon="cloud_upload">cloud_upload</span>
+<span class="font-label-caps text-label-caps">Upload</span>
+</div>
+</button>
+<button class="flex flex-col items-center justify-center text-primary drop-shadow-[0_0_8px_rgba(192,193,255,0.6)] group w-full h-full">
+<div class="scale-110 transition-transform duration-300 flex flex-col items-center justify-center gap-1">
+<span class="material-symbols-outlined" data-icon="workspace_premium" data-weight="fill" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+<span class="font-label-caps text-label-caps">Pro</span>
+</div>
+</button>
+</nav>
+</body></html>
