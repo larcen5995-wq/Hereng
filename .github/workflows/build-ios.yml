@@ -35,7 +35,7 @@ jobs:
           xcodebuild build \
             -workspace App.xcworkspace \
             -scheme App \
-            -sdk iphonesimulator \
+            -sdk iphoneos \
             -configuration Release \
             -derivedDataPath build \
             CODE_SIGNING_ALLOWED=NO \
@@ -44,7 +44,7 @@ jobs:
       - name: 6. Package iOS App
         run: |
           mkdir -p build/Payload
-          cp -r ios/App/build/Build/Products/Release-iphonesimulator/App.app build/Payload/
+          cp -r ios/App/build/Build/Products/Release-iphoneos/App.app build/Payload/
           cd build
           zip -r HearEng_v2.16_iOS_App.ipa Payload
           zip -r HearEng_v2.16_iOS_Simulator.zip Payload/App.app
