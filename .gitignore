@@ -10,3 +10,5 @@ apk_build/
 *.apk
 *.aab
 *.log
+
+ios_build_new/
