@@ -560,11 +560,7 @@ function initVocalizeApp() {
       isRadioMode = !isRadioMode;
       if (isRadioMode) {
         btnToggleRadioMode.style.background = 'linear-gradient(135deg,#10b981,#6366f1)';
-        btnToggleRadioMode.innerHTML = '<i class="fa-solid fa-tower-broadcast"></i> 📻 24시간 라디오 연속 재생 (ON) ✅';
-        if (window.ttsEngine && !window.ttsEngine.isPlaying) {
-          window.ttsEngine.play();
-          if (btnPlayPause) btnPlayPause.innerHTML = '<i class="fa-solid fa-pause"></i>';
-          const viz = $('visualizer'); if (viz) viz.classList.add('playing');
+const viz = $('visualizer'); if (viz) viz.classList.add('playing');
         }
       } else {
         btnToggleRadioMode.style.background = 'linear-gradient(135deg,#6366f1,#10b981)';
@@ -593,49 +589,74 @@ function initVocalizeApp() {
   const bPD = $('btnPresetDictation');  if (bPD) bPD.addEventListener('click', () => applyPreset('dictation'));
 
   // ── 내 설정 저장 & 복원 ──
-  function saveAudioSettings() {
+  function saveAudioSettings(showToast = false) {
     const tRep = $('targetRepeatSelect')?.value;
+    const tGap = $('targetIntraGapSelect')?.value;
     const eRep = $('explanationRepeatSelect')?.value;
+    const eGap = $('targetToExpGapSelect')?.value;
     const nGap = $('delayNextCardSelect')?.value;
     const spd  = $('speedSelect')?.value;
-    if (window.ttsEngine) {
-      if (tRep) window.ttsEngine.targetRepeatCount     = parseInt(tRep);
-      if (eRep) window.ttsEngine.explanationRepeatCount = parseInt(eRep);
-      if (nGap) window.ttsEngine.delayNextCard          = parseInt(nGap);
-      if (spd)  window.ttsEngine.rate                   = parseFloat(spd);
-    }
-    if (tRep) localStorage.setItem('h_tRep', tRep);
-    if (eRep) localStorage.setItem('h_eRep', eRep);
-    if (nGap) localStorage.setItem('h_nGap', nGap);
-    if (spd)  localStorage.setItem('h_spd',  spd);
-    alert('✅ 설정이 저장되었습니다!');
-  }
-  function restoreAudioSettings() {
-    const tRep = localStorage.getItem('h_tRep');
-    const eRep = localStorage.getItem('h_eRep');
-    const nGap = localStorage.getItem('h_nGap');
-    const spd  = localStorage.getItem('h_spd');
+    const rSys = $('tab1RepeatSystemSelect')?.value;
+
     if (window.ttsEngine) {
       if (tRep) window.ttsEngine.targetRepeatCount      = parseInt(tRep);
+      if (tGap) window.ttsEngine.targetIntraGap         = parseInt(tGap);
       if (eRep) window.ttsEngine.explanationRepeatCount  = parseInt(eRep);
+      if (eGap) window.ttsEngine.targetToExpGap         = parseInt(eGap);
       if (nGap) window.ttsEngine.delayNextCard           = parseInt(nGap);
       if (spd)  window.ttsEngine.rate                    = parseFloat(spd);
+      if (rSys) window.ttsEngine.repeatSystemMode        = rSys;
     }
-    if (tRep && $('targetRepeatSelect'))     $('targetRepeatSelect').value     = tRep;
-    if (eRep && $('explanationRepeatSelect')) $('explanationRepeatSelect').value = eRep;
-    if (nGap && $('delayNextCardSelect'))    $('delayNextCardSelect').value    = nGap;
-    if (spd  && $('speedSelect'))           $('speedSelect').value            = spd;
+
+    if (tRep) localStorage.setItem('h_tRep', tRep);
+    if (tGap) localStorage.setItem('h_tGap', tGap);
+    if (eRep) localStorage.setItem('h_eRep', eRep);
+    if (eGap) localStorage.setItem('h_eGap', eGap);
+    if (nGap) localStorage.setItem('h_nGap', nGap);
+    if (spd)  localStorage.setItem('h_spd',  spd);
+    if (rSys) localStorage.setItem('h_rSys', rSys);
+
+    if (showToast) alert('✅ 사용자 커스텀 설정이 저장되었습니다!');
+  }
+
+  function restoreAudioSettings() {
+    const tRep = localStorage.getItem('h_tRep');
+    const tGap = localStorage.getItem('h_tGap');
+    const eRep = localStorage.getItem('h_eRep');
+    const eGap = localStorage.getItem('h_eGap');
+    const nGap = localStorage.getItem('h_nGap');
+    const spd  = localStorage.getItem('h_spd');
+    const rSys = localStorage.getItem('h_rSys');
+
+    if (window.ttsEngine) {
+      if (tRep) window.ttsEngine.targetRepeatCount      = parseInt(tRep);
+      if (tGap) window.ttsEngine.targetIntraGap         = parseInt(tGap);
+      if (eRep) window.ttsEngine.explanationRepeatCount  = parseInt(eRep);
+      if (eGap) window.ttsEngine.targetToExpGap         = parseInt(eGap);
+      if (nGap) window.ttsEngine.delayNextCard           = parseInt(nGap);
+      if (spd)  window.ttsEngine.rate                    = parseFloat(spd);
+      if (rSys) window.ttsEngine.repeatSystemMode        = rSys;
+    }
+
+    if (tRep && $('targetRepeatSelect'))      $('targetRepeatSelect').value      = tRep;
+    if (tGap && $('targetIntraGapSelect'))   $('targetIntraGapSelect').value    = tGap;
+    if (eRep && $('explanationRepeatSelect')) $('explanationRepeatSelect').value  = eRep;
+    if (eGap && $('targetToExpGapSelect'))   $('targetToExpGapSelect').value    = eGap;
+    if (nGap && $('delayNextCardSelect'))     $('delayNextCardSelect').value     = nGap;
+    if (spd  && $('speedSelect'))            $('speedSelect').value             = spd;
+    if (rSys && $('tab1RepeatSystemSelect')) $('tab1RepeatSystemSelect').value  = rSys;
   }
   restoreAudioSettings();
+
   const btnSaveCP = $('btnSaveCustomPreset');
-  if (btnSaveCP) btnSaveCP.addEventListener('click', saveAudioSettings);
+  if (btnSaveCP) btnSaveCP.addEventListener('click', () => saveAudioSettings(true));
 
   // 실시간 변경 리스너 (설정 드롭다운 변경 즉시 ttsEngine 반영)
-  ['targetRepeatSelect', 'explanationRepeatSelect', 'delayNextCardSelect', 'speedSelect'].forEach(id => {
+  ['targetRepeatSelect', 'targetIntraGapSelect', 'explanationRepeatSelect', 'targetToExpGapSelect', 'delayNextCardSelect', 'speedSelect', 'tab1RepeatSystemSelect'].forEach(id => {
     const el = $(id);
     if (el) {
       el.addEventListener('change', () => {
-        saveAudioSettings();
+        saveAudioSettings(false);
       });
     }
   });

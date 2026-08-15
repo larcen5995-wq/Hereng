@@ -30,9 +30,13 @@ class TTSEngine {
     this.currentIndex = 0;
     this.isPlaying = false;
     this.targetRepeatCount = 3;
+    this.targetIntraGap = 500;
     this.explanationRepeatCount = 1;
-    this.delayNextCard = 500;
+    this.targetToExpGap = 500;
+    this.delayNextCard = 1000;
+    this.repeatSystemMode = 'type_sequence';
     this.isShuffle = false;
+    this.bgAudio = null;
 
     this.onSpeechStart = null;
     this.onSpeechEnd = null;
@@ -83,6 +87,9 @@ class TTSEngine {
       try { this.synth.resume(); } catch(e){}
       try { this.synth.cancel(); } catch(e){}
     }
+    if (!this.isPlaying && this.bgAudio) {
+      try { this.bgAudio.pause(); } catch(e){}
+    }
   }
 
   stop() {
@@ -107,6 +114,16 @@ class TTSEngine {
       this.currentIndex = 0;
     }
     this.isPlaying = true;
+
+    // ★ iOS 잠금화면 / 백그라운드 무한 오디오 유지 트랙 구동
+    try {
+      if (!this.bgAudio) {
+        const silentWav = 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEARKwAAIhYAQACABAAZGF0YQAAAAA=';
+        this.bgAudio = new Audio(silentWav);
+        this.bgAudio.loop = true;
+      }
+      this.bgAudio.play().catch(e => {});
+    } catch(e){}
 
     const isNovel = this.isNovelMode || (this.playlist[0] && (this.playlist[0].isNovel || this.playlist[0].type === 'novel'));
 
@@ -293,8 +310,17 @@ class TTSEngine {
 
       this._speakOneText(text, lang, () => {
         step++;
-        // 단어 반복 사이 및 단어-뜻 사이 넉넉한 갭 (iOS 묵음 방지)
-        const gap = (isEngTurn && step === totalTarget) ? (this.intraGap || 400) : 350;
+        // 세부 조절 패널 딜레이 설정 정밀 적용
+        let gap = 350;
+        if (isEngTurn) {
+          if (step < totalTarget) {
+            gap = this.targetIntraGap != null ? this.targetIntraGap : 500;
+          } else {
+            gap = this.targetToExpGap != null ? this.targetToExpGap : 500;
+          }
+        } else {
+          gap = 350;
+        }
         this.activeTimerId = setTimeout(doNextStep, gap);
       });
     };
@@ -373,17 +399,22 @@ class TTSEngine {
     }, 50);
   }
 
-  // ── 다음 카드로 이동 후 재생 ──
+  // ── 다음 카드로 이동 후 무한 연속 재생 ──
   _advanceAndPlayNext() {
     if (!this.isPlaying) return;
     if (this.isShuffle) {
       this.currentIndex = Math.floor(Math.random() * this.playlist.length);
     } else {
-      this.currentIndex = (this.currentIndex + 1) % this.playlist.length;
+      this.currentIndex++;
+      if (this.currentIndex >= this.playlist.length) {
+        // 단어장 마지막 카드 도달 시 처음(0)부터 무한 재시작!
+        this.currentIndex = 0;
+      }
     }
+    const delay = this.delayNextCard != null ? this.delayNextCard : 1000;
     this.activeTimerId = setTimeout(() => {
       this._playWebCard();
-    }, this.delayNextCard || 500);
+    }, delay);
   }
 
   // ── 하위 호환 메서드 ──
