@@ -293,8 +293,8 @@ class TTSEngine {
 
       this._speakOneText(text, lang, () => {
         step++;
-        // 단어-뜻 사이 짧은 갭
-        const gap = (isEngTurn && step === totalTarget) ? (this.intraGap || 300) : 200;
+        // 단어 반복 사이 및 단어-뜻 사이 넉넉한 갭 (iOS 묵음 방지)
+        const gap = (isEngTurn && step === totalTarget) ? (this.intraGap || 400) : 350;
         this.activeTimerId = setTimeout(doNextStep, gap);
       });
     };
@@ -317,6 +317,13 @@ class TTSEngine {
       if (this._watchdogId) { clearTimeout(this._watchdogId); this._watchdogId = null; }
       onDone();
     };
+
+    // iOS WebKit 큐 초기화 (연속 낭독 / 묵음 씹힘 방지 필수)
+    try {
+      if (this.synth.speaking || this.synth.pending) {
+        this.synth.cancel();
+      }
+    } catch(e){}
 
     const utt = new SpeechSynthesisUtterance(text);
     window._activeUtterance = utt;
@@ -342,19 +349,28 @@ class TTSEngine {
     }
 
     utt.onend   = safeOnDone;
-    utt.onerror = safeOnDone;
-
-    // ★ Chrome 핵심 버그: speak() 전 resume() 필수
-    try { this.synth.resume(); } catch(e){}
-    try { this.synth.speak(utt); } catch(e) { safeOnDone(); return; }
-
-    // ★ Watchdog: speak() 직후 바로 설정 (onstart 의존 안 함)
-    // 텍스트 길이 기준 예상 시간 + 3배 여유
-    const estimatedMs = Math.max(3000, text.length * 150 * 3);
-    this._watchdogId = setTimeout(() => {
-      console.warn(`[TTS Watchdog] "${text.slice(0,20)}..." 발화 타임아웃 → 강제 진행`);
+    utt.onerror = (err) => {
+      console.warn('TTS utterance error:', err);
       safeOnDone();
-    }, estimatedMs);
+    };
+
+    // 약간의 딜레이(50ms) 후 speak 호출로 WebKit 오디오 컨텍스트 동기화
+    setTimeout(() => {
+      try { this.synth.resume(); } catch(e){}
+      try {
+        this.synth.speak(utt);
+      } catch(e) {
+        safeOnDone();
+        return;
+      }
+
+      // iOS WebKit 오디오 딜레이에 맞춘 Watchdog
+      const estimatedMs = Math.max(4000, text.length * 200 * 3);
+      this._watchdogId = setTimeout(() => {
+        console.warn(`[TTS Watchdog] "${text.slice(0,20)}..." 발화 타임아웃 → 강제 진행`);
+        safeOnDone();
+      }, estimatedMs);
+    }, 50);
   }
 
   // ── 다음 카드로 이동 후 재생 ──
