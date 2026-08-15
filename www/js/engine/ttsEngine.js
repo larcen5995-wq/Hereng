@@ -324,16 +324,20 @@ class TTSEngine {
     utt.rate = this.rate || 1.0;
     utt.pitch = 1.0;
 
-    // 음성 선택
+    // 음성 선택 (여성 음성 최우선 선택)
     const vs = this.synth.getVoices() || [];
     if (vs.length > 0) {
       const prefix = lang.substring(0, 2).toLowerCase();
       const langVoices = vs.filter(v => v.lang && v.lang.toLowerCase().replace('_','-').startsWith(prefix));
       if (langVoices.length > 0) {
-        // 좋은 음성 우선 선택
-        const good = langVoices.find(v => /google|online|natural|sunhi|aria/i.test(v.name));
-        const noisy = langVoices.find(v => !/heami/i.test(v.name));
-        utt.voice = good || noisy || langVoices[0];
+        // 1. 대표 여성 음성 이름 (iOS Samantha, Karen, Victoria, Yuna, Sora, SunHi, Aria 등)
+        const femaleVoice = langVoices.find(v => 
+          /samantha|karen|victoria|sora|yuna|sunhi|aria|jennie|jiyeon|kyoko|female|woman|girl|natural/i.test(v.name)
+        );
+        // 2. 남성 전용 음성 제외 (Daniel, Alex, Fred, Arthur, Minho, Male 등)
+        const nonMaleVoice = langVoices.find(v => !/daniel|alex|fred|arthur|minho|male|boy|man/i.test(v.name));
+
+        utt.voice = femaleVoice || nonMaleVoice || langVoices[0];
       }
     }
 

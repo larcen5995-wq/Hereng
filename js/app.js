@@ -630,6 +630,16 @@ function initVocalizeApp() {
   const btnSaveCP = $('btnSaveCustomPreset');
   if (btnSaveCP) btnSaveCP.addEventListener('click', saveAudioSettings);
 
+  // 실시간 변경 리스너 (설정 드롭다운 변경 즉시 ttsEngine 반영)
+  ['targetRepeatSelect', 'explanationRepeatSelect', 'delayNextCardSelect', 'speedSelect'].forEach(id => {
+    const el = $(id);
+    if (el) {
+      el.addEventListener('change', () => {
+        saveAudioSettings();
+      });
+    }
+  });
+
   // ── 10초 테스트 광고 ──
   const btnTestAd = $('btnTestAd10s');
   const testAdTxt = $('testAdCountdownText');
