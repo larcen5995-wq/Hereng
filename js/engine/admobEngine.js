@@ -127,6 +127,12 @@ class AdMobEngine {
   triggerDailyAdMent(mentText, forceDevTest = false) {
     this.refreshAdMobImpression();
     if (this.isProUnlocked && !forceDevTest) return;
+
+    // Suppress modal popups when screen is OFF/backgrounded
+    if (document.visibilityState === 'hidden' && !forceDevTest) {
+      console.log('🛡️ [AdMob Safety] Screen is OFF. Skipping daily ad popup.');
+      return;
+    }
     
     if (window.ttsEngine && window.ttsEngine.speakText) {
       window.ttsEngine.speakText(mentText, 'ko-KR', () => {
@@ -140,9 +146,19 @@ class AdMobEngine {
   triggerRadioCmAd(forceDevTest = false) {
     this.refreshAdMobImpression();
     if (this.isProUnlocked && !forceDevTest) return;
+
+    // 🛡️ Background / Lockscreen Safety:
+    // When listening with screen OFF, do NOT pop ads or loud sounds. Play gentle continuous playback notification.
+    if (document.visibilityState === 'hidden' && !forceDevTest) {
+      console.log('🛡️ [AdMob Safety] Screen is OFF during sleep/background playback. Suppressing AdMob popups.');
+      if (window.ttsEngine && window.ttsEngine.speakText) {
+        window.ttsEngine.speakText('HearEng 단어장 연속 낭독 중입니다.', 'ko-KR');
+      }
+      return;
+    }
     
     if (window.ttsEngine && window.ttsEngine.speakText) {
-      window.ttsEngine.speakText('광고 시간입니다.', 'ko-KR', () => {
+      window.ttsEngine.speakText('잠시 후 협찬 라디오 광고를 전해드립니다.', 'ko-KR', () => {
         this.showInterstitialAd();
       });
     } else {
@@ -235,6 +251,13 @@ class AdMobEngine {
 
   showInterstitialAd() {
     if (this.isProUnlocked) return;
+
+    // 🛡️ GOOGLE PLAY & ADMOB POLICY SAFEGUARD:
+    // Never trigger AdMob Interstitial Ads when the screen is OFF or app is backgrounded (sleep mode)!
+    if (document.visibilityState === 'hidden') {
+      console.log('🛡️ [AdMob Safeguard] App is backgrounded or screen is OFF. Suppressing AdMob Interstitial to comply with Google Play Policy.');
+      return;
+    }
 
     if (window.Capacitor && window.Capacitor.Plugins && window.Capacitor.Plugins.AdMob) {
       const { AdMob } = window.Capacitor.Plugins;
